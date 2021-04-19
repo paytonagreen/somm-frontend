@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
+import Form from "./reusable/Form";
+import useForm from "../hooks/useForm";
 
-export default function ProteinsList() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [protein, setProtein] = useState("");
-
-  useEffect(() => {
-    if (isSubmitting) {
-        console.log('Fetching...')
+export default function AddProtein() {
+  const [savingStarted, setSavingStarted] = useState(false);
+  const { values, setValues, handleChange, handleSubmit } = useForm(callback);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState('');
+  
+  function callback() {
+    if (!savingStarted){
+      try {
+        setSavingStarted(true);
         fetch(`http://127.0.0.1:7777/proteins/`, {
           body: JSON.stringify({
-              protein_name: protein
+            protein_name: values.name,
           }),
           method: `POST`,
           headers: {
@@ -17,30 +22,27 @@ export default function ProteinsList() {
             "Content-Type": "application/json",
           },
         });
-        setIsSubmitting(false);
+        setSuccessMessage('You did it!');
+        setValues({name: ''});
+      } catch (err) {
+        console.log(err);
+        setError(`You didn't do it...`)
+      }
     }
-  }, [isSubmitting, protein]);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(isSubmitting);
-    setIsSubmitting(true);
-    console.log("Submitting...");
   }
 
-  function handleChange(e) {
-    e.persist();
-    const { value } = e.target;
-    setProtein(value);
-  }
-
+  console.log(values)
   return (
-    <form>
+    <Form>
       <h2>Add Protein</h2>
-      <input type="text" value={protein} onChange={(e) => handleChange(e)} />
+      {successMessage ? <p>{successMessage}</p> : ''}
+      {error ? <p>{error}</p> : ''}
+      <label htmlFor="name">
+        <input name="name" type="text" value={values.name} onChange={(e) => handleChange(e)} />
+      </label>
       <button type="submit" onClick={(e) => handleSubmit(e)}>
         Submit
       </button>
-    </form>
+    </Form>
   );
 }
