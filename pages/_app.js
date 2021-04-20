@@ -62,7 +62,7 @@ function MyApp({ Component, pageProps }) {
       "Content-Type": "application/json",
     }
   } else if (process.env.NODE_ENV === 'production') {
-    api = 'https://api.asommforyou.com/';
+    api = 'https://api.asommforyou.com';
     headers = {
       "Access-Control-Allow-Origin": "https://www.asommforyou.com",
       "Content-Type": "application/json",
