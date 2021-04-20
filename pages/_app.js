@@ -79,7 +79,7 @@ function MyApp({ Component, pageProps }) {
             href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap"
             rel="stylesheet"
           />
-          <title>Create Next App</title>
+          <title>A Somm For You</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Nav>
