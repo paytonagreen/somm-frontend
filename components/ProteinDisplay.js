@@ -23,29 +23,28 @@ const ProteinSelector = styled.div`
   }
 `;
 
-export default function ProteinsList() {
+export default function ProteinDisplay({api}) {
   const [data, setData] = useState();
   const { values, handleChange } = useForm();
 
-  console.log(values)
+  console.log(api);
 
-  function fetchTemplate(address, method, id) {
-    fetch(`http://127.0.0.1:7777/${address}/`, {
-      method: `${method}`,
-      headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        await data;
-        setData(data);
-      });
-  }
-  useEffect(() => {
-    fetchTemplate("proteins", "GET");
-  }, []);
+useEffect(() => {
+  const url = `${api}/proteins`;
+  const options = {
+    method: `get`,
+    headers: {
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Content-Type": "application/json",
+    },
+  };
+  fetch(url, options)
+    .then((res) => res.json())
+    .then(async (data) => {
+      await data;
+      setData(data);
+    });
+}, [])
 
   if (!data) return <p>"loading..."</p>;
   if (data) {
@@ -54,7 +53,9 @@ export default function ProteinsList() {
         <ProteinSelector>
           <h2>Pick Your Protein!</h2>
           <select name="protein" value={values.protein} onChange={handleChange}>
-            <option value="none" selected disabled hidden>Select A Protein</option>
+            <option value="none" selected disabled hidden>
+              Select A Protein
+            </option>
             {data.map((protein) => {
               return (
                 <option key={protein.id} value={protein.id}>
@@ -64,7 +65,7 @@ export default function ProteinsList() {
             })}
           </select>
         </ProteinSelector>
-        <Protein proteins={data} id={values.protein}/>
+        <Protein api={api} proteins={data} id={values.protein} />
       </>
     );
   }

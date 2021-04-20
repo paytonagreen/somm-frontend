@@ -27,10 +27,15 @@ const Nav = styled.nav`
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
   color: #80304c;
   background-color: #ffc47d;
-  margin-botton: 2rem;
+  margin-bottom: -4rem;
+  h1 {
+    margin: 1rem;
+  }
+  p {
+    margin: .5rem;
+  }
   a {
     text-decoration: none;
     color: inherit;
@@ -46,10 +51,12 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   color: #ffc47d;
-  margin-top: 4rem;
 `;
 
 function MyApp({ Component, pageProps }) {
+  const api = 'http://127.0.0.1:7777'
+
+
   return (
     <>
       <GlobalStyle />
@@ -67,9 +74,18 @@ function MyApp({ Component, pageProps }) {
           <Link href="/">
             <a><h1>A Somm For You</h1></a>
           </Link>
+          <Link href="/pairing">
+            <a><p>Pairing</p></a>
+          </Link>
+          <Link href="/addProtein">
+            <a><p>Add Protein</p></a>
+          </Link>
+          <Link href="/addWine">
+            <a><p>Add Wine</p></a>
+          </Link>
         </Nav>
         <Content>
-          <Component {...pageProps} />
+          <Component api={api} {...pageProps} />
         </Content>
       </ThemeProvider>
     </>

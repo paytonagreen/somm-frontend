@@ -29,10 +29,10 @@ const ProteinCard = styled.div`
   }
 `;
 
-export default function Protein({ proteins, id }) {
+export default function Protein({ api, proteins, id }) {
   if (!id) return <p></p>;
   if (id) {
-    console.log(id)
+    console.log(api)
     const protein = proteins.filter((protein) => {
       return protein.id === id;
     });
@@ -42,9 +42,9 @@ export default function Protein({ proteins, id }) {
         <ProteinCard key={protein.id}>
           <div key={protein.id}>
             <h1>{protein.protein_name}</h1>
-            <WinesList id={id} />
+            <WinesList api={api} id={id} />
             <div class="button-div">
-              {id && <DeleteProtein id={id} />}
+              {/* {id && <DeleteProtein id={id} />} */}
             </div>
           </div>
         </ProteinCard>

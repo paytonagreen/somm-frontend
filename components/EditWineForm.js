@@ -14,8 +14,6 @@ const ButtonRow = styled.div`
   }
 `;
 
-
-
 export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
