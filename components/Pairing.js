@@ -1,51 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Form from "./reusable/Form";
 import useForm from "../hooks/useForm";
 
-export default function Pairing({ wines, proteins }) {
+export default function Pairing({props, wines, proteins }) {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [values, setValues] = useState({});
 
-  useEffect(() => {
-    if (isSubmitting) {
-      console.log("Sending...");
+  const { values, handleChange, handleSubmit } = useForm(callback);
+  const { api, headers } = props
+
+  function callback() {
+    if (!savingStated) {
       try {
-        setSavingStarted(true);
-        const url = "http://127.0.0.1:7777/wines_proteins";
+        setSavingStarted(true)
+        const url = `${api}/wines_proteins`;
         const options = {
           body: JSON.stringify({
             protein_id: values.protein_id,
             wine_id: values.wine_id,
           }),
           method: "POST",
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Content-Type": "application/json",
-          },
-        };
+          headers,
+        }
         fetch(url, options);
-        setIsSubmitting(false);
       } catch (err) {
         console.log(err);
       }
     }
-  }, [isSubmitting, values]);
-
-  function handleChange(e) {
-    e.persist();
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
   }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsSubmitting(true);
-  }
-
-  console.log(values);
-
 
   if (!wines || !proteins) return "Loading...";
   if (wines && proteins);

@@ -29,7 +29,7 @@ const ProteinCard = styled.div`
   }
 `;
 
-export default function Protein({ api, proteins, id }) {
+export default function Protein({ headers, api, proteins, id }) {
   if (!id) return <p></p>;
   if (id) {
     console.log(api)
@@ -42,7 +42,7 @@ export default function Protein({ api, proteins, id }) {
         <ProteinCard key={protein.id}>
           <div key={protein.id}>
             <h1>{protein.protein_name}</h1>
-            <WinesList api={api} id={id} />
+            <WinesList api={api} headers={headers} id={id} />
             <div class="button-div">
               {/* {id && <DeleteProtein id={id} />} */}
             </div>

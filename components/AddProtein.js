@@ -2,43 +2,46 @@ import { useEffect, useState } from "react";
 import Form from "./reusable/Form";
 import useForm from "../hooks/useForm";
 
-export default function AddProtein() {
+export default function AddProtein({props}) {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, setValues, handleChange, handleSubmit } = useForm(callback);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [error, setError] = useState('');
-  
+  const [successMessage, setSuccessMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const { api, headers } = props;
+
   function callback() {
-    if (!savingStarted){
+    if (!savingStarted) {
       try {
         setSavingStarted(true);
-        fetch(`http://127.0.0.1:7777/proteins/`, {
+        fetch(`${api}/proteins/`, {
           body: JSON.stringify({
             protein_name: values.name,
           }),
           method: `POST`,
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Content-Type": "application/json",
-          },
+          headers,
         });
-        setSuccessMessage('You did it!');
-        setValues({name: ''});
+        setSuccessMessage("You did it!");
+        setValues({ name: "" });
       } catch (err) {
         console.log(err);
-        setError(`You didn't do it...`)
+        setError(`You didn't do it...`);
       }
     }
   }
 
-  console.log(values)
   return (
     <Form>
       <h2>Add Protein</h2>
-      {successMessage ? <p>{successMessage}</p> : ''}
-      {error ? <p>{error}</p> : ''}
+      {successMessage ? <p>{successMessage}</p> : ""}
+      {error ? <p>{error}</p> : ""}
       <label htmlFor="name">
-        <input name="name" type="text" value={values.name} onChange={(e) => handleChange(e)} />
+        <input
+          name="name"
+          type="text"
+          value={values.name}
+          onChange={(e) => handleChange(e)}
+        />
       </label>
       <button type="submit" onClick={(e) => handleSubmit(e)}>
         Submit

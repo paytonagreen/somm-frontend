@@ -23,28 +23,23 @@ const ProteinSelector = styled.div`
   }
 `;
 
-export default function ProteinDisplay({api}) {
+export default function ProteinDisplay({ headers, api }) {
   const [data, setData] = useState();
   const { values, handleChange } = useForm();
 
-  console.log(api);
-
-useEffect(() => {
-  const url = `${api}/proteins`;
-  const options = {
-    method: `get`,
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:3000",
-      "Content-Type": "application/json",
-    },
-  };
-  fetch(url, options)
-    .then((res) => res.json())
-    .then(async (data) => {
-      await data;
-      setData(data);
-    });
-}, [])
+  useEffect(() => {
+    const url = `${api}/proteins`;
+    const options = {
+      method: `get`,
+      headers,
+    };
+    fetch(url, options)
+      .then((res) => res.json())
+      .then(async (data) => {
+        await data;
+        setData(data);
+      });
+  }, []);
 
   if (!data) return <p>"loading..."</p>;
   if (data) {
@@ -65,7 +60,7 @@ useEffect(() => {
             })}
           </select>
         </ProteinSelector>
-        <Protein api={api} proteins={data} id={values.protein} />
+        <Protein api={api} headers={headers} proteins={data} id={values.protein} />
       </>
     );
   }

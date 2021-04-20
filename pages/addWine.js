@@ -1,7 +1,7 @@
 import AddWine from '../components/AddWine'
 
-export default function AddWinePage() {
+export default function AddWinePage(props) {
     return(
-        <AddWine/>
+        <AddWine props={props}/>
     )
 }

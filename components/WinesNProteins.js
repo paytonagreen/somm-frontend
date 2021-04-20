@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import Pairing from './Pairing'
 
-export default function WinesNProteins() {
+export default function WinesNProteins({props}) {
   const [proteins, setProteins] = useState();
   const [wines, setWines] = useState();
 
+  const { api, headers } = props;
+
   useEffect(() => {
-    fetch(`http://127.0.0.1:7777/proteins`, {
-      method: `GET`,
-      headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Content-Type": "application/json",
-      },
-    })
+    const proteinUrl = `${api}/proteins`
+    const wineUrl = `${api}/wines`
+    const options = {
+      method: 'GET',
+      headers
+    }
+    fetch(proteinUrl, options)
       .then((res) => res.json())
       .then(async (data) => {
         setProteins(data);
       });
-    fetch(`http://127.0.0.1:7777/wines`, {
-      method: `GET`,
-      headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(wineUrl, options)
       .then((res) => res.json())
       .then(async (data) => {
         setWines(data);
@@ -34,7 +30,7 @@ export default function WinesNProteins() {
   if (proteins && wines) {
     return (
       <>
-        <Pairing wines={wines} proteins={proteins}/>
+        <Pairing props={props} wines={wines} proteins={proteins}/>
       </>
     );
   }

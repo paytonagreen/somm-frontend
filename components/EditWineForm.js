@@ -1,18 +1,10 @@
 import { useState } from "react";
-import styled from 'styled-components';
 
 import useForm from "../hooks/useForm";
 
 import Form from "./reusable/Form";
 import DeleteWine from "./DeleteWine";
-
-const ButtonRow = styled.div`
-  display: flex;
-  justify-content: space-around;
-  button {
-    margin: .5rem 1rem;
-  }
-`;
+import ButtonRow from "./styles/ButtonRow";
 
 export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
@@ -44,8 +36,6 @@ export default function EditWineForm({ data, id }) {
     }
   }
 
-  console.log(values);
-
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Edit Wine</h2>
@@ -67,7 +57,7 @@ export default function EditWineForm({ data, id }) {
       />
       <ButtonRow>
         <button type="submit">Submit</button>
-        <DeleteWine id={id}/>
+        <DeleteWine id={id} />
       </ButtonRow>
     </Form>
   );

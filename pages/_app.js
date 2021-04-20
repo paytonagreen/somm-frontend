@@ -55,7 +55,10 @@ const Content = styled.div`
 
 function MyApp({ Component, pageProps }) {
   const api = 'http://127.0.0.1:7777'
-
+  const headers = {
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Content-Type": "application/json",
+  }
 
   return (
     <>
@@ -85,7 +88,7 @@ function MyApp({ Component, pageProps }) {
           </Link>
         </Nav>
         <Content>
-          <Component api={api} {...pageProps} />
+          <Component api={api} headers={headers} {...pageProps} />
         </Content>
       </ThemeProvider>
     </>

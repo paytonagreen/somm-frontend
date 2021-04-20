@@ -2,37 +2,37 @@ import { useState } from "react";
 import Form from "./reusable/Form";
 import useForm from '../hooks/useForm';
 
-export default function AddWine() {
+export default function AddWine({props}) {
   const [savingStarted, setSavingStarted] = useState(false);
+  const [ successMessage, setSuccessMessage ] = useState();
+
   const { values, handleChange, handleSubmit } = useForm(callback);
+
+  const { api, headers } = props
 
   function callback() {
     if (!savingStarted) {
       try {
         setSavingStarted(true)
-        fetch(`http://127.0.0.1:7777/wines/`, {
+        fetch(`${api}/wines/`, {
           body: JSON.stringify({
             wine_name: values.name,
             wine_description: values.description,
           }),
           method: `POST`,
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Content-Type": "application/json",
-          },
+          headers
         });
-        setValues({ name: "", description: "" });
+        setSuccessMessage('You did it!');
       } catch(err) {
           console.log(err);
       }
     }
   }
 
-  console.log(values);
-
   return (
     <Form>
       <h2>Add Wine</h2>
+      {successMessage && <p>{successMessage}</p>}
       <label htmlFor="name">Name</label>
       <input
         name="name"
