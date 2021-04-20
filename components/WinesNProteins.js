@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import Pairing from './Pairing'
 
 export default function WinesNProteins({props}) {
@@ -29,9 +30,7 @@ export default function WinesNProteins({props}) {
   if (!proteins || !wines) return <p>"loading..."</p>;
   if (proteins && wines) {
     return (
-      <>
         <Pairing props={props} wines={wines} proteins={proteins}/>
-      </>
     );
   }
 }

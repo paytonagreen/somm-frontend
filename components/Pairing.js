@@ -1,17 +1,19 @@
 import { useState } from "react";
-import Form from "./reusable/Form";
+
 import useForm from "../hooks/useForm";
 
-export default function Pairing({props, wines, proteins }) {
+import Form from "./reusable/Form";
+
+export default function Pairing({ props, wines, proteins }) {
   const [savingStarted, setSavingStarted] = useState(false);
 
   const { values, handleChange, handleSubmit } = useForm(callback);
-  const { api, headers } = props
+  const { api, headers } = props;
 
   function callback() {
-    if (!savingStated) {
+    if (!savingStarted) {
       try {
-        setSavingStarted(true)
+        setSavingStarted(true);
         const url = `${api}/wines_proteins`;
         const options = {
           body: JSON.stringify({
@@ -20,7 +22,7 @@ export default function Pairing({props, wines, proteins }) {
           }),
           method: "POST",
           headers,
-        }
+        };
         fetch(url, options);
       } catch (err) {
         console.log(err);
@@ -57,9 +59,7 @@ export default function Pairing({props, wines, proteins }) {
           );
         })}
       </select>
-      <button type="submit" >
-        Pair 'Em Up!
-      </button>
+      <button type="submit">Pair 'Em Up!</button>
     </Form>
   );
 }

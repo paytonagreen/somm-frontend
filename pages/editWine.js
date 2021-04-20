@@ -2,6 +2,6 @@ import EditWine from '../components/EditWine'
 
 export default function EditWinePage(props) {
     return (
-        <EditWine id={props.query.id} />
+        <EditWine props={props} id={props.query.id} />
     )
 }

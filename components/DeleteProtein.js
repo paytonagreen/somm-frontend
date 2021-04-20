@@ -1,22 +1,15 @@
-import { useState } from "react";
-
 import DeleteButton from "./styles/DeleteButton";
 
-export default function DeleteProtein({ id }) {
-  const [data, setData] = useState();
+export default function DeleteProtein({api, headers, id }) {
 
   function deleteProtein() {
-    fetch(`http://127.0.0.1:7777/proteins/${id}`, {
+    fetch(`${api}/proteins/${id}`, {
       method: `DELETE`,
-      headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-        "Content-Type": "application/json",
-      },
+      headers
     })
       .then((res) => res.json())
       .then(async (data) => {
-        await data;
-        setData(data);
+        console.log(data);
       });
   }
 

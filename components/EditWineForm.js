@@ -6,9 +6,11 @@ import Form from "./reusable/Form";
 import DeleteWine from "./DeleteWine";
 import ButtonRow from "./styles/ButtonRow";
 
-export default function EditWineForm({ data, id }) {
+export default function EditWineForm({ props, data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
+
+  const { api, headers } = props;
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: data.wine_name,
     description: data.wine_description,
@@ -18,16 +20,13 @@ export default function EditWineForm({ data, id }) {
     if (!savingStarted) {
       try {
         setSavingStarted(true);
-        fetch(`http://127.0.0.1:7777/wines/${id}`, {
+        fetch(`${api}/wines/${id}`, {
           body: JSON.stringify({
             wine_name: values.name,
             wine_description: values.description,
           }),
           method: `PUT`,
-          headers: {
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Content-Type": "application/json",
-          },
+          headers,
         });
         setSuccessMessage("Saved successfully.");
       } catch (err) {
@@ -45,7 +44,7 @@ export default function EditWineForm({ data, id }) {
         name="name"
         type="text"
         value={values.name}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <label htmlFor="description">Description</label>
       <textarea
@@ -53,11 +52,11 @@ export default function EditWineForm({ data, id }) {
         className="textbox"
         type="textarea"
         value={values.description}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <ButtonRow>
         <button type="submit">Submit</button>
-        <DeleteWine id={id} />
+        <DeleteWine props={props} id={id} />
       </ButtonRow>
     </Form>
   );

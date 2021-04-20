@@ -54,12 +54,20 @@ const Content = styled.div`
 `;
 
 function MyApp({ Component, pageProps }) {
-  const api = 'http://127.0.0.1:7777'
-  const headers = {
-    "Access-Control-Allow-Origin": "http://localhost:3000",
-    "Content-Type": "application/json",
+  let api, headers;
+  if (process.env.NODE_ENV === 'development') {
+    api = 'http://127.0.0.1:7777';
+    headers = {
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Content-Type": "application/json",
+    }
+  } else if (process.env.NODE_ENV === 'production') {
+    api = '';
+    headers = {
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Content-Type": "application/json",
+    }
   }
-
   return (
     <>
       <GlobalStyle />

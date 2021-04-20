@@ -1,7 +1,7 @@
 import ProteinDisplay from "../components/ProteinDisplay";
 
-export default function Home({api, headers}) {
+export default function Home(props) {
   return (
-        <ProteinDisplay api={api} headers={headers}/>
+        <ProteinDisplay props={props} />
   );
 }

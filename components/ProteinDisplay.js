@@ -1,36 +1,20 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import useForm from "../hooks/useForm";
 
 import Protein from "./Protein";
+import ProteinSelector from './styles/ProteinSelector';
 
-const ProteinSelector = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 25rem;
-  select {
-    margin-bottom: 2rem;
-    width: 100%;
-    font-family: inherit;
-    font-size: 1.5rem;
-    color: ${(props) => props.theme.colors.beauj};
-    background-color: ${(props) => props.theme.colors.chard};
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-  }
-`;
 
-export default function ProteinDisplay({ headers, api }) {
+export default function ProteinDisplay({props}) {
   const [data, setData] = useState();
   const { values, handleChange } = useForm();
+
+  const { api, headers } = props;
 
   useEffect(() => {
     const url = `${api}/proteins`;
     const options = {
-      method: `get`,
+      method: `GET`,
       headers,
     };
     fetch(url, options)
@@ -47,8 +31,8 @@ export default function ProteinDisplay({ headers, api }) {
       <>
         <ProteinSelector>
           <h2>Pick Your Protein!</h2>
-          <select name="protein" value={values.protein} onChange={handleChange}>
-            <option value="none" selected disabled hidden>
+          <select name="protein" defaultValue="none" value={values.protein} onChange={handleChange}>
+            <option value="none" disabled hidden>
               Select A Protein
             </option>
             {data.map((protein) => {
