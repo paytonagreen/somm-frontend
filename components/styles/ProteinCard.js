@@ -11,14 +11,14 @@ const ProteinCard = styled.div`
   border-radius: 10px;
   box-shadow: 10px 5px 5px #4c0013;
   min-width: 25rem;
+  text-align: center;
   h1 {
     font-size: 2rem;
-    text-align: center;
   }
   h2 {
-    text-align: center;
     font-size: 1.5rem;
   }
+
   div.button-div {
     display: flex;
     flex-direction: column;

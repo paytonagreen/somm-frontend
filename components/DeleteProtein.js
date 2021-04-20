@@ -1,6 +1,6 @@
 import DeleteButton from "./styles/DeleteButton";
 
-export default function DeleteProtein({api, headers, id }) {
+export default function DeleteProtein({setDeleteMessage,  api, headers, id }) {
 
   function deleteProtein() {
     fetch(`${api}/proteins/${id}`, {
@@ -10,6 +10,7 @@ export default function DeleteProtein({api, headers, id }) {
       .then((res) => res.json())
       .then(async (data) => {
         console.log(data);
+        setDeleteMessage('Protein deleted!')
       });
   }
 
