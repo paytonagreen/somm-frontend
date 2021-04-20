@@ -68,6 +68,7 @@ function MyApp({ Component, pageProps }) {
       "Content-Type": "application/json",
     }
   }
+
   return (
     <>
       <GlobalStyle />

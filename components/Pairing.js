@@ -6,6 +6,7 @@ import Form from "./reusable/Form";
 
 export default function Pairing({ props, wines, proteins }) {
   const [savingStarted, setSavingStarted] = useState(false);
+  const [successMessage, setSuccessMessage ] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback);
   const { api, headers } = props;
@@ -24,6 +25,7 @@ export default function Pairing({ props, wines, proteins }) {
           headers,
         };
         fetch(url, options);
+        setSuccessMessage('Paired up!')
       } catch (err) {
         console.log(err);
       }
@@ -35,6 +37,7 @@ export default function Pairing({ props, wines, proteins }) {
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
+      {successMessage && <p>{successMessage}</p>}
       <label htmlFor="wine_id" />
       <select value={values.wine_id} name="wine_id" onChange={handleChange}>
         {wines.map((wine) => {
