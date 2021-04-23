@@ -8,6 +8,7 @@ import Form from './reusable/Form';
 export default function AddWine() {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -16,34 +17,41 @@ export default function AddWine() {
 
   function callback() {
     if (!savingStarted) {
-      try {
-        setSavingStarted(true);
-        fetch(`${api}/wines/`, {
-          body: JSON.stringify({
-            wine_name: values.name,
-            wine_description: values.description,
-          }),
-          method: `POST`,
-          headers,
+      setSavingStarted(true);
+      fetch(`${api}/wines/`, {
+        body: JSON.stringify({
+          wine_name: values.name,
+          wine_description: values.description,
+        }),
+        method: `POST`,
+        headers,
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw Error(data.message);
+          } else if (res.ok) {
+            setSuccessMessage('You did it!');
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
         });
-        setSuccessMessage('You did it!');
-      } catch (err) {
-        console.log(err);
-      }
     }
   }
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Add Wine</h2>
-      {successMessage && <p>{successMessage}</p>}
+      {!errorMessage && successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
         id='name'
         name='name'
         type='text'
         value={values.name}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
       <label htmlFor='description'>Description</label>
       <textarea
@@ -52,9 +60,9 @@ export default function AddWine() {
         className='textbox'
         type='textarea'
         value={values.description}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
-      <button type='submit' onClick={(e) => handleSubmit(e)}>
+      <button aria-label='submit' type='submit'>
         Submit
       </button>
     </Form>

@@ -8,7 +8,7 @@ export default function ProteinDisplay() {
   const { proteins, isLoading } = useProteins();
   const { values, handleChange } = useForm();
 
-  if (!proteins) return <p>"loading..."</p>;
+  if (isLoading) return <p>"loading..."</p>;
 
   return (
     <>

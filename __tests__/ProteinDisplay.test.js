@@ -21,6 +21,10 @@ describe('<ProteinDisplay />', () => {
 
   it('renders properly', async () => {
     await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
+    expect(await screen.findByText(/Pick Your Protein!/i)).toBeInTheDocument();
+  })
+
+  it('populates the menu with data', async () => {
     await userEvent.click(screen.getByRole('combobox', { name: /protein/i}))
     expect(await screen.findByText('Beef')).toBeInTheDocument();
   })

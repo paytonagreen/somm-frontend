@@ -11,11 +11,10 @@ export default function AddProtein() {
     name: '',
   });
   const [successMessage, setSuccessMessage] = useState('');
-  const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage ] = useState('');
 
   function callback() {
     if (!savingStarted) {
-      try {
         setSavingStarted(true);
         fetch(`${api}/proteins/`, {
           body: JSON.stringify({
@@ -23,23 +22,30 @@ export default function AddProtein() {
           }),
           method: `POST`,
           headers,
+        })
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw Error(data.message);
+          } else if (res.ok) {
+            setSuccessMessage('You did it!');
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
         });
-        setSuccessMessage('You did it!');
-        setValues({ name: '' });
-      } catch (err) {
-        console.log(err);
-        setError(`You didn't do it...`);
-      }
     }
   }
+
 
   return (
     <Form>
       <h2>Add Protein</h2>
-      {successMessage ? <p>{successMessage}</p> : ''}
-      {error ? <p>{error}</p> : ''}
+      {successMessage && <p>{successMessage}</p>}
+      {!successMessage && errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>
         <input
+          aria-label='name'
           name='name'
           type='text'
           value={values.name}
