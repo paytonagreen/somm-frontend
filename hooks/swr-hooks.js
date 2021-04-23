@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import {api} from './swr-switch'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
-const method = 'GET';
 
 function useProteins() {
   const { data, error } = useSWR(`${api}/proteins`, fetcher);
@@ -14,6 +13,7 @@ function useProteins() {
     isError: error,
   };
 }
+
 function useWines() {
   const { data, error } = useSWR(`${api}/wines`, fetcher);
 

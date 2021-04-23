@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'development') {
     'Access-Control-Allow-Origin': 'https://www.asommforyou.com',
     'Content-Type': 'application/json',
   };
-}
-
+} else if (process.env.NODE_ENV === 'test')
+  api = 'http://localhost:3000/';
+  headers = {};
 export {api, headers}
