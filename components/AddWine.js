@@ -9,7 +9,10 @@ export default function AddWine() {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
 
-  const { values, handleChange, handleSubmit } = useForm(callback);
+  const { values, handleChange, handleSubmit } = useForm(callback, {
+    name: '',
+    description: '',
+  });
 
   function callback() {
     if (!savingStarted) {
@@ -36,6 +39,7 @@ export default function AddWine() {
       {successMessage && <p>{successMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
+        id='name'
         name='name'
         type='text'
         value={values.name}
@@ -43,6 +47,7 @@ export default function AddWine() {
       />
       <label htmlFor='description'>Description</label>
       <textarea
+        id='description'
         name='description'
         className='textbox'
         type='textarea'
