@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useProteins, useWines } from '../hooks/swr-hooks';
 
-import useForm from "../hooks/useForm";
+import { api, headers } from '../hooks/swr-switch';
+import useForm from '../hooks/useForm';
 
-import Form from "./reusable/Form";
+import Form from './reusable/Form';
 
-export default function Pairing({ props, wines, proteins }) {
+export default function Pairing() {
+  const { wines, isLoading } = useWines();
+  const { proteins } = useProteins();
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage ] = useState();
+  const [successMessage, setSuccessMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback);
-  const { api, headers } = props;
 
   function callback() {
     if (!savingStarted) {
@@ -21,25 +24,25 @@ export default function Pairing({ props, wines, proteins }) {
             protein_id: values.protein_id,
             wine_id: values.wine_id,
           }),
-          method: "POST",
+          method: 'POST',
           headers,
         };
         fetch(url, options);
-        setSuccessMessage('Paired up!')
+        setSuccessMessage('Paired up!');
       } catch (err) {
         console.log(err);
       }
     }
   }
 
-  if (!wines || !proteins) return "Loading...";
+  if (isLoading) return 'Loading...';
   if (wines && proteins);
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
       {successMessage && <p>{successMessage}</p>}
-      <label htmlFor="wine_id" />
-      <select value={values.wine_id} name="wine_id" onChange={handleChange}>
+      <label htmlFor='wine_id' />
+      <select value={values.wine_id} name='wine_id' onChange={handleChange}>
         {wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
@@ -48,10 +51,10 @@ export default function Pairing({ props, wines, proteins }) {
           );
         })}
       </select>
-      <label htmlFor="protein_id" />
+      <label htmlFor='protein_id' />
       <select
         value={values.protein_id}
-        name="protein_id"
+        name='protein_id'
         onChange={handleChange}
       >
         {proteins.map((protein) => {
@@ -62,7 +65,7 @@ export default function Pairing({ props, wines, proteins }) {
           );
         })}
       </select>
-      <button type="submit">Pair 'Em Up!</button>
+      <button type='submit'>Pair 'Em Up!</button>
     </Form>
   );
 }

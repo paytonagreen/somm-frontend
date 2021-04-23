@@ -1,7 +1,5 @@
-import WinesNProteins from '../components/WinesNProteins'
+import Pairing from '../components/Pairing';
 
-export default function PairingPage(props) {
-    return (
-        <WinesNProteins props={props} />
-    )
+export default function PairingPage() {
+  return <Pairing />;
 }

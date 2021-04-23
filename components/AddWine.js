@@ -1,32 +1,31 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import useForm from '../hooks/useForm';
+import { api, headers } from '../hooks/swr-switch';
 
-import Form from "./reusable/Form";
+import Form from './reusable/Form';
 
-export default function AddWine({props}) {
+export default function AddWine() {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [ successMessage, setSuccessMessage ] = useState();
+  const [successMessage, setSuccessMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback);
-
-  const { api, headers } = props
 
   function callback() {
     if (!savingStarted) {
       try {
-        setSavingStarted(true)
+        setSavingStarted(true);
         fetch(`${api}/wines/`, {
           body: JSON.stringify({
             wine_name: values.name,
             wine_description: values.description,
           }),
           method: `POST`,
-          headers
+          headers,
         });
         setSuccessMessage('You did it!');
-      } catch(err) {
-          console.log(err);
+      } catch (err) {
+        console.log(err);
       }
     }
   }
@@ -35,22 +34,22 @@ export default function AddWine({props}) {
     <Form>
       <h2>Add Wine</h2>
       {successMessage && <p>{successMessage}</p>}
-      <label htmlFor="name">Name</label>
+      <label htmlFor='name'>Name</label>
       <input
-        name="name"
-        type="text"
+        name='name'
+        type='text'
         value={values.name}
         onChange={(e) => handleChange(e)}
       />
-      <label htmlFor="description">Description</label>
+      <label htmlFor='description'>Description</label>
       <textarea
-        name="description"
-        className="textbox"
-        type="textarea"
+        name='description'
+        className='textbox'
+        type='textarea'
         value={values.description}
         onChange={(e) => handleChange(e)}
       />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
+      <button type='submit' onClick={(e) => handleSubmit(e)}>
         Submit
       </button>
     </Form>

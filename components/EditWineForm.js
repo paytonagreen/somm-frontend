@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import useForm from "../hooks/useForm";
+import useForm from '../hooks/useForm';
+import { api, headers } from '../hooks/swr-switch';
 
-import Form from "./reusable/Form";
-import DeleteWine from "./DeleteWine";
-import ButtonRow from "./styles/ButtonRow";
+import Form from './reusable/Form';
+import DeleteWine from './DeleteWine';
+import ButtonRow from './styles/ButtonRow';
 
-export default function EditWineForm({ props, data, id }) {
+export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
 
-  const { api, headers } = props;
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: data.wine_name,
     description: data.wine_description,
@@ -28,7 +28,7 @@ export default function EditWineForm({ props, data, id }) {
           method: `PUT`,
           headers,
         });
-        setSuccessMessage("Saved successfully.");
+        setSuccessMessage('Saved successfully.');
       } catch (err) {
         console.log(err);
       }
@@ -39,24 +39,24 @@ export default function EditWineForm({ props, data, id }) {
     <Form onSubmit={handleSubmit}>
       <h2>Edit Wine</h2>
       {successMessage && <p>{successMessage}</p>}
-      <label htmlFor="name">Name</label>
+      <label htmlFor='name'>Name</label>
       <input
-        name="name"
-        type="text"
+        name='name'
+        type='text'
         value={values.name}
         onChange={handleChange}
       />
-      <label htmlFor="description">Description</label>
+      <label htmlFor='description'>Description</label>
       <textarea
-        name="description"
-        className="textbox"
-        type="textarea"
+        name='description'
+        className='textbox'
+        type='textarea'
         value={values.description}
         onChange={handleChange}
       />
       <ButtonRow>
-        <button type="submit">Submit</button>
-        <DeleteWine props={props} id={id} />
+        <button type='submit'>Submit</button>
+        <DeleteWine id={id} />
       </ButtonRow>
     </Form>
   );

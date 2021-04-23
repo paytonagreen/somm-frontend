@@ -4,7 +4,7 @@ const ButtonRow = styled.div`
   display: flex;
   justify-content: space-around;
   button {
-    margin: .5rem 1rem;
+    margin: 0.5rem 1rem;
   }
 `;
 

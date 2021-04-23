@@ -1,8 +1,8 @@
-import DeleteButton from "./styles/DeleteButton";
+import { api, headers } from '../hooks/swr-switch';
 
-export default function DeleteWine({ props, id }) {
-  const { api, headers } = props;
+import DeleteButton from './styles/DeleteButton';
 
+export default function DeleteWine({ id }) {
   function deleteWine() {
     fetch(`${api}/wines/${id}`, {
       method: `DELETE`,

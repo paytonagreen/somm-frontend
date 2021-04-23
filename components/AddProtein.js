@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import useForm from "../hooks/useForm";
+import useForm from '../hooks/useForm';
+import { api, headers } from '../hooks/swr-switch';
 
-import Form from "./reusable/Form";
+import Form from './reusable/Form';
 
-export default function AddProtein({props}) {
+export default function AddProtein() {
   const [savingStarted, setSavingStarted] = useState(false);
-  const { values, setValues, handleChange, handleSubmit } = useForm(callback);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [error, setError] = useState("");
-
-  const { api, headers } = props;
+  const { values, setValues, handleChange, handleSubmit } = useForm(callback, {
+    name: '',
+  });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState('');
 
   function callback() {
     if (!savingStarted) {
@@ -23,8 +24,8 @@ export default function AddProtein({props}) {
           method: `POST`,
           headers,
         });
-        setSuccessMessage("You did it!");
-        setValues({ name: "" });
+        setSuccessMessage('You did it!');
+        setValues({ name: '' });
       } catch (err) {
         console.log(err);
         setError(`You didn't do it...`);
@@ -35,17 +36,17 @@ export default function AddProtein({props}) {
   return (
     <Form>
       <h2>Add Protein</h2>
-      {successMessage ? <p>{successMessage}</p> : ""}
-      {error ? <p>{error}</p> : ""}
-      <label htmlFor="name">
+      {successMessage ? <p>{successMessage}</p> : ''}
+      {error ? <p>{error}</p> : ''}
+      <label htmlFor='name'>
         <input
-          name="name"
-          type="text"
+          name='name'
+          type='text'
           value={values.name}
           onChange={(e) => handleChange(e)}
         />
       </label>
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
+      <button type='submit' onClick={(e) => handleSubmit(e)}>
         Submit
       </button>
     </Form>

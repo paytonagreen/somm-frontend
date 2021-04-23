@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
+import { useWine } from '../hooks/swr-hooks';
 
 import EditWineForm from './EditWineForm';
 
-export default function EditWine({props, id}) {
-  const [data, setData] = useState();
+export default function EditWine({ id }) {
+  const { data, isLoading } = useWine(id);
 
-  const {api, headers } = props;
+  console.log(id);
 
-  useEffect(() => {
-    const url = `${api}/wines/${id}`;
-    const options = {
-      method: "GET",
-      headers
-    };
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
-
-  if (!data) return <p>Loading...</p>
-  if (data) {
-      return (
-          <EditWineForm props={props} id={id} data={data}/>
-  );
-}
+  if (isLoading) return 'Loading...';
+  return <EditWineForm data={data} id={id} />;
 }

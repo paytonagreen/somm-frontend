@@ -1,16 +1,17 @@
-import DeleteButton from "./styles/DeleteButton";
+import { api, headers } from '../hooks/swr-switch';
 
-export default function DeleteProtein({setDeleteMessage,  api, headers, id }) {
+import DeleteButton from './styles/DeleteButton';
 
+export default function DeleteProtein({ setDeleteMessage, id }) {
   function deleteProtein() {
     fetch(`${api}/proteins/${id}`, {
       method: `DELETE`,
-      headers
+      headers,
     })
       .then((res) => res.json())
       .then(async (data) => {
         console.log(data);
-        setDeleteMessage('Protein deleted!')
+        setDeleteMessage('Protein deleted!');
       });
   }
 

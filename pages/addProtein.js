@@ -1,7 +1,5 @@
-import AddProtein from '../components/AddProtein'
+import AddProtein from '../components/AddProtein';
 
-export default function AddProteinPage(props) {
-    return(
-        <AddProtein props={props}/>
-    )
+export default function AddProteinPage() {
+  return <AddProtein />;
 }

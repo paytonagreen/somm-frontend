@@ -1,6 +1,6 @@
-import Head from "next/head";
-import Link from "next/link";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import Head from 'next/head';
+import Link from 'next/link';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,11 +11,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
+export const theme = {
   colors: {
-    primary: "#0070f3",
-    beauj: "#80304c",
-    chard: "#ffc47d",
+    primary: '#0070f3',
+    beauj: '#80304c',
+    chard: '#ffc47d',
   },
 };
 
@@ -34,7 +34,7 @@ const Nav = styled.nav`
     margin: 1rem;
   }
   p {
-    margin: .5rem;
+    margin: 0.5rem;
   }
   a {
     text-decoration: none;
@@ -54,50 +54,43 @@ const Content = styled.div`
 `;
 
 function MyApp({ Component, pageProps }) {
-  let api, headers;
-  if (process.env.NODE_ENV === 'development') {
-    api = 'http://127.0.0.1:7777';
-    headers = {
-      "Access-Control-Allow-Origin": "http://localhost:3000",
-      "Content-Type": "application/json",
-    }
-  } else if (process.env.NODE_ENV === 'production') {
-    api = 'https://api.asommforyou.com';
-    headers = {
-      "Access-Control-Allow-Origin": "https://www.asommforyou.com",
-      "Content-Type": "application/json",
-    }
-  }
-
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Head>
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
-            href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap"
-            rel="stylesheet"
+            href='https://fonts.googleapis.com/css2?family=Orelega+One&display=swap'
+            rel='stylesheet'
           />
           <title>A Somm For You</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel='icon' href='/favicon.ico' />
         </Head>
         <Nav>
-          <Link href="/">
-            <a><h1>A Somm For You</h1></a>
+          <Link href='/'>
+            <a>
+              <h1>A Somm For You</h1>
+            </a>
           </Link>
-          <Link href="/pairing">
-            <a><p>Pairing</p></a>
+          <Link href='/pairing'>
+            <a>
+              <p>Pairing</p>
+            </a>
           </Link>
-          <Link href="/addProtein">
-            <a><p>Add Protein</p></a>
+          <Link href='/addProtein'>
+            <a>
+              <p>Add Protein</p>
+            </a>
           </Link>
-          <Link href="/addWine">
-            <a><p>Add Wine</p></a>
+          <Link href='/addWine'>
+            <a>
+              <p>Add Wine</p>
+            </a>
           </Link>
         </Nav>
         <Content>
-          <Component api={api} headers={headers} {...pageProps} />
+          <Component {...pageProps} />
         </Content>
       </ThemeProvider>
     </>
