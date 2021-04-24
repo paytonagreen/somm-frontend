@@ -1,7 +1,6 @@
 let api, headers;
 
 if (process.env.NODE_ENV === 'development') {
-  console.log('hi');
   api = 'http://127.0.0.1:7777';
   headers = {
     'Accept': 'application/json',
