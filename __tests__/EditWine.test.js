@@ -51,7 +51,7 @@ describe('<EditWine />', () => {
     expect(await screen.findByDisplayValue(/Beaujolais/i)).toBeInTheDocument();
   });
 
-  it('handles errors properly', async () => {
+  it('handles submit errors properly', async () => {
       const testError = 'THIS IS A TEST ERROR'
       server.use(
           rest.put('*/wines/100', async (req, res, ctx) => {
@@ -72,4 +72,25 @@ describe('<EditWine />', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
     expect(await screen.findByText(/Saved successfully./i)).toBeInTheDocument();
   });
+
+  it('handles delete errors correctly', async() => {
+    const testError = 'THIS IS A TEST ERROR'
+    server.use(
+        rest.delete('*/wines/100', async (req, res, ctx) => {
+            return res.once(
+                ctx.status(500),
+                ctx.json({
+                    message: testError
+                })
+            )
+        })
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
+    expect (await screen.findByText(testError)).toBeInTheDocument();
+  })
+
+  it('deletes data on button click', async () => {
+    await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
+    expect(await screen.findByText(/Wine deleted!/i)).toBeInTheDocument();
+  })
 });

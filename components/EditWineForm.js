@@ -11,6 +11,7 @@ export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [deleteMessage, setDeleteMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: data.wine_name,
@@ -47,6 +48,7 @@ export default function EditWineForm({ data, id }) {
       <h2>Edit Wine</h2>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
+      {deleteMessage && <p>{deleteMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
         id='name'
@@ -66,7 +68,7 @@ export default function EditWineForm({ data, id }) {
       />
       <ButtonRow>
         <button type='submit'>Submit</button>
-        <DeleteWine id={id} />
+        <DeleteWine setDeleteMessage={setDeleteMessage} setErrorMessage={setErrorMessage} id={id} />
       </ButtonRow>
     </Form>
   );

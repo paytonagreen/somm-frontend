@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
@@ -41,7 +41,9 @@ describe('<Protein />', () => {
           }),
       )
       await screen.findByText('Wine Matches');
-    await userEvent.click(await screen.getByRole('button', {name: 'Delete'}));
+    await waitFor(async () => {
+      userEvent.click(await screen.findByRole('button', {name: 'Delete'}))
+    })
     expect(await screen.findByText(testError)).toBeInTheDocument;
   })
 

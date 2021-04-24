@@ -1,17 +1,16 @@
 import { rest } from 'msw';
 
 export const handlers = [
+  /***************************
+   *  GET
+   ******************************/
+
   rest.get('*/proteins', async (req, res, ctx) => {
     return res(ctx.json([{ id: 55, protein_name: 'Beef' }]));
   }),
 
-  rest.post('*/wines', async (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        message: 'Success!',
-      })
-    );
+  rest.get('*/wines', async (req, res, ctx) => {
+    return res(ctx.json([{ id: 100, wine_name: 'Cabernet Sauvignon' }]));
   }),
 
   rest.get('*/wines/100', async (req, res, ctx) => {
@@ -24,7 +23,24 @@ export const handlers = [
     );
   }),
 
-  rest.put('*/wines/100', async (req, res, ctx) => {
+  rest.get('*/proteins/55', async (req, res, ctx) => {
+    return res(
+      ctx.json({
+        id: 55,
+        protein_name: 'Beef',
+      })
+    );
+  }),
+
+  rest.get('*/proteins/55/wines', async (req, res, ctx) => {
+    return res(ctx.json([{ id: 100, wine_name: 'Cabernet Sauvignon' }]));
+  }),
+
+  /***************************
+   *  POST
+   ******************************/
+
+  rest.post('*/wines', async (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -42,20 +58,37 @@ export const handlers = [
     );
   }),
 
-  rest.delete('*/proteins/55', async (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ message: 'success!' }));
-  }),
-
-  rest.get('*/proteins/55', async (req, res, ctx) => {
+  rest.post('*/wines_proteins', async (req, res, ctx) => {
     return res(
+      ctx.status(200),
       ctx.json({
-        id: 55,
-        protein_name: 'Beef',
+        message: 'Success!',
       })
     );
   }),
 
-  rest.get('*/proteins/55/wines', async (req, res, ctx) => {
-    return res(ctx.json([{ id: 100, wine_name: 'Cabernet Sauvignon' }]));
+  /***************************
+   *  PUT
+   ******************************/
+
+  rest.put('*/wines/100', async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: 'Success!',
+      })
+    );
+  }),
+
+  /***************************
+   *  DELETE
+   ******************************/
+
+  rest.delete('*/proteins/55', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: 'success!' }));
+  }),
+
+  rest.delete('*/wines/100', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: 'success!' }));
   }),
 ];
