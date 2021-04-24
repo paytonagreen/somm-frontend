@@ -11,11 +11,9 @@ export default function Sauce({ id }) {
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  console.log(id);
-
   if (!id) return <p></p>;
   if (isLoading) return <p>'Loading...'</p>;
-  console.log(sauce);
+
   return (
     <Card key={sauce.id}>
       <div key={sauce.id}>

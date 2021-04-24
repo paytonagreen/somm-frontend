@@ -51,4 +51,4 @@ const Content = styled.div`
   color: #ffc47d;
 `;
 
-export {GlobalStyle, theme, Nav, Content }
+export {GlobalStyle, ThemeProvider, theme, Nav, Content }

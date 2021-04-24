@@ -17,7 +17,7 @@ describe('<AddProtein />', () => {
   beforeEach(async () => {
     render(
       <ThemeProvider theme={theme}>
-        <AddProtein props={{ api: 'http://localhost:3000', headers: {} }} />
+        <AddProtein />
       </ThemeProvider>
     );
   });

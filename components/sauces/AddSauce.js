@@ -5,7 +5,7 @@ import { api, headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function AddProtein() {
+export default function AddSauce() {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -13,12 +13,14 @@ export default function AddProtein() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  console.log(headers);
+
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`${api}/proteins/`, {
+      fetch(`${api}/sauces/`, {
         body: JSON.stringify({
-          protein_name: values.name,
+          sauce_name: values.name,
         }),
         method: `POST`,
         headers,
@@ -28,6 +30,7 @@ export default function AddProtein() {
           if (!res.ok) {
             throw Error(data.message);
           } else {
+            console.log(data);
             setSuccessMessage('You did it!');
           }
         })
@@ -37,9 +40,11 @@ export default function AddProtein() {
     }
   }
 
+  console.log(values);
+
   return (
     <Form>
-      <h2>Add Protein</h2>
+      <h2>Add Sauce</h2>
       {successMessage && <p>{successMessage}</p>}
       {!successMessage && errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>

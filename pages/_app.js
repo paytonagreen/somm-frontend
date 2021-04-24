@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-import {GlobalStyle, theme, Nav, Content } from './AppStyles';
+import {GlobalStyle, ThemeProvider, theme, Nav, Content } from './AppStyles';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -25,7 +25,12 @@ function MyApp({ Component, pageProps }) {
           </Link>
           <Link href='/pairing'>
             <a>
-              <p>Pairing</p>
+              <p>Pair by Protein</p>
+            </a>
+          </Link>
+          <Link href='/saucePairing'>
+            <a>
+              <p>Pair by Sauce</p>
             </a>
           </Link>
           <Link href='/addProtein'>
@@ -36,6 +41,11 @@ function MyApp({ Component, pageProps }) {
           <Link href='/addWine'>
             <a>
               <p>Add Wine</p>
+            </a>
+          </Link>
+          <Link href='/addSauce'>
+            <a>
+              <p>Add Sauce</p>
             </a>
           </Link>
         </Nav>

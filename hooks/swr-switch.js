@@ -1,9 +1,10 @@
 let api, headers;
 
 if (process.env.NODE_ENV === 'development') {
-    const one = 1;
+  console.log('hi');
   api = 'http://127.0.0.1:7777';
   headers = {
+    'Accept': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:3000',
     'Content-Type': 'application/json',
   };
@@ -13,7 +14,8 @@ if (process.env.NODE_ENV === 'development') {
     'Access-Control-Allow-Origin': 'https://www.asommforyou.com',
     'Content-Type': 'application/json',
   };
-} else if (process.env.NODE_ENV === 'test')
+} else if (process.env.NODE_ENV === 'test') {
   api = 'http://localhost:3000/';
   headers = {};
+}
 export {api, headers}

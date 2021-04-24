@@ -74,7 +74,7 @@ function useProteinWines(id) {
 }
 
 function useSauceWines(id) {
-  const { data, error } = useSWR(`${api}/proteins/${id}/sauces`);
+  const { data, error } = useSWR(`${api}/sauces/${id}/wines`);
 
   return {
     sauceWines: data,

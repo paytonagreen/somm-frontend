@@ -37,7 +37,6 @@ export const handlers = [
   }),
 
   rest.get('*/sauces/100', async (req, res, ctx) => {
-    console.log('hi');
     return res(
       ctx.json({
         id: 100,
@@ -48,6 +47,10 @@ export const handlers = [
 
   rest.get('*/proteins/55/wines', async (req, res, ctx) => {
     return res(ctx.json([{ id: 100, wine_name: 'Cabernet Sauvignon' }]));
+  }),
+  
+  rest.get('*/sauces/100/wines', async (req, res, ctx) => {
+    return res(ctx.json([{ id: 100, sauce_name: 'Marinara' }]));
   }),
 
   /***************************
@@ -64,6 +67,7 @@ export const handlers = [
   }),
 
   rest.post('*/proteins', async (req, res, ctx) => {
+    console.log(req.body);
     return res(
       ctx.status(200),
       ctx.json({
@@ -73,6 +77,15 @@ export const handlers = [
   }),
 
   rest.post('*/wines_proteins', async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: 'Success!',
+      })
+    );
+  }),
+  
+  rest.post('*/wines_sauces', async (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -103,6 +116,10 @@ export const handlers = [
   }),
 
   rest.delete('*/wines/100', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: 'success!' }));
+  }),
+  
+  rest.delete('*/sauces/100', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: 'success!' }));
   }),
 ];
