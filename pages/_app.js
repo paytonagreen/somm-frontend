@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import Nav from '../components/page/nav';
 
-import {GlobalStyle, ThemeProvider, theme, Nav, Content } from './AppStyles';
+import {GlobalStyle, ThemeProvider, theme, Content } from '../components/styles/AppStyles';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,38 +17,7 @@ function MyApp({ Component, pageProps }) {
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <Nav>
-          <Link href='/'>
-            <a>
-              <h1>A Somm For You</h1>
-            </a>
-          </Link>
-          <Link href='/pairing'>
-            <a>
-              <p>Pair by Protein</p>
-            </a>
-          </Link>
-          <Link href='/saucePairing'>
-            <a>
-              <p>Pair by Sauce</p>
-            </a>
-          </Link>
-          <Link href='/addProtein'>
-            <a>
-              <p>Add Protein</p>
-            </a>
-          </Link>
-          <Link href='/addWine'>
-            <a>
-              <p>Add Wine</p>
-            </a>
-          </Link>
-          <Link href='/addSauce'>
-            <a>
-              <p>Add Sauce</p>
-            </a>
-          </Link>
-        </Nav>
+        <Nav />
         <Content>
           <Component {...pageProps} />
         </Content>

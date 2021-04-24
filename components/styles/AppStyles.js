@@ -17,29 +17,6 @@ const theme = {
   },
 };
 
-const Nav = styled.nav`
-  height: 4rem;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  color: #80304c;
-  background-color: #ffc47d;
-  margin-bottom: -4rem;
-  h1 {
-    margin: 1rem;
-  }
-  p {
-    margin: 0.5rem;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
 const Content = styled.div`
   background-color: #80304c;
   min-height: 100vh;
@@ -51,4 +28,4 @@ const Content = styled.div`
   color: #ffc47d;
 `;
 
-export {GlobalStyle, ThemeProvider, theme, Nav, Content }
+export { GlobalStyle, ThemeProvider, theme, Content };
