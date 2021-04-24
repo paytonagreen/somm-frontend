@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Nav from '../components/page/nav';
+import Nav from '../components/page/Nav';
 
 import {GlobalStyle, ThemeProvider, theme, Content } from '../components/styles/AppStyles';
 
