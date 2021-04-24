@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { theme } from '../pages/AppStyles';
 
 import { ThemeProvider } from 'styled-components';
-import DeleteProtein from '../components/DeleteProtein';
+import DeleteProtein from '../components/proteins/DeleteProtein';
 
 describe('<DeleteProtein />', () => {
   beforeEach(async () => {

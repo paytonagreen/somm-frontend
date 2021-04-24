@@ -1,32 +1,29 @@
 import { useState } from 'react';
 
-import useForm from '../hooks/useForm';
-import { api, headers } from '../hooks/swr-switch';
+import useForm from '../../hooks/useForm';
+import { api, headers } from '../../hooks/swr-switch';
 
-import Form from './reusable/Form';
-import DeleteWine from './DeleteWine';
-import ButtonRow from './styles/ButtonRow';
+import Form from '../reusable/Form';
 
-export default function EditWineForm({ data, id }) {
+export default function AddWine() {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
-  const [deleteMessage, setDeleteMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: data.wine_name,
-    description: data.wine_description,
+    name: '',
+    description: '',
   });
 
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`${api}/wines/${id}`, {
+      fetch(`${api}/wines/`, {
         body: JSON.stringify({
           wine_name: values.name,
           wine_description: values.description,
         }),
-        method: `PUT`,
+        method: `POST`,
         headers,
       })
         .then(async (res) => {
@@ -34,7 +31,7 @@ export default function EditWineForm({ data, id }) {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            setSuccessMessage('Saved successfully.');
+            setSuccessMessage('You did it!');
           }
         })
         .catch((err) => {
@@ -45,10 +42,9 @@ export default function EditWineForm({ data, id }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Edit Wine</h2>
-      {successMessage && <p>{successMessage}</p>}
+      <h2>Add Wine</h2>
+      {!errorMessage && successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
-      {deleteMessage && <p>{deleteMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
         id='name'
@@ -66,10 +62,9 @@ export default function EditWineForm({ data, id }) {
         value={values.description}
         onChange={handleChange}
       />
-      <ButtonRow>
-        <button type='submit'>Submit</button>
-        <DeleteWine setDeleteMessage={setDeleteMessage} setErrorMessage={setErrorMessage} id={id} />
-      </ButtonRow>
+      <button aria-label='submit' type='submit'>
+        Submit
+      </button>
     </Form>
   );
 }

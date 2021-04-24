@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useProteins, useWines } from '../hooks/swr-hooks';
+import { useProteins, useWines } from '../../hooks/swr-hooks';
 
-import { api, headers } from '../hooks/swr-switch';
-import useForm from '../hooks/useForm';
+import { api, headers } from '../../hooks/swr-switch';
+import useForm from '../../hooks/useForm';
 
-import Form from './reusable/Form';
+import Form from '../reusable/Form';
 
 export default function Pairing() {
   const { wines, isLoading } = useWines();

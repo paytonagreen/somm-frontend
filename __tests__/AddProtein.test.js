@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { server, rest } from '../mocks/server';
 
-import AddProtein from '../components/AddProtein';
+import AddProtein from '../components/proteins/AddProtein';
 import { theme } from '../pages/AppStyles';
 
 async function fillForm() {

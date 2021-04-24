@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { useProtein } from '../hooks/swr-hooks';
+import { useProtein } from '../../hooks/swr-hooks';
 
-import WinesList from './WinesList';
+import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
-import ProteinCard from './styles/ProteinCard';
+import Card from '../styles/Card';
 
 export default function Protein({ id }) {
   const { protein, isLoading } = useProtein(id);
@@ -14,12 +14,12 @@ export default function Protein({ id }) {
   if (!id) return <p></p>;
   if (isLoading) return <p>'Loading...'</p>;
   return (
-    <ProteinCard key={protein.id}>
+    <Card key={protein.id}>
       <div key={protein.id}>
         {deleteMessage && <p>{deleteMessage}</p>}
         {!deleteMessage && errorMessage && <p>{errorMessage}</p>}
         <h1>{protein.protein_name}</h1>
-        <WinesList id={id} />
+        <ProteinWinesList id={id} />
         <div className='button-div'>
           {id && (
             <DeleteProtein
@@ -30,6 +30,6 @@ export default function Protein({ id }) {
           )}
         </div>
       </div>
-    </ProteinCard>
+    </Card>
   );
 }

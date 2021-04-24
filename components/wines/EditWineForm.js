@@ -1,29 +1,32 @@
 import { useState } from 'react';
 
-import useForm from '../hooks/useForm';
-import { api, headers } from '../hooks/swr-switch';
+import useForm from '../../hooks/useForm';
+import { api, headers } from '../../hooks/swr-switch';
 
-import Form from './reusable/Form';
+import Form from '../reusable/Form';
+import DeleteWine from './DeleteWine';
+import ButtonRow from '../styles/ButtonRow';
 
-export default function AddWine() {
+export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [deleteMessage, setDeleteMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: '',
-    description: '',
+    name: data.wine_name,
+    description: data.wine_description,
   });
 
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`${api}/wines/`, {
+      fetch(`${api}/wines/${id}`, {
         body: JSON.stringify({
           wine_name: values.name,
           wine_description: values.description,
         }),
-        method: `POST`,
+        method: `PUT`,
         headers,
       })
         .then(async (res) => {
@@ -31,7 +34,7 @@ export default function AddWine() {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            setSuccessMessage('You did it!');
+            setSuccessMessage('Saved successfully.');
           }
         })
         .catch((err) => {
@@ -42,9 +45,10 @@ export default function AddWine() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Add Wine</h2>
-      {!errorMessage && successMessage && <p>{successMessage}</p>}
+      <h2>Edit Wine</h2>
+      {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
+      {deleteMessage && <p>{deleteMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
         id='name'
@@ -62,9 +66,10 @@ export default function AddWine() {
         value={values.description}
         onChange={handleChange}
       />
-      <button aria-label='submit' type='submit'>
-        Submit
-      </button>
+      <ButtonRow>
+        <button type='submit'>Submit</button>
+        <DeleteWine setDeleteMessage={setDeleteMessage} setErrorMessage={setErrorMessage} id={id} />
+      </ButtonRow>
     </Form>
   );
 }

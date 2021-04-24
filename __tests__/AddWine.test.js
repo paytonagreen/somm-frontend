@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
-import AddWine from '../components/AddWine';
+import AddWine from '../components/wines/AddWine';
 import { theme } from '../pages/AppStyles';
 import {server, rest} from '../mocks/server';
 

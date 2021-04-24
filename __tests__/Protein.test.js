@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../pages/AppStyles';
 import {server, rest } from '../mocks/server';
 
-import Protein from '../components/Protein';
+import Protein from '../components/proteins/Protein';
 
 describe('<Protein />', () => {
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('<Protein />', () => {
     expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
   });
 
-  it('renders the <WineList />', async () => {
+  it('renders the <WinesList />', async () => {
     await screen.findByText('Wine Matches');
     expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });

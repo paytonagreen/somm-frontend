@@ -2,14 +2,14 @@ import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-lib
 import userEvent from '@testing-library/user-event'
 import { ThemeProvider } from 'styled-components';
 
-import ProteinDisplay from '../components/proteins/ProteinDisplay';
+import SauceDisplay from '../components/sauces/SauceDisplay';
 import {theme} from '../pages/AppStyles';
 
-describe('<ProteinDisplay />', () => {
+describe('<SauceDisplay />', () => {
   beforeEach(async () => {
     render(
         <ThemeProvider theme={theme}>
-            <ProteinDisplay/>
+            <SauceDisplay/>
         </ThemeProvider>
     );
   });
@@ -21,20 +21,19 @@ describe('<ProteinDisplay />', () => {
   })
   
   it('renders properly', async () => {
-    await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
-    expect(await screen.findByText(/Pick Your Protein!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Pick Your Sauce!/i)).toBeInTheDocument();
   })
   
   it('populates the menu with data', async () => {
-    const dropdown = screen.getByRole('combobox', {name: /protein/i})
+    const dropdown = screen.getByRole('combobox', {name: /sauce/i})
     await userEvent.click(dropdown)
-    expect(await screen.findByText('Beef')).toBeInTheDocument();
+    expect(await screen.findByText('Marinara')).toBeInTheDocument();
   })
 
-  it('renders the <Protein /> component upon select', async () => {
-    const dropdown = screen.getByRole('combobox', {name: /protein/i})
+  it('renders the <Sauce /> component upon select', async () => {
+    const dropdown = screen.getByRole('combobox', {name: /sauce/i})
     await userEvent.click(dropdown)
-    await userEvent.selectOptions(dropdown, [screen.getByRole('option', {name: 'Beef'})])
+    await userEvent.selectOptions(dropdown, [screen.getByRole('option', {name: 'Marinara'})])
     expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
   })
 });

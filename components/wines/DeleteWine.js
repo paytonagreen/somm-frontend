@@ -1,6 +1,6 @@
-import { api, headers } from '../hooks/swr-switch';
+import { api, headers } from '../../hooks/swr-switch';
 
-import DeleteButton from './styles/DeleteButton';
+import DeleteButton from '../styles/DeleteButton';
 
 export default function DeleteWine({ setDeleteMessage, setErrorMessage, id }) {
   function deleteWine() {

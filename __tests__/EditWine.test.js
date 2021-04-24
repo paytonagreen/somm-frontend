@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import {server, rest } from '../mocks/server';
 import { theme } from '../pages/AppStyles';
 
-import EditWine from '../components/EditWine';
+import EditWine from '../components/wines/EditWine';
 
 async function fillForm() {
   const name = await screen.findByLabelText(/Name/i);

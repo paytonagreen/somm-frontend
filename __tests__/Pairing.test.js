@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../pages/AppStyles';
 import {server, rest} from '../mocks/server';
 
-import Pairing from '../components/Pairing';
+import Pairing from '../components/proteins/Pairing';
 
 describe('<Pairing />', () => {
   beforeEach(() => {

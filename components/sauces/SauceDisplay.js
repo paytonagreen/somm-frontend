@@ -1,19 +1,18 @@
-import useForm from '../hooks/useForm';
+import useForm from '../../hooks/useForm';
 
-import { useSauces } from '../hooks/swr-hooks';
+import { useSauces } from '../../hooks/swr-hooks';
 import Sauce from './Sauce';
-import SauceSelector from './styles/SauceSelector';
+import Selector from '../styles/Selector';
 
-export default function ProteinDisplay() {
+export default function SauceDisplay() {
   const { sauces, isLoading } = useSauces();
   const { values, handleChange } = useForm();
 
   if (isLoading) return <p>"loading..."</p>;
-
-  return (
+  if (sauces) return (
     <>
-      <SauceSelector>
-        <h2>Pick Your Protein!</h2>
+      <Selector>
+        <h2>Pick Your Sauce!</h2>
         <label htmlFor='sauce' hidden/>
         <select
           aria-label='Sauce'
@@ -33,8 +32,8 @@ export default function ProteinDisplay() {
             );
           })}
         </select>
-      </SauceSelector>
-      <sauce sauces={sauces} id={values.sauce} />
+      </Selector>
+      <Sauce sauces={sauces} id={values.sauce} />
     </>
   );
 }

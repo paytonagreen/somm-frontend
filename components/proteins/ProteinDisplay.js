@@ -1,8 +1,8 @@
-import useForm from '../hooks/useForm';
+import useForm from '../../hooks/useForm';
 
-import { useProteins } from '../hooks/swr-hooks';
+import { useProteins } from '../../hooks/swr-hooks';
 import Protein from './Protein';
-import ProteinSelector from './styles/ProteinSelector';
+import Selector from '../styles/Selector';
 
 export default function ProteinDisplay() {
   const { proteins, isLoading } = useProteins();
@@ -12,7 +12,7 @@ export default function ProteinDisplay() {
 
   return (
     <>
-      <ProteinSelector>
+      <Selector>
         <h2>Pick Your Protein!</h2>
         <label htmlFor='protein' hidden/>
         <select
@@ -33,7 +33,7 @@ export default function ProteinDisplay() {
             );
           })}
         </select>
-      </ProteinSelector>
+      </Selector>
       <Protein proteins={proteins} id={values.protein} />
     </>
   );

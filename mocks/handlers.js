@@ -13,6 +13,10 @@ export const handlers = [
     return res(ctx.json([{ id: 100, wine_name: 'Cabernet Sauvignon' }]));
   }),
 
+  rest.get('*/sauces', async (req, res, ctx) => {
+    return res(ctx.json([{ id: 100, sauce_name: 'Marinara' }]));
+  }),
+
   rest.get('*/wines/100', async (req, res, ctx) => {
     return res(
       ctx.json({
@@ -28,6 +32,16 @@ export const handlers = [
       ctx.json({
         id: 55,
         protein_name: 'Beef',
+      })
+    );
+  }),
+
+  rest.get('*/sauces/100', async (req, res, ctx) => {
+    console.log('hi');
+    return res(
+      ctx.json({
+        id: 100,
+        sauce_name: 'Marinara',
       })
     );
   }),

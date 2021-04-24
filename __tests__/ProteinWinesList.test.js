@@ -1,11 +1,9 @@
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '../pages/AppStyles';
-import { server, rest } from '../mocks/server';
 
-import WinesList from '../components/WinesList';
+import WinesList from '../components/proteins/ProteinWinesList';
 
 describe('<WineList />', () => {
     beforeEach(() => {

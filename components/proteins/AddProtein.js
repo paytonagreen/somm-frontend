@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import useForm from '../hooks/useForm';
-import { api, headers } from '../hooks/swr-switch';
+import useForm from '../../hooks/useForm';
+import { api, headers } from '../../hooks/swr-switch';
 
-import Form from './reusable/Form';
+import Form from '../reusable/Form';
 
 export default function AddProtein() {
   const [savingStarted, setSavingStarted] = useState(false);

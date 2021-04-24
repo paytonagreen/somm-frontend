@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProteinSelector = styled.div`
+const Selector = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,4 +19,4 @@ const ProteinSelector = styled.div`
   }
 `;
 
-export default ProteinSelector;
+export default Selector;
