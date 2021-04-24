@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { server, rest } from '../mocks/server';
 
 import AddProtein from '../components/AddProtein';
-import { theme } from '../pages/_app';
+import { theme } from '../pages/AppStyles';
 
 async function fillForm() {
   const input = await screen.findByRole('textbox');
@@ -28,12 +28,12 @@ describe('<AddProtein />', () => {
   });
 
   it('processes input', async () => {
-    fillForm();
+    await fillForm();
     expect(await screen.findByDisplayValue('Beef Jerky')).toBeInTheDocument();
   });
   
   it('submits the data properly and displays a successMessage', async () => {
-    fillForm();
+    await fillForm();
     await userEvent.click(await screen.getByRole('button', { name: 'Submit' }));
     expect(await screen.findByText('You did it!')).toBeInTheDocument();
   });

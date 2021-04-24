@@ -3,14 +3,14 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
 import AddWine from '../components/AddWine';
-import { theme } from '../pages/_app';
+import { theme } from '../pages/AppStyles';
 import {server, rest} from '../mocks/server';
 
 describe('<AddWine />', () => { 
   beforeEach(async () => {
     render(
       <ThemeProvider theme={theme}>
-        <AddWine props={{ api: 'http://localhost:3000', headers: {} }} />
+        <AddWine />
       </ThemeProvider>
     );
   });

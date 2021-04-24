@@ -27,7 +27,7 @@ export default function AddProtein() {
           const data = await res.json();
           if (!res.ok) {
             throw Error(data.message);
-          } else if (res.ok) {
+          } else {
             setSuccessMessage('You did it!');
           }
         })

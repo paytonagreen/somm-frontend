@@ -10,6 +10,7 @@ import ButtonRow from './styles/ButtonRow';
 export default function EditWineForm({ data, id }) {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: data.wine_name,
@@ -18,20 +19,26 @@ export default function EditWineForm({ data, id }) {
 
   function callback() {
     if (!savingStarted) {
-      try {
-        setSavingStarted(true);
-        fetch(`${api}/wines/${id}`, {
-          body: JSON.stringify({
-            wine_name: values.name,
-            wine_description: values.description,
-          }),
-          method: `PUT`,
-          headers,
+      setSavingStarted(true);
+      fetch(`${api}/wines/${id}`, {
+        body: JSON.stringify({
+          wine_name: values.name,
+          wine_description: values.description,
+        }),
+        method: `PUT`,
+        headers,
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw Error(data.message);
+          } else {
+            setSuccessMessage('Saved successfully.');
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
         });
-        setSuccessMessage('Saved successfully.');
-      } catch (err) {
-        console.log(err);
-      }
     }
   }
 
@@ -39,8 +46,10 @@ export default function EditWineForm({ data, id }) {
     <Form onSubmit={handleSubmit}>
       <h2>Edit Wine</h2>
       {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>Name</label>
       <input
+        id='name'
         name='name'
         type='text'
         value={values.name}
@@ -48,6 +57,7 @@ export default function EditWineForm({ data, id }) {
       />
       <label htmlFor='description'>Description</label>
       <textarea
+        id='description'
         name='description'
         className='textbox'
         type='textarea'

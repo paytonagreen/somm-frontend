@@ -38,7 +38,7 @@ function useProtein(id) {
   const {data, error } = useSWR(`${api}/proteins/${id}`, fetcher);
 
   return {
-    data: data,
+    protein: data,
     isLoading: !error && !data,
     isError: error,
   }
@@ -54,4 +54,4 @@ function useProteinWines(id) {
     }
 }
 
-export { useProteins, useWines, useWine, useProteinWines };
+export { useProteins, useWines, useWine, useProtein, useProteinWines };
