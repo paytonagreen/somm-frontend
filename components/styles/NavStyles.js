@@ -10,7 +10,6 @@ const NavStyles = styled.nav`
   align-items: center;
   color: #80304c;
   background-color: #ffc47d;
-  margin-bottom: -4rem;
   h1 {
     margin: 1rem;
   }

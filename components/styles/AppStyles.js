@@ -26,6 +26,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: center;
   color: #ffc47d;
+  margin-top: 2rem;
 `;
 
 export { GlobalStyle, ThemeProvider, theme, Content };

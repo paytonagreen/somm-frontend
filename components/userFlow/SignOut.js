@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { headers } from '../../hooks/swr-switch';
 import useForm from '../../hooks/useForm';
@@ -6,6 +7,7 @@ import useForm from '../../hooks/useForm';
 import DeleteButton from '../styles/DeleteButton';
 
 export default function SignOut() {
+  const router = useRouter();
   const [signOutMessage, setSignOutMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const { handleSubmit } = useForm(callback);
@@ -21,7 +23,7 @@ export default function SignOut() {
         if (!res.ok) {
           throw Error(data.message);
         } else {
-          setSignOutMessage(`You're signed out!`);
+          router.reload();
         }
       })
       .catch((err) => {

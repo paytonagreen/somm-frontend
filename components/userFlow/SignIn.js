@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router'
 
 import useForm from '../../hooks/useForm';
 import { headers } from '../../hooks/swr-switch';
@@ -6,6 +7,8 @@ import { headers } from '../../hooks/swr-switch';
 import Form from '../reusable/Form';
 
 export default function SignIn() {
+  const router = useRouter();
+
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -39,6 +42,8 @@ export default function SignIn() {
           } else {
             localStorage.setItem('user', JSON.stringify(data.user));
             setSuccessMessage('You did it!');
+            router.reload();
+            router.push('/')
           }
         })
         .catch((err) => {
