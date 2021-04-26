@@ -1,5 +1,10 @@
-import EditWine from '../components/EditWine';
+import EditWine from '../components/wines/EditWine';
+import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 
 export default function EditWinePage(props) {
-  return <EditWine id={props.query.id} />;
+  return (
+    <PleaseSignIn>
+      <EditWine currentUser={props.currentUser} id={props.query.id} />;
+    </PleaseSignIn>
+  );
 }

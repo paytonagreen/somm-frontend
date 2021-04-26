@@ -1,5 +1,10 @@
-import Pairing from '../components/Pairing';
+import Pairing from '../components/proteins/Pairing';
+import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 
-export default function PairingPage() {
-  return <Pairing />;
+export default function PairingPage({currentUser}) {
+  return (
+    <PleaseSignIn currentUser={currentUser}>
+      <Pairing />
+    </PleaseSignIn>
+  ) 
 }

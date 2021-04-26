@@ -1,5 +1,5 @@
-import ProteinDisplay from '../components/ProteinDisplay';
+import ProteinDisplay from '../components/proteins/ProteinDisplay';
 
-export default function Home(props) {
-  return <ProteinDisplay props={props} />;
+export default function Home({currentUser}) {
+  return <ProteinDisplay currentUser={currentUser}/>;
 }

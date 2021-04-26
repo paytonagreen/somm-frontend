@@ -1,48 +1,61 @@
 import { useState } from 'react';
-import { useProteins, useWines } from '../hooks/swr-hooks';
+import { useProteins, useWines } from '../../hooks/swr-hooks';
 
-import { api, headers } from '../hooks/swr-switch';
-import useForm from '../hooks/useForm';
+import { api, headers } from '../../hooks/swr-switch';
+import useForm from '../../hooks/useForm';
 
-import Form from './reusable/Form';
+import Form from '../reusable/Form';
 
 export default function Pairing() {
   const { wines, isLoading } = useWines();
   const { proteins } = useProteins();
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback);
 
   function callback() {
     if (!savingStarted) {
-      try {
-        setSavingStarted(true);
-        const url = `${api}/wines_proteins`;
-        const options = {
-          body: JSON.stringify({
-            protein_id: values.protein_id,
-            wine_id: values.wine_id,
-          }),
-          method: 'POST',
-          headers,
-        };
-        fetch(url, options);
-        setSuccessMessage('Paired up!');
-      } catch (err) {
-        console.log(err);
-      }
+      setSavingStarted(true);
+      const url = `${api}/wines_proteins`;
+      const options = {
+        body: JSON.stringify({
+          protein_id: values.protein_id,
+          wine_id: values.wine_id,
+        }),
+        method: 'POST',
+        headers,
+      };
+      fetch(url, options)
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw Error(data.message);
+          } else {
+            setSuccessMessage('Paired up!');
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
+        });
     }
   }
 
-  if (isLoading) return 'Loading...';
-  if (wines && proteins);
+  if (isLoading || !proteins) return <p>'Loading...'</p>;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
       {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='wine_id' />
-      <select value={values.wine_id} name='wine_id' onChange={handleChange}>
+      <select
+        aria-label='wine_id'
+        id='wine_id'
+        value={values.wine_id}
+        name='wine_id'
+        onChange={handleChange}
+      >
         {wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
@@ -53,6 +66,8 @@ export default function Pairing() {
       </select>
       <label htmlFor='protein_id' />
       <select
+        aria-label='protein_id'
+        id='protein_id'
         value={values.protein_id}
         name='protein_id'
         onChange={handleChange}

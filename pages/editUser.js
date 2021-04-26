@@ -1,10 +1,10 @@
-import AddProtein from '../components/proteins/AddProtein';
+import EditUser from '../components/userFlow/EditUser';
 import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 
-export default function AddProteinPage({ currentUser }) {
+export default function EditUserPage({ currentUser }) {
   return (
     <PleaseSignIn currentUser={currentUser}>
-      <AddProtein />)
+      <EditUser />
     </PleaseSignIn>
   );
 }

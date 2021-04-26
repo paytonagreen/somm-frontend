@@ -1,10 +1,10 @@
-import AddProtein from '../components/proteins/AddProtein';
+import SaucePairing from '../components/sauces/SaucePairing';
 import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 
-export default function AddProteinPage({ currentUser }) {
+export default function SaucePairingPage({ currentUser }) {
   return (
     <PleaseSignIn currentUser={currentUser}>
-      <AddProtein />)
+      <SaucePairing />
     </PleaseSignIn>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProteinCard = styled.div`
+const Card = styled.div`
   color: ${(props) => props.theme.colors.beauj};
   background-color: ${(props) => props.theme.colors.chard};
   display: flex;
@@ -27,4 +27,4 @@ const ProteinCard = styled.div`
   }
 `;
 
-export default ProteinCard;
+export default Card;
