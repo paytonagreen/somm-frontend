@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import useForm from '../../hooks/useForm';
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
@@ -16,7 +16,7 @@ export default function AddSauce({destination, name, variableName}) {
   function callback() {
     if (!savingStarted) {
         setSavingStarted(true);
-        fetch(`${api}/${destination}/`, {
+        fetch(`api/${destination}/`, {
           body: JSON.stringify({
             sauce_name: values.name,
           }),

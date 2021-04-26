@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSauces, useWines } from '../../hooks/swr-hooks';
 
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 import useForm from '../../hooks/useForm';
 
 import Form from '../reusable/Form';
@@ -18,7 +18,7 @@ export default function SaucePairing() {
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = `${api}/wines_sauces`;
+      const url = `api/wines_sauces`;
       const options = {
         body: JSON.stringify({
           sauce_id: values.sauce_id,

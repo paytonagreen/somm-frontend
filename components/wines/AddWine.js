@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import useForm from '../../hooks/useForm';
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
@@ -18,7 +18,7 @@ export default function AddWine() {
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`${api}/wines/`, {
+      fetch(`api/wines/`, {
         body: JSON.stringify({
           wine_name: values.name,
           wine_description: values.description,

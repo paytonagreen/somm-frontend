@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 import useForm from '../../hooks/useForm';
 
 import DeleteButton from '../styles/DeleteButton';
@@ -8,7 +8,7 @@ import DeleteButton from '../styles/DeleteButton';
 export default function SignOut() {
   const [signOutMessage, setSignOutMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
-  const {handleSubmit} = useForm(callback)
+  const { handleSubmit } = useForm(callback);
 
   function callback() {
     fetch(`api/logout`, {
@@ -31,8 +31,8 @@ export default function SignOut() {
 
   return (
     <form onSubmit={handleSubmit}>
-    {signOutMessage && <p>{signOutMessage}</p>}
-    {errorMessage && <p>{errorMessage}</p>}
+      {signOutMessage && <p>{signOutMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <DeleteButton>Sign Out</DeleteButton>
     </form>
   );

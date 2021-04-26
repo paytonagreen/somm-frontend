@@ -1,10 +1,10 @@
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import DeleteButton from '../styles/DeleteButton';
 
 export default function DeleteWine({ setDeleteMessage, setErrorMessage, id }) {
   function deleteWine() {
-    fetch(`${api}/wines/${id}`, {
+    fetch(`api/wines/${id}`, {
       method: `DELETE`,
       headers,
     })

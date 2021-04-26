@@ -13,27 +13,32 @@ export default function EditUser({ currentUser }) {
   const { values, handleChange, handleSubmit } = useForm(callback);
 
   function callback() {
-    const url = `api/users/${currentUser.id}`;
-    const options = {
-        body: JSON.stringify({
-            is_admin: values.admin,
-        }),
-      headers,
-      method: 'PUT',
-      credentials: 'include',
-    };
-    fetch(url, options)
-      .then(async (res) => {
-        const data = await res.json();
-        if (!res.ok) {
-          throw Error(data.message);
-        } else {
-          console.log(data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!savingStarted) {
+      setSavingStarted(true)
+      const url = `api/users/${currentUser.id}`;
+      const options = {
+          body: JSON.stringify({
+              is_admin: values.admin,
+          }),
+        headers,
+        method: 'PUT',
+        credentials: 'include',
+      };
+      fetch(url, options)
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw Error(data.message);
+          } else {
+            console.log(data);
+            setSuccessMesssage('You did it!');
+          }
+        })
+        .catch((err) => {
+          setErrorMessage(err.message);
+          console.log(err);
+        });
+    }
   }
 
   if (!currentUser) return <p>Loading...</p>;

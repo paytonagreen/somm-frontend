@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import WineMatches from '../styles/WineMatches';
+
 import { useProteinWines } from '../../hooks/swr-hooks';
+
+import WineMatches from '../styles/WineMatches';
 
 export default function ProteinWinesList({ id }) {
   const { proteinWines, isLoading } = useProteinWines(id);

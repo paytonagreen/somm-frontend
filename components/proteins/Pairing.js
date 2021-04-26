@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useProteins, useWines } from '../../hooks/swr-hooks';
 
-import { api, headers } from '../../hooks/swr-switch';
+import { useProteins, useWines } from '../../hooks/swr-hooks';
+import { headers } from '../../hooks/swr-switch';
 import useForm from '../../hooks/useForm';
 
 import Form from '../reusable/Form';
@@ -18,7 +18,7 @@ export default function Pairing() {
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = `${api}/wines_proteins`;
+      const url = `api/wines_proteins`;
       const options = {
         body: JSON.stringify({
           protein_id: values.protein_id,

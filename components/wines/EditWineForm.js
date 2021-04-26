@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import useForm from '../../hooks/useForm';
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 import DeleteWine from './DeleteWine';
@@ -21,7 +21,7 @@ export default function EditWineForm({ data, id }) {
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`${api}/wines/${id}`, {
+      fetch(`api/wines/${id}`, {
         body: JSON.stringify({
           wine_name: values.name,
           wine_description: values.description,
@@ -68,7 +68,11 @@ export default function EditWineForm({ data, id }) {
       />
       <ButtonRow>
         <button type='submit'>Submit</button>
-        <DeleteWine setDeleteMessage={setDeleteMessage} setErrorMessage={setErrorMessage} id={id} />
+        <DeleteWine
+          setDeleteMessage={setDeleteMessage}
+          setErrorMessage={setErrorMessage}
+          id={id}
+        />
       </ButtonRow>
     </Form>
   );

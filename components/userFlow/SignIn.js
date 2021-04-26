@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import useForm from '../../hooks/useForm';
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function SignIn({props}) {
+export default function SignIn() {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -28,7 +28,7 @@ export default function SignIn({props}) {
           },
         }),
         method: `POST`,
-        credentials: "include",
+        credentials: 'include',
         headers,
         mode: 'cors',
       })

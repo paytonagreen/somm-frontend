@@ -1,10 +1,10 @@
-import { api, headers } from '../../hooks/swr-switch';
+import { headers } from '../../hooks/swr-switch';
 
 import DeleteButton from '../styles/DeleteButton';
 
 export default function DeleteProtein({ setErrorMessage, setDeleteMessage, id }) {
   function deleteSauce() {
-    fetch(`${api}/sauces/${id}`, {
+    fetch(`api/sauces/${id}`, {
       method: `DELETE`,
       headers,
     })
