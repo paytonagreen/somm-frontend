@@ -1,11 +1,9 @@
 import useSWR from 'swr';
-import { api } from './swr-switch';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
-const fetcherWithUser = (api, user) => fetch(api, user).then((res) => res.json());
 
 function useProteins() {
-  const { data, error } = useSWR(`${api}/proteins`, fetcher);
+  const { data, error } = useSWR(`api/proteins`, fetcher);
 
   return {
     proteins: data,
@@ -15,7 +13,7 @@ function useProteins() {
 }
 
 function useWines() {
-  const { data, error } = useSWR(`${api}/wines`, fetcher);
+  const { data, error } = useSWR(`api/wines`, fetcher);
 
   return {
     wines: data,
@@ -25,7 +23,7 @@ function useWines() {
 }
 
 function useSauces() {
-  const { data, error } = useSWR(`${api}/sauces`, fetcher);
+  const { data, error } = useSWR(`api/sauces`, fetcher);
 
   return {
     sauces: data,
@@ -35,7 +33,7 @@ function useSauces() {
 }
 
 function useWine(id) {
-  const { data, error } = useSWR(`${api}/wines/${id}`, fetcher);
+  const { data, error } = useSWR(`api/wines/${id}`, fetcher);
 
   return {
     data: data,
@@ -45,7 +43,7 @@ function useWine(id) {
 }
 
 function useProtein(id) {
-  const { data, error } = useSWR(`${api}/proteins/${id}`, fetcher);
+  const { data, error } = useSWR(`api/proteins/${id}`, fetcher);
 
   return {
     protein: data,
@@ -55,7 +53,7 @@ function useProtein(id) {
 }
 
 function useSauce(id) {
-  const { data, error } = useSWR(`${api}/sauces/${id}`, fetcher);
+  const { data, error } = useSWR(`api/sauces/${id}`, fetcher);
 
   return {
     sauce: data,
@@ -65,7 +63,7 @@ function useSauce(id) {
 }
 
 function useProteinWines(id) {
-  const { data, error } = useSWR(`${api}/proteins/${id}/wines`, fetcher);
+  const { data, error } = useSWR(`api/proteins/${id}/wines`, fetcher);
 
   return {
     proteinWines: data,
@@ -75,7 +73,7 @@ function useProteinWines(id) {
 }
 
 function useSauceWines(id) {
-  const { data, error } = useSWR(`${api}/sauces/${id}/wines`, fetcher);
+  const { data, error } = useSWR(`api/sauces/${id}/wines`, fetcher);
 
   return {
     sauceWines: data,
@@ -83,19 +81,6 @@ function useSauceWines(id) {
     isError: error,
   };
 }
-
-function useUser() {
-  const { data, error } = useSWR(`${api}/logged_in`, fetcher);
-
-  console.log(data);
-  return {
-    user: data,
-    isLoading: !error && !data,
-    isError: error,
-  }
-}
-
-
 
 export {
   useProteins,
