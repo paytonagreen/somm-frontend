@@ -4,11 +4,12 @@ import { useProteins } from '../../hooks/swr-hooks';
 import Protein from './Protein';
 import Selector from '../styles/Selector';
 
-export default function ProteinDisplay() {
+export default function ProteinDisplay({currentUser}) {
   const { proteins, isLoading } = useProteins();
   const { values, handleChange } = useForm();
 
   if (isLoading) return <p>"loading..."</p>;
+  if (!isLoading && !proteins) return <p>Something went wrong...</p>
 
   return (
     <>
@@ -34,7 +35,10 @@ export default function ProteinDisplay() {
           })}
         </select>
       </Selector>
-      <Protein proteins={proteins} id={values.protein} />
+      {values.protein && (
+
+      <Protein currentUser={currentUser} proteins={proteins} id={values.protein} />
+      )}
     </>
   );
 }

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { ThemeProvider } from 'styled-components';
 
 import ProteinDisplay from '../components/proteins/ProteinDisplay';
-import {theme} from '../pages/AppStyles';
+import {theme} from '../components/styles/AppStyles';
 
 describe('<ProteinDisplay />', () => {
   beforeEach(async () => {

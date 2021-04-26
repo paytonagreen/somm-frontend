@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 
 import { ThemeProvider } from 'styled-components';
 import DeleteProtein from '../components/proteins/DeleteProtein';

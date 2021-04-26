@@ -43,7 +43,6 @@ export default function Pairing() {
   }
 
   if (isLoading || !proteins) return <p>'Loading...'</p>;
-  if (wines && proteins);
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>

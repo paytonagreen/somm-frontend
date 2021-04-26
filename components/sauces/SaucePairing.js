@@ -42,8 +42,6 @@ export default function SaucePairing() {
     }
   }
 
-  console.log(values);
-
   if (isLoading || !sauces) return <p>'Loading...'</p>;
   if (wines && sauces);
   return (

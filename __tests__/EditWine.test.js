@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
 import {server, rest } from '../mocks/server';
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 
 import EditWine from '../components/wines/EditWine';
 

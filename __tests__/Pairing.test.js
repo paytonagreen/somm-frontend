@@ -6,7 +6,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 import {server, rest} from '../mocks/server';
 
 import Pairing from '../components/proteins/Pairing';

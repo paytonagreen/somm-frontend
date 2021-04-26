@@ -10,7 +10,7 @@ export default function SauceDisplay() {
 
   if (isLoading) return <p>"loading..."</p>;
   if (!isLoading && !sauces) return <p>'Somthing went wrong...'</p>
-  if (sauces) return (
+  return (
     <>
       <Selector>
         <h2>Pick Your Sauce!</h2>

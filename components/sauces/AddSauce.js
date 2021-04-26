@@ -13,8 +13,6 @@ export default function AddSauce() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  console.log(headers);
-
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
@@ -30,7 +28,6 @@ export default function AddSauce() {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            console.log(data);
             setSuccessMessage('You did it!');
           }
         })
@@ -39,8 +36,6 @@ export default function AddSauce() {
         });
     }
   }
-
-  console.log(values);
 
   return (
     <Form>

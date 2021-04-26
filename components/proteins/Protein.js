@@ -6,11 +6,12 @@ import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 
-export default function Protein({ id }) {
+export default function Protein({ currentUser, id }) {
   const { protein, isLoading } = useProtein(id);
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
+  console.log(currentUser);
   if (!id) return <p></p>;
   if (isLoading) return <p>'Loading...'</p>;
   return (
@@ -21,7 +22,7 @@ export default function Protein({ id }) {
         <h1>{protein.protein_name}</h1>
         <ProteinWinesList id={id} />
         <div className='button-div'>
-          {id && (
+          {currentUser && id && (
             <DeleteProtein
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}

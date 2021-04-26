@@ -1,9 +1,23 @@
 import Head from 'next/head';
+import { useState } from 'react';
+
+import {
+  GlobalStyle,
+  ThemeProvider,
+  theme,
+  Content,
+} from '../components/styles/AppStyles';
+import useUser from '../hooks/useUser';
+
 import Nav from '../components/page/Nav';
 
-import {GlobalStyle, ThemeProvider, theme, Content } from '../components/styles/AppStyles';
-
 function MyApp({ Component, pageProps }) {
+  const [currentUser, setCurrentUser ] = useState();
+  const [isAdmin, setIsAdmin] = useState();
+
+  useUser(setIsAdmin, setCurrentUser);
+  console.log(currentUser, isAdmin);
+
   return (
     <>
       <GlobalStyle />
@@ -17,9 +31,9 @@ function MyApp({ Component, pageProps }) {
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <Nav />
+        <Nav currentUser={currentUser}/>
         <Content>
-          <Component {...pageProps} />
+          <Component currentUser={currentUser} {...pageProps} />
         </Content>
       </ThemeProvider>
     </>

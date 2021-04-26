@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 import {server, rest } from '../mocks/server';
 
 import Protein from '../components/proteins/Protein';
@@ -33,7 +33,7 @@ describe('<Protein />', () => {
     expect(screen.findByRole('button', { name: 'Delete' })).toBeInTheDocument;
   });
   
-  it('displays an errorMessage on error', async () => {
+  it('displays an errorMessage on delete error', async () => {
       const testError = 'THIS IS A TEST ERROR'
       server.use(
         rest.delete('*/proteins/55', async (req, res, ctx) => {

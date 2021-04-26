@@ -1,15 +1,15 @@
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 
-import WinesList from '../components/proteins/ProteinWinesList';
+import ProteinWinesList from '../components/proteins/ProteinWinesList';
 
-describe('<WineList />', () => {
+describe('<ProteinWineList />', () => {
     beforeEach(() => {
         render(
             <ThemeProvider theme={theme}>
-                <WinesList id={55}/>
+                <ProteinWinesList id={55}/>
             </ThemeProvider>
         )
     })

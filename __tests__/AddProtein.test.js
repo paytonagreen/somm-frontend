@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { server, rest } from '../mocks/server';
 
 import AddProtein from '../components/proteins/AddProtein';
-import { theme } from '../pages/AppStyles';
+import { theme } from '../components/styles/AppStyles';
 
 async function fillForm() {
   const input = await screen.findByRole('textbox');
