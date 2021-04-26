@@ -4,7 +4,7 @@ import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 export default function AddWinePage({ currentUser }) {
   return (
     <PleaseSignIn currentUser={currentUser}>
-      <AddWine />;
+      <AddWine />
     </PleaseSignIn>
   );
 }

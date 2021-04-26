@@ -12,7 +12,7 @@ import useUser from '../hooks/useUser';
 import Nav from '../components/page/Nav';
 
 function MyApp({ Component, pageProps }) {
-  const [currentUser, setCurrentUser ] = useState();
+  const [currentUser, setCurrentUser] = useState();
   const [isAdmin, setIsAdmin] = useState();
 
   useUser(setIsAdmin, setCurrentUser);
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }) {
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <Nav currentUser={currentUser}/>
+        <Nav currentUser={currentUser} />
         <Content>
           <Component currentUser={currentUser} {...pageProps} />
         </Content>
