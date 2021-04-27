@@ -11,7 +11,6 @@ export default function Protein({ currentUser, id }) {
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  console.log(currentUser);
   if (!id) return <p></p>;
   if (isLoading) return <p>'Loading...'</p>;
   return (

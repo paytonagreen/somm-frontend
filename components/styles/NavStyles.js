@@ -20,6 +20,18 @@ const NavStyles = styled.nav`
     text-decoration: none;
     color: inherit;
   }
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+  }
+  button {
+    position: absolute;
+    right: .75rem;
+    top: .75rem;
+  }
 `;
 
 export default NavStyles;

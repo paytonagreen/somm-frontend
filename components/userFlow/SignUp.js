@@ -7,7 +7,7 @@ import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function SignUp() {
+export default function SignUp({setCurrentUser}) {
   const router = useRouter();
 
   const [savingStarted, setSavingStarted] = useState(false);
@@ -51,7 +51,7 @@ export default function SignUp() {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            router.reload();
+            setCurrentUser(data.user);
             setSuccessMessage(signedUp);
           }
         })

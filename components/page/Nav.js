@@ -3,7 +3,8 @@ import Link from 'next/link';
 import SignOut from '../userFlow/SignOut';
 import NavStyles from '../styles/NavStyles';
 
-export default function Nav({currentUser}) {
+export default function Nav({setCurrentUser, currentUser}) {
+  
   return (
     <NavStyles>
       <Link href='/'>
@@ -11,50 +12,53 @@ export default function Nav({currentUser}) {
           <h1>A Somm For You</h1>
         </a>
       </Link>
+      <ul>
+
       {!currentUser && (
         <>
           <Link href='/signUp'>
-            <a>
+            <li><a>
               <p>Sign Up</p>
-            </a>
+            </a></li>
           </Link>
           <Link href='/signIn'>
-            <a>
+            <li><a>
               <p>Sign In</p>
-            </a>
+            </a></li>
           </Link>
         </>
       )}
       {currentUser && currentUser.is_admin && (
         <>
           <Link href='/pairing'>
-            <a>
+            <li><a>
               <p>Pair by Protein</p>
-            </a>
+            </a></li>
           </Link>
           <Link href='/saucePairing'>
-            <a>
+            <li><a>
               <p>Pair by Sauce</p>
-            </a>
+            </a></li>
           </Link>
           <Link href='/addProtein'>
-            <a>
+            <li><a>
               <p>Add Protein</p>
-            </a>
+            </a></li>
           </Link>
           <Link href='/addWine'>
-            <a>
+            <li><a>
               <p>Add Wine</p>
-            </a>
+            </a></li>
           </Link>
           <Link href='/addSauce'>
-            <a>
+            <li><a>
               <p>Add Sauce</p>
-            </a>
+            </a></li>
           </Link>
         </>
       )}
-      {currentUser && <SignOut />}
+      </ul>
+      {currentUser && <SignOut setCurrentUser={setCurrentUser} />}
     </NavStyles>
   );
 }

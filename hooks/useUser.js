@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { headers } from './swr-switch';
 
-function useUser(setIsAdmin, setCurrentUser) {
+function useUser(setCurrentUser) {
 
 useEffect(() => {
   const url = `api/logged_in`;
@@ -18,7 +18,6 @@ useEffect(() => {
         throw Error(data.message);
       } else if (data && res.ok) {
         console.log(data);
-        setIsAdmin(data.user.is_admin);
         setCurrentUser(data.user);
       }
     })
