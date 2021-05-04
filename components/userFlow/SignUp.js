@@ -65,7 +65,6 @@ export default function SignUp({setCurrentUser}) {
   if (!successMessage)
     return (
       <Form onSubmit={handleSubmit}>
-        {errorMessage && <p>{errorMessage}</p>}
         <h2>Sign Up</h2>
         {!errorMessage && successMessage && <p>{successMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}

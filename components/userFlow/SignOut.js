@@ -34,7 +34,7 @@ export default function SignOut({setCurrentUser}) {
         setSignOutMessage('Thanks! See ya later!')
       } catch (err) {
         console.log(err);
-        setErrorMessage(err);
+        setErrorMessage(err.message);
       }  
     }
   }

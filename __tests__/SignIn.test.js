@@ -19,11 +19,24 @@ async function clickSubmit() {
   await userEvent.click(submit);
 }
 
+const setCurrentUser = jest.fn();
+
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      pathname: '',
+      route: '',
+      query: '',
+      asPath: '',
+    }
+  }
+}))
+
 describe('<SignIn />', () => {
   beforeEach(() =>
     render(
       <ThemeProvider theme={theme}>
-        <SignIn />
+        <SignIn setCurrentUser={setCurrentUser}/>
       </ThemeProvider>
     )
   );
