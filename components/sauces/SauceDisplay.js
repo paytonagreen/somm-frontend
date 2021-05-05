@@ -4,7 +4,7 @@ import { useSauces } from '../../hooks/swr-hooks';
 import Sauce from './Sauce';
 import Selector from '../styles/Selector';
 
-export default function SauceDisplay() {
+export default function SauceDisplay({currentUser}) {
   const { sauces, isLoading } = useSauces();
   const { values, handleChange } = useForm();
 
@@ -34,7 +34,7 @@ export default function SauceDisplay() {
           })}
         </select>
       </Selector>
-      <Sauce sauces={sauces} id={values.sauce} />
+      <Sauce currentUser={currentUser} sauces={sauces} id={values.sauce} />
     </>
   );
 }

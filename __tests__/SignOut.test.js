@@ -7,12 +7,14 @@ import { server, rest } from '../mocks/server';
 
 import SignOut from '../components/userFlow/SignOut';
 
+const setCurrentUser = jest.fn();
+
 describe('<SignOut />', () => {
   beforeEach(() => {
     render(
       <ThemeProvider theme={theme}>
-        <SignOut />
-      </ThemeProvider>
+        <SignOut setCurrentUser={setCurrentUser}/>
+      </ThemeProvider>  
     );
   });
 
@@ -20,7 +22,7 @@ describe('<SignOut />', () => {
     expect(await screen.findByRole('button', { name: 'Sign Out' })).toBeInTheDocument;
   });
 
-  it('displays an errorMessage on delete error', async () => {
+  it('displays an errorMessage on error', async () => {
     const testError = 'THIS IS A TEST ERROR';
     server.use(
       rest.post('*/logout', async (req, res, ctx) => {
@@ -35,6 +37,6 @@ describe('<SignOut />', () => {
 
   it('calls the signOut function on button click', async () => {
     await userEvent.click(screen.getByRole('button', { name: 'Sign Out' }));
-    expect(await screen.findByText(`You're signed out!`)).toBeInTheDocument;
+    expect(await screen.findByText(`Thanks! See ya later!`)).toBeInTheDocument;
   });
 });

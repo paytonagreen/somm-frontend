@@ -13,32 +13,34 @@ export default function SaucePairing() {
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const { values, handleChange, handleSubmit } = useForm(callback);
+  const { values, handleChange, handleSubmit } = useForm(callback, {
+    sauce_id: '',
+    wine_id: '',
+  });
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = `api/wines_sauces`;
-      const options = {
-        body: JSON.stringify({
-          sauce_id: values.sauce_id,
-          wine_id: values.wine_id,
-        }),
-        method: 'POST',
-        headers,
-      };
-      fetch(url, options)
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('Paired up!');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      try {
+        const url = `api/wines_sauces`;
+        const options = {
+          body: JSON.stringify({
+            sauce_id: values.sauce_id,
+            wine_id: values.wine_id,
+          }),
+          method: 'POST',
+          headers,
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (!res.ok) {
+          throw Error(data.message);
+        } else {
+          setSuccessMessage('Paired up!');
+        }
+      } catch (err) {
+        setErrorMessage(err.message);
+      }
     }
   }
 
@@ -57,6 +59,9 @@ export default function SaucePairing() {
         name='wine_id'
         onChange={handleChange}
       >
+        <option value='' disabled>
+          Select A Wine
+        </option>
         {wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
@@ -73,7 +78,9 @@ export default function SaucePairing() {
         name='sauce_id'
         onChange={handleChange}
       >
-        <option value='' disabled selected >Select A Sauce</option>
+        <option value='' disabled>
+          Select A Sauce
+        </option>
         {sauces.map((sauce) => {
           return (
             <option value={sauce.id} key={sauce.id}>

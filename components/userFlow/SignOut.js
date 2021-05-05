@@ -24,17 +24,14 @@ export default function SignOut({setCurrentUser}) {
           headers,
         }
         const res = await fetch (url,options);
-        if (!res.ok) {
-          console.log(error);
-          const message = `An error has occured: ${res.status}`
-          throw new Error(message)
-        }
         const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message)
+        }
         setCurrentUser({});
         setSignOutMessage('Thanks! See ya later!')
       } catch (err) {
-        console.log(err);
-        setErrorMessage(err);
+        setErrorMessage(err.message);
       }  
     }
   }

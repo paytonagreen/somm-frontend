@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
@@ -21,11 +22,14 @@ async function clickSubmit() {
   await userEvent.click(submit);
 }
 
+const setCurrentUser = jest.fn();
+
 describe('<SignUp />', () => {
+
   beforeEach(() =>
     render(
       <ThemeProvider theme={theme}>
-        <SignUp />
+        <SignUp setCurrentUser={setCurrentUser} />
       </ThemeProvider>
     )
   );
@@ -61,6 +65,6 @@ describe('<SignUp />', () => {
   it('sends data correctly on submit', async () => {
     await fillForm();
     await clickSubmit();
-    expect(await screen.findByText(/You did it!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Thank you for signing up!/i)).toBeInTheDocument();
   });
 });

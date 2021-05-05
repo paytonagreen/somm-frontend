@@ -15,7 +15,7 @@ export default function SignUp({setCurrentUser}) {
   const [errorMessage, setErrorMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -23,7 +23,7 @@ export default function SignUp({setCurrentUser}) {
 
   const signedUp = (
     <Form>
-      <p>Thank you for signing up!</p>
+      Thank you for signing up!
       <Link href='/'>
         <a>Let's get pairing!</a>
       </Link>
@@ -47,7 +47,6 @@ export default function SignUp({setCurrentUser}) {
       })
         .then(async (res) => {
           const data = await res.json();
-          console.log(data);
           if (!res.ok) {
             throw Error(data.message);
           } else {
@@ -61,13 +60,11 @@ export default function SignUp({setCurrentUser}) {
     }
   }
 
-  if (successMessage) return <p>{successMessage}</p>;
+  if (successMessage) return <>{successMessage}</>;
   if (!successMessage)
     return (
       <Form onSubmit={handleSubmit}>
-        {errorMessage && <p>{errorMessage}</p>}
         <h2>Sign Up</h2>
-        {!errorMessage && successMessage && <p>{successMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}
         <label htmlFor='username'>Username</label>
         <input
