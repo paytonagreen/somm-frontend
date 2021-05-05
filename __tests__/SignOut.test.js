@@ -1,7 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
-import Router from 'next/router'
 
 import { theme } from '../components/styles/AppStyles';
 import { server, rest } from '../mocks/server';
@@ -23,11 +22,11 @@ describe('<SignOut />', () => {
     expect(await screen.findByRole('button', { name: 'Sign Out' })).toBeInTheDocument;
   });
 
-  it('displays an errorMessage on delete error', async () => {
+  it('displays an errorMessage on error', async () => {
     const testError = 'THIS IS A TEST ERROR';
     server.use(
       rest.post('*/logout', async (req, res, ctx) => {
-        return res.once(ctx.status(400), ctx.json({ message: testError }));
+        return res.once(ctx.status(500), ctx.json({ message: testError }));
       })
     );
     await userEvent.click(
