@@ -7,7 +7,7 @@ import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function SignUp({setCurrentUser}) {
+export default function SignUp({ setCurrentUser }) {
   const router = useRouter();
 
   const [savingStarted, setSavingStarted] = useState(false);
@@ -28,7 +28,7 @@ export default function SignUp({setCurrentUser}) {
         <a>Let's get pairing!</a>
       </Link>
     </Form>
-  )
+  );
 
   function callback() {
     if (!savingStarted) {
@@ -61,47 +61,46 @@ export default function SignUp({setCurrentUser}) {
   }
 
   if (successMessage) return <>{successMessage}</>;
-  if (!successMessage)
-    return (
-      <Form onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
-        {errorMessage && <p>{errorMessage}</p>}
-        <label htmlFor='username'>Username</label>
-        <input
-          id='username'
-          name='username'
-          type='text'
-          value={values.username}
-          onChange={handleChange}
-        />
-        <label htmlFor='email'>Email</label>
-        <input
-          id='email'
-          name='email'
-          type='email'
-          value={values.email}
-          onChange={handleChange}
-        />
-        <label htmlFor='password'>Password</label>
-        <input
-          id='password'
-          name='password'
-          type='password'
-          value={values.password}
-          onChange={handleChange}
-        />
-        <label htmlFor='password-confirmation'>Confirm Password</label>
-        <input
-          id='password_confirmation'
-          name='password_confirmation'
-          type='password'
-          value={values.password_confirmation}
-          onChange={handleChange}
-        />
+  return (
+    <Form onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
+      {errorMessage && <p>{errorMessage}</p>}
+      <label htmlFor='username'>Username</label>
+      <input
+        id='username'
+        name='username'
+        type='text'
+        value={values.username}
+        onChange={handleChange}
+      />
+      <label htmlFor='email'>Email</label>
+      <input
+        id='email'
+        name='email'
+        type='email'
+        value={values.email}
+        onChange={handleChange}
+      />
+      <label htmlFor='password'>Password</label>
+      <input
+        id='password'
+        name='password'
+        type='password'
+        value={values.password}
+        onChange={handleChange}
+      />
+      <label htmlFor='password-confirmation'>Confirm Password</label>
+      <input
+        id='password_confirmation'
+        name='password_confirmation'
+        type='password'
+        value={values.password_confirmation}
+        onChange={handleChange}
+      />
 
-        <button aria-label='submit' type='submit'>
-          Submit
-        </button>
-      </Form>
-    );
+      <button aria-label='submit' type='submit'>
+        Submit
+      </button>
+    </Form>
+  );
 }

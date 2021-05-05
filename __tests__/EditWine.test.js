@@ -79,7 +79,7 @@ describe('<EditWine />', () => {
         rest.delete('*/wines/100', async (req, res, ctx) => {
             return res.once(
                 ctx.status(500),
-                ctx.json({
+                ctx.json({ 
                     message: testError
                 })
             )
