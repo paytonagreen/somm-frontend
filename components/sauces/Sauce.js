@@ -6,7 +6,7 @@ import SauceWinesList from './SauceWinesList';
 import DeleteSauce from './DeleteSauce';
 import Card from '../styles/Card';
 
-export default function Sauce({ id }) {
+export default function Sauce({ id, currentUser }) {
   const { sauce, isLoading } = useSauce(id);
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -22,7 +22,7 @@ export default function Sauce({ id }) {
         <h1>{sauce.Sauce_name}</h1>
         <SauceWinesList id={id} />
         <div className='button-div'>
-          {id && (
+          {id && currentUser.is_admin && (
             <DeleteSauce
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}
