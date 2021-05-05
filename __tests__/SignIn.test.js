@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
+import Router from 'next/router';
 
 import { server, rest } from '../mocks/server';
 import { theme } from '../components/styles/AppStyles';
@@ -22,21 +23,14 @@ async function clickSubmit() {
 const setCurrentUser = jest.fn();
 
 jest.mock('next/router', () => ({
-  useRouter() {
-    return {
-      pathname: '',
-      route: '',
-      query: '',
-      asPath: '',
-    }
-  }
-}))
+  push: jest.fn(),
+}));
 
 describe('<SignIn />', () => {
   beforeEach(() =>
     render(
       <ThemeProvider theme={theme}>
-        <SignIn setCurrentUser={setCurrentUser}/>
+        <SignIn setCurrentUser={setCurrentUser} />
       </ThemeProvider>
     )
   );
@@ -48,7 +42,6 @@ describe('<SignIn />', () => {
   it('handles input correctly', async () => {
     await fillForm();
     expect(await screen.findByDisplayValue('coolguy')).toBeInTheDocument();
-    
   });
 
   it('handles errors correctly', async () => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 
 import useForm from '../../hooks/useForm';
 import { headers } from '../../hooks/swr-switch';
@@ -7,14 +7,13 @@ import { headers } from '../../hooks/swr-switch';
 import Form from '../reusable/Form';
 
 export default function SignIn({setCurrentUser}) {
-  const router = useRouter();
 
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: '',
+    username: '',
     password: '',
   });
 
@@ -25,9 +24,7 @@ export default function SignIn({setCurrentUser}) {
         body: JSON.stringify({
           user: {
             username: values.username,
-            email: values.email,
             password: values.password,
-            password_confirmation: values.password_confirmation,
           },
         }),
         method: `POST`,
@@ -42,7 +39,7 @@ export default function SignIn({setCurrentUser}) {
           } else {
             setCurrentUser(data.user);
             setSuccessMessage('You did it!');
-            router.push('/')
+            Router.push('/')
           }
         })
         .catch((err) => {
