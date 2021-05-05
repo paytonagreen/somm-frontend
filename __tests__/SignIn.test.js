@@ -1,10 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
-import Router from 'next/router';
 
+import { render } from '../lib/test-utils';
 import { server, rest } from '../mocks/server';
-import { theme } from '../components/styles/AppStyles';
 
 import SignIn from '../components/userFlow/SignIn';
 
@@ -27,13 +25,7 @@ jest.mock('next/router', () => ({
 }));
 
 describe('<SignIn />', () => {
-  beforeEach(() =>
-    render(
-      <ThemeProvider theme={theme}>
-        <SignIn setCurrentUser={setCurrentUser} />
-      </ThemeProvider>
-    )
-  );
+  beforeEach(() => render(<SignIn setCurrentUser={setCurrentUser} />));
 
   it('renders correctly', () => {
     expect(screen.getByText(/Sign In/i)).toBeInTheDocument();

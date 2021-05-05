@@ -1,26 +1,16 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../components/styles/AppStyles';
 import { server, rest } from '../mocks/server';
-import { regUser, adminUser } from '../lib/test-utils';
+import { render, regUser, adminUser } from '../lib/test-utils';
 
 import Sauce from '../components/sauces/Sauce';
 
 const regRender = () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <Sauce currentUser={regUser} id={100} />
-    </ThemeProvider>
-  );
+  render(<Sauce currentUser={regUser} id={100} />);
 };
 const adminRender = () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <Sauce currentUser={adminUser} id={100} />
-    </ThemeProvider>
-  );
+  render(<Sauce currentUser={adminUser} id={100} />);
 };
 
 describe('<Sauce />', () => {

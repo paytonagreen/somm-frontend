@@ -1,23 +1,14 @@
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../components/styles/AppStyles';
-import {server, rest} from '../mocks/server';
+import { render } from '../lib/test-utils';
+import { server, rest } from '../mocks/server';
 
 import Pairing from '../components/proteins/Pairing';
 
 describe('<Pairing />', () => {
   beforeEach(() => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Pairing />
-      </ThemeProvider>
-    );
+    render(<Pairing />);
   });
 
   it('renders a loader', async () => {
@@ -79,7 +70,7 @@ describe('<Pairing />', () => {
   });
 
   it('handles errors on button click', async () => {
-    const testError = 'THIS IS A TEST ERROR'
+    const testError = 'THIS IS A TEST ERROR';
     server.use(
       rest.post('*/wines_proteins', async (req, res, ctx) => {
         return res.once(
@@ -87,10 +78,12 @@ describe('<Pairing />', () => {
           ctx.json({
             message: testError,
           })
-        )
+        );
       })
     );
-    await userEvent.click(await screen.findByRole('button', {name: /Pair 'Em Up!/i}))
+    await userEvent.click(
+      await screen.findByRole('button', { name: /Pair 'Em Up!/i })
+    );
     expect(await screen.findByText(testError)).toBeInTheDocument();
-  })
+  });
 });

@@ -1,24 +1,13 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
-import { regUser } from '../lib/test-utils';
-import { theme } from '../components/styles/AppStyles';
+import { render, regUser } from '../lib/test-utils';
 
 import SauceDisplay from '../components/sauces/SauceDisplay';
 
 describe('<SauceDisplay />', () => {
   beforeEach(async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <SauceDisplay currentUser={regUser}/>
-      </ThemeProvider>
-    );
+    render(<SauceDisplay currentUser={regUser} />);
   });
 
   it('renders a loader', async () => {
