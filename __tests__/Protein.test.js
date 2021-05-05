@@ -1,28 +1,13 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
-import { regUser, adminUser } from '../lib/test-utils';
-import { theme } from '../components/styles/AppStyles';
+import { regUser, adminUser, render } from '../lib/test-utils';
 import { server, rest } from '../mocks/server';
 
 import Protein from '../components/proteins/Protein';
 
-const regRender = () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <Protein currentUser={regUser} id={55} />
-    </ThemeProvider>
-  );
-};
-
-const adminRender = () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <Protein currentUser={adminUser} id={55} />
-    </ThemeProvider>
-  );
-};
+const regRender = () => render(<Protein currentUser={regUser} id={100} />)
+const adminRender = () => render(<Protein currentUser={adminUser} id={100} />)
 
 describe('<Protein />', () => {
   it('renders a loader', async () => {
@@ -51,7 +36,7 @@ describe('<Protein />', () => {
     adminRender();
     const testError = 'THIS IS A TEST ERROR';
     server.use(
-      rest.delete('*/proteins/55', async (req, res, ctx) => {
+      rest.delete('*/proteins/100', async (req, res, ctx) => {
         return res.once(ctx.status(500), ctx.json({ message: testError }));
       })
     );

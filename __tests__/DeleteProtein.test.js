@@ -9,7 +9,7 @@ describe('<DeleteProtein />', () => {
   beforeEach(async () => {
     render(
       <ThemeProvider theme={theme}>
-        <DeleteProtein id={55} />
+        <DeleteProtein id={100} />
       </ThemeProvider>
     );
   });

@@ -9,7 +9,7 @@ describe('<ProteinWineList />', () => {
     beforeEach(() => {
         render(
             <ThemeProvider theme={theme}>
-                <ProteinWinesList id={55}/>
+                <ProteinWinesList id={100}/>
             </ThemeProvider>
         )
     })
