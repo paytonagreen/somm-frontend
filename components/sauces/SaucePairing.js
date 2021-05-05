@@ -45,7 +45,6 @@ export default function SaucePairing() {
   }
 
   if (isLoading || !sauces) return <p>'Loading...'</p>;
-  if (wines && sauces);
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>

@@ -1,8 +1,7 @@
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../components/styles/AppStyles';
+import { render } from '../lib/test-utils';
 import { server, rest } from '../mocks/server';
 
 import SignOut from '../components/userFlow/SignOut';
@@ -11,15 +10,12 @@ const setCurrentUser = jest.fn();
 
 describe('<SignOut />', () => {
   beforeEach(() => {
-    render(
-      <ThemeProvider theme={theme}>
-        <SignOut setCurrentUser={setCurrentUser}/>
-      </ThemeProvider>  
-    );
+    render(<SignOut setCurrentUser={setCurrentUser} />);
   });
 
   it('renders the <SignOut /> button', async () => {
-    expect(await screen.findByRole('button', { name: 'Sign Out' })).toBeInTheDocument;
+    expect(await screen.findByRole('button', { name: 'Sign Out' }))
+      .toBeInTheDocument;
   });
 
   it('displays an errorMessage on error', async () => {

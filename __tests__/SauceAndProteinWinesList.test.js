@@ -1,20 +1,15 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { screen } from '@testing-library/react';
 
-import { theme } from '../components/styles/AppStyles';
+import { render } from '../lib/test-utils';
 
 import SauceAndProteinWinesList from '../components/sauceAndProtein/SauceAndProteinWinesList';
 
 describe('<SauceAndProteinWinesList />', () => {
-    beforeEach(() => {
-        render(
-            <ThemeProvider theme={theme}>
-                <SauceAndProteinWinesList proteinId={55} sauceId={100}/>
-            </ThemeProvider>
-        )
-    })
+  beforeEach(() => {
+    render(<SauceAndProteinWinesList proteinId={55} sauceId={100} />);
+  });
 
-    it('renders properly with data', async () => {
-        expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
-    })
+  it('renders properly with data', async () => {
+    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+  });
 });

@@ -1,11 +1,10 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 
 import { server, rest } from '../mocks/server';
+import { render } from '../lib/test-utils';
 
 import AddProtein from '../components/proteins/AddProtein';
-import { theme } from '../components/styles/AppStyles';
 
 async function fillForm() {
   const input = await screen.findByRole('textbox');
@@ -15,11 +14,7 @@ async function fillForm() {
 
 describe('<AddProtein />', () => {
   beforeEach(async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <AddProtein />
-      </ThemeProvider>
-    );
+    render(<AddProtein />);
   });
 
   it('renders properly', async () => {
@@ -31,7 +26,7 @@ describe('<AddProtein />', () => {
     await fillForm();
     expect(await screen.findByDisplayValue('Beef Jerky')).toBeInTheDocument();
   });
-  
+
   it('submits the data properly and displays a successMessage', async () => {
     await fillForm();
     await userEvent.click(await screen.getByRole('button', { name: 'Submit' }));
@@ -42,11 +37,13 @@ describe('<AddProtein />', () => {
     const testErrorMessage = 'THIS IS A TEST FAILURE';
     await server.use(
       rest.post('*/proteins', async (req, res, ctx) => {
-        return res.once(ctx.status(400), ctx.json({ message: testErrorMessage }));
+        return res.once(
+          ctx.status(400),
+          ctx.json({ message: testErrorMessage })
+        );
       })
     );
     await userEvent.click(await screen.getByRole('button', { name: 'Submit' }));
     expect(await screen.findByText(testErrorMessage)).toBeInTheDocument();
   });
-
 });

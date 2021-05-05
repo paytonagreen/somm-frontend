@@ -9,7 +9,6 @@ export default function SauceDisplay({currentUser}) {
   const { values, handleChange } = useForm();
 
   if (isLoading) return <p>"loading..."</p>;
-  if (!isLoading && !sauces) return <p>'Somthing went wrong...'</p>
   return (
     <>
       <Selector>
