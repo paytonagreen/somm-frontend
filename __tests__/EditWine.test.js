@@ -1,7 +1,7 @@
 import {
   render,
   screen,
-  waitForElementToBeRemoved,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
@@ -12,12 +12,12 @@ import { theme } from '../components/styles/AppStyles';
 import EditWine from '../components/wines/EditWine';
 
 async function fillForm() {
-  const name = await screen.findByLabelText(/Name/i);
-  const description = await screen.findByLabelText(/Description/i);
-  await userEvent.clear(name);
-  await userEvent.clear(description);
-  await userEvent.type(name, 'Beaujolais');
-  await userEvent.type(description, 'Always good');
+    const name = await screen.findByLabelText(/Name/i);
+    const description = await screen.findByLabelText(/Description/i);
+    await userEvent.clear(name);
+    await userEvent.clear(description);
+    await userEvent.type(name, 'Beaujolais');
+    await userEvent.type(description, 'Always good');
 }
 
 describe('<EditWine />', () => {
@@ -47,7 +47,7 @@ describe('<EditWine />', () => {
   });
 
   it('processes input correctly', async () => {
-    fillForm();
+    await waitFor(() => fillForm());
     expect(await screen.findByDisplayValue(/Beaujolais/i)).toBeInTheDocument();
   });
 
@@ -68,7 +68,7 @@ describe('<EditWine />', () => {
   })
 
   it('submits data on button click', async () => {
-    fillForm();
+    await waitFor(() => fillForm());
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
     expect(await screen.findByText(/Saved successfully./i)).toBeInTheDocument();
   });

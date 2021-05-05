@@ -44,7 +44,7 @@ describe('<Protein />', () => {
   it('renders the <DeleteProtein /> button', async () => {
     adminRender();
     await screen.findByText('Wine Matches');
-    expect(screen.findByRole('button', { name: 'Delete' })).toBeInTheDocument;
+    expect(await screen.findByRole('button', { name: 'Delete' })).toBeInTheDocument();
   });
 
   it('displays an errorMessage on delete error', async () => {
@@ -59,13 +59,13 @@ describe('<Protein />', () => {
     await waitFor(async () => {
       userEvent.click(await screen.findByRole('button', { name: 'Delete' }));
     });
-    expect(await screen.findByText(testError)).toBeInTheDocument;
+    expect(await screen.findByText(testError)).toBeInTheDocument();
   });
 
   it('calls the deleteProtein function on button click', async () => {
     adminRender();
     await screen.findByText('Wine Matches');
-    await userEvent.click(await screen.getByRole('button', { name: 'Delete' }));
-    expect(await screen.findByText('Protein deleted!')).toBeInTheDocument;
+    await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
+    expect(await screen.findByText('Protein deleted!')).toBeInTheDocument();
   });
 });

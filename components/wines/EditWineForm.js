@@ -18,28 +18,29 @@ export default function EditWineForm({ data, id }) {
     description: data.wine_description,
   });
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`api/wines/${id}`, {
-        body: JSON.stringify({
-          wine_name: values.name,
-          wine_description: values.description,
-        }),
-        method: `PUT`,
-        headers,
-      })
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('Saved successfully.');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      try {
+        const url = `api/wines/${id}`;
+        const options = {
+          body: JSON.stringify({
+            wine_name: values.name,
+            wine_description: values.description,
+          }),
+          method: `PUT`,
+          headers,
+        }
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (!res.ok) {
+          throw Error(data.message)
+        } else {
+          setSuccessMessage('Saved successfully.');
+        }
+      } catch (err) {
+        setErrorMessage(err.message);
+      }
     }
   }
 
