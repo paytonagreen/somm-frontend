@@ -6,7 +6,9 @@ import EditUser from './EditUser';
 
 export default function EditUsers() {
   const { data, isLoading } = useUsers();
-  const { values, handleChange } = useForm();
+  const { values, handleChange } = useForm(() => {}, {
+    user: '',
+  });
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>Loading...</p>;
@@ -21,6 +23,7 @@ export default function EditUsers() {
           id='user'
           onChange={handleChange}
         >
+          <option value="" disabled>Select A User</option>
           {users.map((user) => {
             return (
               <option key={user.id} value={user.id}>
