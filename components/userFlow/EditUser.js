@@ -1,11 +1,14 @@
 import { useState } from 'react';
 
+import { useOneUser } from '../../hooks/swr-hooks';
 import useForm from '../../hooks/useForm';
 import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function EditUser({ currentUser }) {
+export default function EditUser({ id }) {
+  const { data, isLoading } = useOneUser(id);
+
   const [savingStarted, setSavingStarted] = useState();
   const [successMessage, setSuccessMesssage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -14,12 +17,12 @@ export default function EditUser({ currentUser }) {
 
   function callback() {
     if (!savingStarted) {
-      setSavingStarted(true)
-      const url = `api/users/${currentUser.id}`;
+      setSavingStarted(true);
+      const url = `api/users/${id}`;
       const options = {
-          body: JSON.stringify({
-              is_admin: values.admin,
-          }),
+        body: JSON.stringify({
+          is_admin: values.admin,
+        }),
         headers,
         method: 'PUT',
         credentials: 'include',
@@ -41,24 +44,25 @@ export default function EditUser({ currentUser }) {
     }
   }
 
-  if (!currentUser) return <p>Loading...</p>;
-  else if (currentUser)
-    return (
-      <Form onSubmit={handleSubmit}>
-        <h2>Edit User</h2>
-        {successMessage && <p>{successMessage}</p>}
-        {errorMessage && <p>{errorMessage}</p>}
-        <select
-          name='admin'
-          id='admin'
-          onChange={handleChange}
-          defaultValue={currentUser.is_admin}
-          value={values.admin}
-        >
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
-        </select>
-        <button type='submit'>Submit</button>
-      </Form>
-    );
+  if (!id) return <p></p>;
+  if (!data) return <p>Loading...</p>;
+  const { user } = data;
+  return (
+    <Form onSubmit={handleSubmit}>
+      <h2>{user.username}</h2>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
+      <select
+        name='admin'
+        id='admin'
+        onChange={handleChange}
+        defaultValue={user.is_admin}
+        value={values.admin}
+      >
+        <option value={true}>Yes</option>
+        <option value={false}>No</option>
+      </select>
+      <button type='submit'>Submit</button>
+    </Form>
+  );
 }
