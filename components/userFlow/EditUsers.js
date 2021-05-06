@@ -6,7 +6,7 @@ import EditUser from './EditUser';
 
 export default function EditUsers() {
   const { data, isLoading } = useUsers();
-  const { values, handleChange } = useForm(callback);
+  const { values, handleChange } = useForm();
 
   if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>Loading...</p>;
