@@ -33,7 +33,7 @@ const NavStyles = styled.nav`
     right: 0.75rem;
     top: 0.75rem;
   }
-  .adminOptions {
+  .navOptions {
     transition: all 5s;
     ul {
       display: none;
@@ -55,6 +55,12 @@ const NavStyles = styled.nav`
         }
       }
     }
+  }
+  .signUp {
+    position: absolute;
+    top: 1.4rem;
+    right: 1rem;
+    display: flex;
   }
 `;
 
