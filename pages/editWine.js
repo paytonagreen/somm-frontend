@@ -3,7 +3,7 @@ import PleaseSignIn from '../components/userFlow/PleaseSignIn';
 
 export default function EditWinePage(props) {
   return (
-    <PleaseSignIn>
+    <PleaseSignIn currentUser={props.currentUser}>
       <EditWine currentUser={props.currentUser} id={props.query.id} />;
     </PleaseSignIn>
   );
