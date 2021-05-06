@@ -49,7 +49,7 @@ export default function EditUser({ id }) {
   const { user } = data;
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>{user.username}</h2>
+      <h2>Is Admin?</h2>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <select

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const NavStyles = styled.nav`
   height: 4rem;
   width: 100%;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   display: flex;
@@ -13,7 +13,8 @@ const NavStyles = styled.nav`
   h1 {
     margin: 1rem;
   }
-  p, a {
+  p,
+  a {
     margin: 0.5rem;
   }
   a {
@@ -29,8 +30,37 @@ const NavStyles = styled.nav`
   }
   button {
     position: absolute;
-    right: .75rem;
-    top: .75rem;
+    right: 0.75rem;
+    top: 0.75rem;
+  }
+  .navOptions {
+    transition: all 5s;
+    ul {
+      display: none;
+    }
+    :hover {
+      ul {
+        z-index: 1;
+        box-shadow: 3px 3px 5px black;
+        position: absolute;
+        background: ${(props) => props.theme.colors.chard};
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        li {
+          padding: .5rem;
+          :hover {
+            color: #706278;
+          }
+        }
+      }
+    }
+  }
+  .signUp {
+    position: absolute;
+    top: 1.4rem;
+    right: 1rem;
+    display: flex;
   }
 `;
 

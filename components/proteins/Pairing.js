@@ -13,7 +13,10 @@ export default function Pairing() {
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const { values, handleChange, handleSubmit } = useForm(callback);
+  const { values, handleChange, handleSubmit } = useForm(callback, {
+    wine_id: '',
+    protein_id: '',
+  });
 
   function callback() {
     if (!savingStarted) {
@@ -56,6 +59,9 @@ export default function Pairing() {
         name='wine_id'
         onChange={handleChange}
       >
+        <option value='' disabled>
+          Select A Wine
+        </option>
         {wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
@@ -72,6 +78,9 @@ export default function Pairing() {
         name='protein_id'
         onChange={handleChange}
       >
+        <option value='' disabled>
+          Select A Protein
+        </option>
         {proteins.map((protein) => {
           return (
             <option value={protein.id} key={protein.id}>
