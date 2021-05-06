@@ -27,33 +27,36 @@ export default function Nav({ setCurrentUser, currentUser }) {
           </>
         )}
         {currentUser && currentUser.is_admin && (
-          <>
-            <Link href='/pairing'>
-              <li>
-                <a>Pair by Protein</a>
-              </li>
-            </Link>
-            <Link href='/saucePairing'>
-              <li>
-                <a>Pair by Sauce</a>
-              </li>
-            </Link>
-            <Link href='/addProtein'>
-              <li>
-                <a>Add Protein</a>
-              </li>
-            </Link>
-            <Link href='/addWine'>
-              <li>
-                <a>Add Wine</a>
-              </li>
-            </Link>
-            <Link href='/addSauce'>
-              <li>
-                <a>Add Sauce</a>
-              </li>
-            </Link>
-          </>
+          <li className='adminOptions'>
+            <p>Admin Options</p>
+            <ul>
+              <Link href='/pairing'>
+                <li>
+                  <a>Pair by Protein</a>
+                </li>
+              </Link>
+              <Link href='/saucePairing'>
+                <li>
+                  <a>Pair by Sauce</a>
+                </li>
+              </Link>
+              <Link href='/addProtein'>
+                <li>
+                  <a>Add Protein</a>
+                </li>
+              </Link>
+              <Link href='/addWine'>
+                <li>
+                  <a>Add Wine</a>
+                </li>
+              </Link>
+              <Link href='/addSauce'>
+                <li>
+                  <a>Add Sauce</a>
+                </li>
+              </Link>
+            </ul>
+          </li>
         )}
       </ul>
       {currentUser && <SignOut setCurrentUser={setCurrentUser} />}
