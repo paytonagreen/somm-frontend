@@ -13,7 +13,7 @@ const NavStyles = styled.nav`
   h1 {
     margin: 1rem;
   }
-  p {
+  p, a {
     margin: 0.5rem;
   }
   a {
