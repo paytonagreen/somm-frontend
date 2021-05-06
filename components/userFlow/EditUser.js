@@ -44,7 +44,7 @@ export default function EditUser({ id }) {
     }
   }
 
-  if(!id) return <p></p>
+  if (!id) return <p></p>;
   if (!data) return <p>Loading...</p>;
   const { user } = data;
   return (
