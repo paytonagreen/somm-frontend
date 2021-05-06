@@ -14,6 +14,12 @@ describe('<Nav />', () => {
     expect(await screen.findByText(/A Somm For You/i)).toBeInTheDocument();
   });
 
+  it(`renders view options with no user`, async () => {
+    await noUserRender();
+    expect(await screen.findByText("Pair")).toBeInTheDocument();
+    expect(await screen.findByText("By Sauce")).toBeInTheDocument();
+  })
+
   it(`renders 'Sign In' and 'Sign Up' links with no user`, async () => {
     await noUserRender();
     expect(await screen.findByText(/Sign In/)).toBeInTheDocument();
