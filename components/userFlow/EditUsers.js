@@ -19,6 +19,7 @@ export default function EditUsers() {
         <h2>Choose User</h2>
         <select
           value={values.user}
+          aria-label='user'
           name='user'
           id='user'
           onChange={handleChange}

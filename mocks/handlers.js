@@ -17,7 +17,7 @@ export const handlers = [
    ******************************/
 
   rest.get('*/users', async (req, res, ctx) => {
-    return res(ctx.json({users: [adminUser, regUser]}));
+    return res(ctx.json({ users: [adminUser, regUser] }));
   }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
@@ -30,6 +30,10 @@ export const handlers = [
 
   rest.get('*/sauces', async (req, res, ctx) => {
     return res(ctx.json([mockSauce]));
+  }),
+
+  rest.get('*/users/1', async (req, res, ctx) => {
+    return res(ctx.json({ user: regUser }));
   }),
 
   rest.get('*/wines/100', async (req, res, ctx) => {
