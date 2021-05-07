@@ -22,9 +22,17 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Head>
           <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link 
+            rel="preload"
+            as="style" 
+            href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap"
+
+          />
           <link
-            href='https://fonts.googleapis.com/css2?family=Orelega+One&display=swap'
             rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=Orelega+One&display=swap'
+            media="print"
+            onload="this.media='all'"
           />
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
