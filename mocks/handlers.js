@@ -1,5 +1,11 @@
 import { rest } from 'msw';
-import { mockWine, mockProtein, mockSauce } from '../lib/test-utils';
+import {
+  adminUser,
+  regUser,
+  mockWine,
+  mockProtein,
+  mockSauce,
+} from '../lib/test-utils';
 
 const successMessage = {
   message: 'Success!',
@@ -9,6 +15,10 @@ export const handlers = [
   /***************************
    *  GET
    ******************************/
+
+  rest.get('*/users', async (req, res, ctx) => {
+    return res(ctx.json({users: [adminUser, regUser]}));
+  }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
     return res(ctx.json([mockProtein]));

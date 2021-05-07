@@ -23,7 +23,7 @@ export default function EditUsers() {
           id='user'
           onChange={handleChange}
         >
-          <option value="" disabled>Select A User</option>
+          <option key={12345} value="" disabled>Select A User</option>
           {users.map((user) => {
             return (
               <option key={user.id} value={user.id}>
