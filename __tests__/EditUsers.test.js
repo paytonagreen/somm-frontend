@@ -27,6 +27,10 @@ describe('<EditUsers/>', () => {
     render(<EditUsers />);
   });
 
+  it('renders a loader', () => {
+    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
+  })
+
   it('renders properly', async () => {
     expect(await screen.findByText(/Choose User/i)).toBeInTheDocument();
   });

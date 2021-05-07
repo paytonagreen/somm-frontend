@@ -5,12 +5,11 @@ import Selector from '../styles/Selector';
 import EditUser from './EditUser';
 
 export default function EditUsers() {
-  const { data, isLoading } = useUsers();
+  const { data } = useUsers();
   const { values, handleChange } = useForm(() => {}, {
     user: '',
   });
 
-  if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>Loading...</p>;
   const { users } = data;
   return (
