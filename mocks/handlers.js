@@ -96,6 +96,10 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(successMessage));
   }),
 
+  rest.put('*/users/1', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
+
   /***************************
    *  DELETE
    ******************************/
