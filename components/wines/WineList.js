@@ -1,14 +1,14 @@
-import WineList from '../styles/WineList';
+import ThingsList from '../styles/ThingList';
 
-export default function WinesList({ wines }) {
+export default function WineList({ wines }) {
   return (
-    <WineList>
+    <ThingsList>
       <h2>Wines</h2>
       <div className='content'>
         {wines.map((wine) => {
           return <a href={`/editWine?id=${wine.id}`}>{wine.wine_name}</a>;
         })}
       </div>
-    </WineList>
+    </ThingsList>
   );
 }

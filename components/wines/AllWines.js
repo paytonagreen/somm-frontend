@@ -2,7 +2,7 @@ import { useWines } from '../../hooks/swr-hooks';
 
 import AddWine from './AddWine';
 import WineList from './WineList';
-import WinesPage from '../styles/WinesPage';
+import AddPage from '../styles/AddPage';
 
 export default function AllWines() {
   const { wines } = useWines();
@@ -10,9 +10,9 @@ export default function AllWines() {
   if (!wines) return 'Loading...';
   console.log(wines);
   return (
-    <WinesPage>
+    <AddPage>
       <WineList wines={wines} />
       <AddWine />
-    </WinesPage>
+    </AddPage>
   );
 }

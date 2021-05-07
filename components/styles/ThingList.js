@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const WineList = styled.form`
+const ThingList = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,11 @@ const WineList = styled.form`
           color: inherit;
           padding: .5rem;
       }
+      p {
+        padding: 0;
+        margin: .5rem;
+      }
   }
 `;
 
-export default WineList;
+export default ThingList;

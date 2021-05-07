@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import {mutate} from 'swr';
 
 import { headers } from '../../hooks/swr-switch';
 import useForm from '../../hooks/useForm';
 
 import DeleteButton from '../styles/DeleteButton';
-import { response } from 'msw';
 
 export default function SignOut({setCurrentUser}) {
   const [isSubmitting, setIsSubmitting] = useState();

@@ -13,22 +13,26 @@ function useUsers() {
 }
 
 function useProteins() {
-  const { data, error } = useSWR(`api/proteins`, fetcher);
+  const { data, mutate, isValidating, error } = useSWR(`api/proteins`, fetcher);
 
   return {
     proteins: data,
     isLoading: !error && !data,
     isError: error,
+    mutate,
+    isValidating,
   };
 }
 
 function useWines() {
-  const { data, error } = useSWR(`api/wines`, fetcher);
+  const { data, mutate, isValidating, error } = useSWR(`api/wines`, fetcher);
 
   return {
     wines: data,
     isLoading: !error && !data,
     isError: error,
+    mutate,
+    isValidating,
   };
 }
 

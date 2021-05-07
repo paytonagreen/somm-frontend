@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-const WinesPage = styled.div`
+const AddPage = styled.div`
   display: flex;
-  flex-direnction: column;
   align-items: center;
   justify-content: center;
     margin: 4rem;
@@ -12,4 +11,4 @@ const WinesPage = styled.div`
   }
 `;
 
-export default WinesPage;
+export default AddPage;
