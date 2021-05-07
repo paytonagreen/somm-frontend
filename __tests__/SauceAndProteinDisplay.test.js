@@ -48,6 +48,6 @@ describe('<SauceAndProteinDisplay />', () => {
       screen.getByRole('option', { name: 'Beef' }),
     ]);
     await screen.findByText('Wine Matches');
-    expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
+    expect(await screen.findByText('Cabernet Sauvignon')).toBeInTheDocument();
   });
 });

@@ -33,13 +33,11 @@ export default function EditUser({ id }) {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            console.log(data);
             setSuccessMesssage('You did it!');
           }
         })
         .catch((err) => {
           setErrorMessage(err.message);
-          console.log(err);
         });
     }
   }
@@ -53,6 +51,7 @@ export default function EditUser({ id }) {
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <select
+        aria-label='admin'
         name='admin'
         id='admin'
         onChange={handleChange}

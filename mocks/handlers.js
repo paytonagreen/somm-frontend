@@ -1,5 +1,11 @@
 import { rest } from 'msw';
-import { mockWine, mockProtein, mockSauce } from '../lib/test-utils';
+import {
+  adminUser,
+  regUser,
+  mockWine,
+  mockProtein,
+  mockSauce,
+} from '../lib/test-utils';
 
 const successMessage = {
   message: 'Success!',
@@ -9,6 +15,10 @@ export const handlers = [
   /***************************
    *  GET
    ******************************/
+
+  rest.get('*/users', async (req, res, ctx) => {
+    return res(ctx.json({ users: [adminUser, regUser] }));
+  }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
     return res(ctx.json([mockProtein]));
@@ -20,6 +30,10 @@ export const handlers = [
 
   rest.get('*/sauces', async (req, res, ctx) => {
     return res(ctx.json([mockSauce]));
+  }),
+
+  rest.get('*/users/1', async (req, res, ctx) => {
+    return res(ctx.json({ user: regUser }));
   }),
 
   rest.get('*/wines/100', async (req, res, ctx) => {
@@ -79,6 +93,10 @@ export const handlers = [
    ******************************/
 
   rest.put('*/wines/100', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
+
+  rest.put('*/users/1', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
 

@@ -6,7 +6,7 @@ import SauceAndProteinWinesList from '../components/sauceAndProtein/SauceAndProt
 
 describe('<SauceAndProteinWinesList />', () => {
   beforeEach(() => {
-    render(<SauceAndProteinWinesList proteinId={55} sauceId={100} />);
+    render(<SauceAndProteinWinesList proteinId={100} sauceId={100} />);
   });
 
   it('renders properly with data', async () => {
