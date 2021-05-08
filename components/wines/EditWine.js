@@ -1,4 +1,4 @@
-import { useWine } from '../../hooks/swr-hooks';
+import { useWine } from 'hooks/swr-hooks';
 
 import EditWineForm from './EditWineForm';
 

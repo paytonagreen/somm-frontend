@@ -1,40 +1,54 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { regUser, adminUser, render } from 'lib/test-utils';
+import { regUser, adminUser, render, useServerUser } from 'lib/test-utils';
 import { server, rest } from 'mocks/server';
 
 import Protein from 'components/proteins/Protein';
 
-const regRender = () => render(<Protein currentUser={regUser} id={100} />)
-const adminRender = () => render(<Protein currentUser={adminUser} id={100} />)
-const noIdRender = () => render(<Protein />)
+const renderProtein = () => render(<Protein id={100} />);
+const renderProteinNoId = () => render(<Protein />);
 
-describe('<Protein />', () => {
+describe('<Protein /> with no id', () => {
+  it('returns nothing', () => {
+    renderProteinNoId();
+    expect(screen.queryByText('Loading')).not.toBeInTheDocument();
+  });
+});
+
+describe('<Protein /> with regular user', () => {
+  beforeEach(() => {
+    useServerUser(regUser);
+    renderProtein();
+  });
   it('renders a loader', async () => {
-    regRender();
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
   });
 
   it('renders properly', async () => {
-    regRender();
     expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
   });
 
   it('renders the <WinesList />', async () => {
-    regRender();
     await screen.findByText('Wine Matches');
     expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });
+});
+
+describe('<Protein /> with admin user', () => {
+  beforeEach(() => {
+    useServerUser(adminUser);
+    renderProtein();
+  });
 
   it('renders the <DeleteProtein /> button', async () => {
-    adminRender();
     await screen.findByText('Wine Matches');
-    expect(await screen.findByRole('button', { name: 'Delete' })).toBeInTheDocument();
+    expect(
+      await screen.findByRole('button', { name: 'Delete' })
+    ).toBeInTheDocument();
   });
 
   it('displays an errorMessage on delete error', async () => {
-    adminRender();
     const testError = 'THIS IS A TEST ERROR';
     server.use(
       rest.delete('*/proteins/100', async (req, res, ctx) => {
@@ -49,14 +63,8 @@ describe('<Protein />', () => {
   });
 
   it('calls the deleteProtein function on button click', async () => {
-    adminRender();
     await screen.findByText('Wine Matches');
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText('Protein deleted!')).toBeInTheDocument();
   });
-
-  it('returns nothing with no id', async () => {
-    noIdRender();
-    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-  })
 });

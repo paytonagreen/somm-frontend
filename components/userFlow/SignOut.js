@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import {mutate} from 'swr';
 
-import { headers } from '../../hooks/swr-switch';
-import useForm from '../../hooks/useForm';
+import { headers } from 'hooks/swr-switch';
+import useForm from 'hooks/useForm';
 
 import DeleteButton from '../styles/DeleteButton';
 
-export default function SignOut({setCurrentUser}) {
+export default function SignOut() {
   const [isSubmitting, setIsSubmitting] = useState();
-  const [signOutMessage, setSignOutMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const { handleSubmit } = useForm(callback);
 
@@ -27,8 +26,7 @@ export default function SignOut({setCurrentUser}) {
         if (!res.ok) {
           throw new Error(data.message)
         }
-        setCurrentUser({});
-        setSignOutMessage('Thanks! See ya later!')
+        mutate('api/logged_in')
       } catch (err) {
         setErrorMessage(err.message);
       }  
@@ -37,9 +35,8 @@ export default function SignOut({setCurrentUser}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      {signOutMessage && <p>{signOutMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
-      {!signOutMessage && !errorMessage && <DeleteButton>Sign Out</DeleteButton>}
+      {!errorMessage && <DeleteButton>Sign Out</DeleteButton>}
     </form>
   );
 }

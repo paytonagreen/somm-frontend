@@ -1,5 +1,5 @@
-import EditWine from '../components/wines/EditWine';
-import PleaseSignIn from '../components/userFlow/PleaseSignIn';
+import EditWine from 'components/wines/EditWine';
+import PleaseSignIn from 'components/userFlow/PleaseSignIn';
 
 export default function EditWinePage(props) {
   return (

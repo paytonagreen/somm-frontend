@@ -1,6 +1,6 @@
-import useForm from '../../hooks/useForm';
-import { useProteins } from '../../hooks/swr-hooks';
-import { useSauces } from '../../hooks/swr-hooks';
+import useForm from 'hooks/useForm';
+import { useProteins } from 'hooks/swr-hooks';
+import { useSauces } from 'hooks/swr-hooks';
 
 import SauceAndProteinWinesList from './SauceAndProteinWinesList';
 import Selector from '../styles/Selector';

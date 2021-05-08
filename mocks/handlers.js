@@ -3,9 +3,11 @@ import {
   adminUser,
   regUser,
   mockWine,
+  mockWine2,
+  mockWine3,
   mockProtein,
   mockSauce,
-} from '../lib/test-utils';
+} from 'lib/test-utils';
 
 const successMessage = {
   message: 'Success!',
@@ -16,6 +18,10 @@ export const handlers = [
    *  GET
    ******************************/
 
+  rest.get('*/logged_in', async (req, res, ctx) => {
+    return res(ctx.json({logged_in: true, user: regUser}))
+  }),
+
   rest.get('*/users', async (req, res, ctx) => {
     return res(ctx.json({ users: [adminUser, regUser] }));
   }),
@@ -24,7 +30,7 @@ export const handlers = [
     return res(ctx.json([mockProtein]));
   }),
 
-  rest.get('*/wines', async (req, res, ctx) => {
+  rest.get('/api/wines', async (req, res, ctx) => {
     return res(ctx.json([mockWine]));
   }),
 
@@ -49,11 +55,11 @@ export const handlers = [
   }),
 
   rest.get('*/proteins/100/wines', async (req, res, ctx) => {
-    return res(ctx.json([mockWine]));
+    return res(ctx.json([mockWine, mockWine2]));
   }),
 
   rest.get('*/sauces/100/wines', async (req, res, ctx) => {
-    return res(ctx.json([mockWine]));
+    return res(ctx.json([mockWine, mockWine3]));
   }),
 
   /***************************

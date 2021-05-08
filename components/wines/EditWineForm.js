@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 import DeleteWine from './DeleteWine';
@@ -30,11 +30,11 @@ export default function EditWineForm({ data, id }) {
           }),
           method: `PUT`,
           headers,
-        }
+        };
         const res = await fetch(url, options);
         const data = await res.json();
         if (!res.ok) {
-          throw Error(data.message)
+          throw Error(data.message);
         } else {
           setSuccessMessage('Saved successfully.');
         }

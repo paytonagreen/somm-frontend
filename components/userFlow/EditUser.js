@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useOneUser } from '../../hooks/swr-hooks';
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import { useOneUser } from 'hooks/swr-hooks';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 

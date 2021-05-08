@@ -17,7 +17,6 @@ useEffect(() => {
       if (!res.ok) {
         throw Error(data.message);
       } else if (data && res.ok) {
-        console.log(data);
         setCurrentUser(data.user);
       }
     })

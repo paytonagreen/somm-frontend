@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { mutate} from 'swr'
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 

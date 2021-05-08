@@ -1,5 +1,5 @@
-import useForm from '../../hooks/useForm';
-import { useProteins } from '../../hooks/swr-hooks';
+import useForm from 'hooks/useForm';
+import { useProteins } from 'hooks/swr-hooks';
 
 import Protein from './Protein';
 import Selector from '../styles/Selector';

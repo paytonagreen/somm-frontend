@@ -1,5 +1,5 @@
-import EditUser from '../components/userFlow/EditUser';
-import PleaseSignIn from '../components/userFlow/PleaseSignIn';
+import EditUser from 'components/userFlow/EditUser';
+import PleaseSignIn from 'components/userFlow/PleaseSignIn';
 
 export default function EditUserPage({ currentUser }) {
   return (

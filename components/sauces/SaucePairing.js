@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useSauces, useWines } from '../../hooks/swr-hooks';
+import { useSauces, useWines } from 'hooks/swr-hooks';
 
-import { headers } from '../../hooks/swr-switch';
-import useForm from '../../hooks/useForm';
+import { headers } from 'hooks/swr-switch';
+import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
 

@@ -1,9 +1,15 @@
 import Link from 'next/link';
 
+import { useCurrentUser } from 'hooks/swr-hooks';
+
 import SignOut from '../userFlow/SignOut';
 import NavStyles from '../styles/NavStyles';
 
-export default function Nav({ setCurrentUser, currentUser }) {
+export default function Nav() {
+  const { data, error } = useCurrentUser();
+
+  if (!data && !error) return <p>'Loading...'</p>;
+  const currentUser = data.user;
   return (
     <NavStyles>
       <Link href='/'>
@@ -79,7 +85,7 @@ export default function Nav({ setCurrentUser, currentUser }) {
           </li>
         )}
       </ul>
-      {currentUser && <SignOut setCurrentUser={setCurrentUser} />}
+      {currentUser && <SignOut />}
     </NavStyles>
   );
 }

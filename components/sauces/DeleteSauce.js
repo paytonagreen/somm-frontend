@@ -1,4 +1,4 @@
-import { headers } from '../../hooks/swr-switch';
+import { headers } from 'hooks/swr-switch';
 
 import DeleteButton from '../styles/DeleteButton';
 

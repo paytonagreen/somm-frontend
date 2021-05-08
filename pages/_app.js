@@ -1,20 +1,17 @@
 import Head from 'next/head';
-import { useState } from 'react';
 
 import {
   GlobalStyle,
   ThemeProvider,
   theme,
   Content,
-} from '../components/styles/AppStyles';
-import useUser from '../hooks/useUser';
+} from 'components/styles/AppStyles';
+import { useCurrentUser } from 'hooks/swr-hooks';
 
-import Nav from '../components/page/Nav';
+import Nav from 'components/page/Nav';
 
 function MyApp({ Component, pageProps }) {
-  const [currentUser, setCurrentUser] = useState();
-
-  useUser(setCurrentUser);
+  const {data} = useCurrentUser();
 
   return (
     <>
@@ -36,13 +33,9 @@ function MyApp({ Component, pageProps }) {
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <Nav setCurrentUser={setCurrentUser} currentUser={currentUser} />
+        <Nav />
         <Content>
-          <Component
-            setCurrentUser={setCurrentUser}
-            currentUser={currentUser}
-            {...pageProps}
-          />
+          {data && (<Component currentUser={data.user} {...pageProps} />)}
         </Content>
       </ThemeProvider>
     </>

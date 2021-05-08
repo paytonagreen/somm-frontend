@@ -1,13 +1,13 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render, regUser } from 'lib/test-utils';
+import { render } from 'lib/test-utils';
 
 import SauceDisplay from 'components/sauces/SauceDisplay';
 
 describe('<SauceDisplay />', () => {
   beforeEach(async () => {
-    render(<SauceDisplay currentUser={regUser} />);
+    render(<SauceDisplay />);
   });
 
   it('renders a loader', async () => {

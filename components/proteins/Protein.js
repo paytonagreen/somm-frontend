@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-import { useProtein } from '../../hooks/swr-hooks';
+import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 
 import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 
-export default function Protein({ currentUser, id }) {
+export default function Protein({ id }) {
+  const { data } = useCurrentUser();
   const { protein, isLoading } = useProtein(id);
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -21,7 +22,7 @@ export default function Protein({ currentUser, id }) {
         <h1>{protein.protein_name}</h1>
         <ProteinWinesList id={id} />
         <div className='button-div'>
-          {currentUser && id && (
+          {data && data.user && data.user.is_admin && id && (
             <DeleteProtein
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}

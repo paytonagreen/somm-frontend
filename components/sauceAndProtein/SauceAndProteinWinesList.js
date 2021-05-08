@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { useProteinWines } from '../../hooks/swr-hooks';
-import { useSauceWines } from '../../hooks/swr-hooks';
+import { useProteinWines } from 'hooks/swr-hooks';
+import { useSauceWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 import Card from '../styles/Card';
