@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { server, rest } from '../mocks/server';
-import { render, regUser, adminUser } from '../lib/test-utils';
+import { server, rest } from 'mocks/server';
+import { render, regUser, adminUser } from 'lib/test-utils';
 
-import Sauce from '../components/sauces/Sauce';
+import Sauce from 'components/sauces/Sauce';
 
 const regRender = () => {
   render(<Sauce currentUser={regUser} id={100} />);

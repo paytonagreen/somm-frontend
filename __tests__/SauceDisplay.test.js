@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render, regUser } from '../lib/test-utils';
+import { render, regUser } from 'lib/test-utils';
 
-import SauceDisplay from '../components/sauces/SauceDisplay';
+import SauceDisplay from 'components/sauces/SauceDisplay';
 
 describe('<SauceDisplay />', () => {
   beforeEach(async () => {

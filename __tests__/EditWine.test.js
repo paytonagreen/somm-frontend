@@ -1,10 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
-import { server, rest } from '../mocks/server';
+import { render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
-import EditWine from '../components/wines/EditWine';
+import EditWine from 'components/wines/EditWine';
 
 async function fillForm() {
   const name = await screen.findByLabelText(/Name/i);

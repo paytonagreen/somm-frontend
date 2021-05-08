@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
-import { server, rest } from '../mocks/server';
+import { render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
-import AddWine from '../components/wines/AddWine';
+import AddWine from 'components/wines/AddWine';
 
 describe('<AddWine />', () => {
   beforeEach(async () => {

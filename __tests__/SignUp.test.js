@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { server, rest } from '../mocks/server';
-import { render } from '../lib/test-utils';
+import { server, rest } from 'mocks/server';
+import { render } from 'lib/test-utils';
 
-import SignUp from '../components/userFlow/SignUp';
+import SignUp from 'components/userFlow/SignUp';
 
 async function fillForm() {
   const username = await screen.findByLabelText(/Username/);

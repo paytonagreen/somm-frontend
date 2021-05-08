@@ -2,9 +2,9 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { server, rest } from '../mocks/server';
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import EditUsers from '../components/userFlow/EditUsers';
+import EditUsers from 'components/userFlow/EditUsers';
 
 const useUserDropdown = async () => {
   const userDropdown = screen.getByRole('combobox', { name: 'user' });

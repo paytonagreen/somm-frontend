@@ -1,10 +1,10 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
-import { server, rest } from '../mocks/server';
+import { render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
-import Pairing from '../components/proteins/Pairing';
+import Pairing from 'components/proteins/Pairing';
 
 describe('<Pairing />', () => {
   beforeEach(() => {

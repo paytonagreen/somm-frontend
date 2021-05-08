@@ -1,9 +1,9 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import ProteinDisplay from '../components/proteins/ProteinDisplay';
+import ProteinDisplay from 'components/proteins/ProteinDisplay';
 
 describe('<ProteinDisplay />', () => {
   beforeEach(async () => {

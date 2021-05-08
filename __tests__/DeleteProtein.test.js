@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import DeleteProtein from '../components/proteins/DeleteProtein';
+import DeleteProtein from 'components/proteins/DeleteProtein';
 
 describe('<DeleteProtein />', () => {
   beforeEach(async () => {

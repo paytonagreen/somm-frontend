@@ -1,4 +1,4 @@
-import { useSauces } from '../../hooks/swr-hooks';
+import { useSauces } from 'hooks/swr-hooks';
 
 import AddSauce from './AddSauce';
 import SauceList from './SauceList';

@@ -1,9 +1,9 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import SauceAndProteinDisplay from '../components/sauceAndProtein/SauceAndProteinDisplay';
+import SauceAndProteinDisplay from 'components/sauceAndProtein/SauceAndProteinDisplay';
 
 describe('<SauceAndProteinDisplay />', () => {
   beforeEach(async () => {
