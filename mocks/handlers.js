@@ -16,6 +16,10 @@ export const handlers = [
    *  GET
    ******************************/
 
+  rest.get('*/logged_in', async (req, res, ctx) => {
+    return res(ctx.json({logged_in: true, user: regUser}))
+  }),
+
   rest.get('*/users', async (req, res, ctx) => {
     return res(ctx.json({ users: [adminUser, regUser] }));
   }),

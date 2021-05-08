@@ -1,12 +1,13 @@
-import { screen } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
 import { render, regUser, adminUser } from 'lib/test-utils';
 
 import Nav from 'components/page/Nav';
+import { server } from 'mocks/server';
 
 const noUserRender = () => render(<Nav />);
-const regRender = () => render(<Nav currentUser={regUser} />);
-const adminRender = () => render(<Nav currentUser={adminUser} />);
+const regRender = () => render(<Nav />);
+const adminRender = () => render(<Nav />);
 
 describe('<Nav />', () => {
   it('renders properly', async () => {
@@ -21,6 +22,11 @@ describe('<Nav />', () => {
   })
 
   it(`renders 'Sign In' and 'Sign Up' links with no user`, async () => {
+    server.use(
+      rest.get('*/logged_in', async (req, res, ctx) => {
+        return res.once(ctx.json({logged_in: false, user: {}}))
+      })
+    )
     await noUserRender();
     expect(await screen.findByText(/Sign In/)).toBeInTheDocument();
     expect(await screen.findByText(/Sign Up/)).toBeInTheDocument();
