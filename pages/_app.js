@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }) {
           />
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
+          <meta name="description" content="We help you pick the right wine -- pair by sauce, protein, or both! We do the hard stuff -- you just sit back, enjoy, and impress your date, friends, or family!"/>
         </Head>
         {!data && (<LoadingNav/>)}
         {data && (<Nav currentUser={data.user}/>)}

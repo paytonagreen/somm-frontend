@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { render, adminUser, useServerUser } from 'lib/test-utils';
 import { server } from 'mocks/server';
 
-import MyApp from 'pages/_app'
 import Nav from 'components/page/Nav';
 
 const navRender = () => render(<Nav />);
@@ -18,17 +17,17 @@ describe('<Nav /> with no user', () => {
     expect(await screen.findByText(/A Somm For You/i)).toBeInTheDocument();
   });
 
-  it(`renders view options with no user`, async () => {
+  it(`renders view options`, async () => {
     expect(await screen.findByText('Pair')).toBeInTheDocument();
     expect(await screen.findByText('By Sauce')).toBeInTheDocument();
   });
 
-  it(`renders 'Sign In' and 'Sign Up' links with no user`, async () => {
+  it(`renders 'Sign In' and 'Sign Up' links`, async () => {
     expect(await screen.findByText(/Sign In/)).toBeInTheDocument();
     expect(await screen.findByText(/Sign Up/)).toBeInTheDocument();
   });
 
-  it(`does not render the 'Sign Out' button with no user`, async () => {
+  it(`does not render the 'Sign Out' button`, async () => {
     await screen.findByText(/Sign In/i);
     expect(screen.queryByText(/Sign Out/i)).not.toBeInTheDocument();
   });
@@ -39,19 +38,19 @@ describe('<Nav /> with regular user', () => {
     navRender();
   });
 
-  it(`renders the 'Sign Out' button with regular user`, async () => {
+  it(`renders the 'Sign Out' button`, async () => {
     expect(
       await screen.findByRole('button', { name: /Sign Out/i })
     ).toBeInTheDocument();
   });
 
-  it(`does not render the 'Sign Up' or 'Sign In' links regular user`, async () => {
+  it(`does not render the 'Sign Up' or 'Sign In' links`, async () => {
     await screen.findByRole('button', { name: /Sign Out/i });
     expect(screen.queryByText(/Sign In/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Sign Up/i)).not.toBeInTheDocument();
   });
 
-  it('does not render admin links with regular user', async () => {
+  it('does not render admin links', async () => {
     await screen.findByRole('button', { name: /Sign Out/i });
     expect(screen.queryByText(/Add Wine/i)).not.toBeInTheDocument();
   });
@@ -70,14 +69,14 @@ describe('<Nav /> with admin user', () => {
     useServerUser(adminUser);
     navRender();
   });
-  it('renders admin links and Sign Out button with admin user', async () => {
+  it('renders admin links and Sign Out button', async () => {
     expect(
       await screen.findByRole('button', { name: /Sign Out/i })
     ).toBeInTheDocument();
     expect(await screen.findByText(/Add Wine/i)).toBeInTheDocument();
   });
 
-  it(`does not render the 'Sign Up' and 'Sign Out' links with admin user`, async () => {
+  it(`does not render the 'Sign Up' and 'Sign Out' links`, async () => {
     await screen.findByRole('button', { name: /Sign Out/i });
     expect(screen.queryByText(/Sign In/i)).not.toBeInTheDocument();
   });
