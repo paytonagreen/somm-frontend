@@ -13,14 +13,12 @@ function useUsers() {
 }
 
 function useProteins() {
-  const { data, mutate, isValidating, error } = useSWR(`api/proteins`, fetcher);
+  const { data, error } = useSWR(`api/proteins`, fetcher);
 
   return {
     proteins: data,
     isLoading: !error && !data,
     isError: error,
-    mutate,
-    isValidating,
   };
 }
 
