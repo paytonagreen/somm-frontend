@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import SauceAndProteinWinesList from '../components/sauceAndProtein/SauceAndProteinWinesList';
+import SauceAndProteinWinesList from 'components/sauceAndProtein/SauceAndProteinWinesList';
 
 describe('<SauceAndProteinWinesList />', () => {
   beforeEach(() => {
@@ -12,4 +12,6 @@ describe('<SauceAndProteinWinesList />', () => {
   it('renders properly with data', async () => {
     expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
   });
+
+  
 });

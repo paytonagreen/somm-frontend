@@ -67,6 +67,10 @@ export const handlers = [
   rest.post('*/proteins', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
+  
+  rest.post('*/sauces', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
 
   rest.post('*/wines_proteins', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));

@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 
-import { render, regUser, adminUser } from '../lib/test-utils';
+import { render, regUser, adminUser } from 'lib/test-utils';
 
-import Nav from '../components/page/Nav';
+import Nav from 'components/page/Nav';
 
 const noUserRender = () => render(<Nav />);
 const regRender = () => render(<Nav currentUser={regUser} />);

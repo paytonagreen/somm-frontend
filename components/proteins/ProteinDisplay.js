@@ -5,12 +5,11 @@ import Protein from './Protein';
 import Selector from '../styles/Selector';
 
 export default function ProteinDisplay({currentUser}) {
-  const { proteins, isLoading } = useProteins();
+  const { proteins, isLoading, isError } = useProteins();
   const { values, handleChange } = useForm();
 
   if (isLoading) return <p>"loading..."</p>;
-  if (!isLoading && !proteins) return <p>Something went wrong...</p>
-
+  if (isError) return <p>Something went wrong...</p>
   return (
     <>
       <Selector>

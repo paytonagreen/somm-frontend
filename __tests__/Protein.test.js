@@ -1,13 +1,14 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { regUser, adminUser, render } from '../lib/test-utils';
-import { server, rest } from '../mocks/server';
+import { regUser, adminUser, render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
-import Protein from '../components/proteins/Protein';
+import Protein from 'components/proteins/Protein';
 
 const regRender = () => render(<Protein currentUser={regUser} id={100} />)
 const adminRender = () => render(<Protein currentUser={adminUser} id={100} />)
+const noIdRender = () => render(<Protein />)
 
 describe('<Protein />', () => {
   it('renders a loader', async () => {
@@ -53,4 +54,9 @@ describe('<Protein />', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText('Protein deleted!')).toBeInTheDocument();
   });
+
+  it('returns nothing with no id', async () => {
+    noIdRender();
+    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+  })
 });

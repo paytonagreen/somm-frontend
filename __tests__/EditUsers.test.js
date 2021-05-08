@@ -1,10 +1,10 @@
-import { screen } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { server, rest } from '../mocks/server';
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import EditUsers from '../components/userFlow/EditUsers';
+import EditUsers from 'components/userFlow/EditUsers';
 
 const useUserDropdown = async () => {
   const userDropdown = screen.getByRole('combobox', { name: 'user' });
@@ -29,7 +29,7 @@ describe('<EditUsers/>', () => {
 
   it('renders a loader', () => {
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
-  })
+  });
 
   it('renders properly', async () => {
     expect(await screen.findByText(/Choose User/i)).toBeInTheDocument();
@@ -53,13 +53,17 @@ describe('<EditUsers/>', () => {
   });
 
   it('allows user to select admin permissions', async () => {
+    await screen.findByText('coolguy');
     await useUserDropdown();
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     await useAdminDropdown();
     expect(await screen.getByDisplayValue('Yes')).toBeInTheDocument();
   });
 
   it('submits data correctly', async () => {
+    await screen.findByText('coolguy');
     await useUserDropdown();
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     await useAdminDropdown();
     await screen.getByDisplayValue('Yes');
     const submitButton = screen.getByRole('button', { name: 'Submit' });
@@ -67,14 +71,16 @@ describe('<EditUsers/>', () => {
     expect(await screen.findByText(/You Did It!/i)).toBeInTheDocument();
   });
 
-  it('submits data correctly', async () => {
+  it('handles errors correctly', async () => {
     const testError = 'THIS IS A TEST ERROR';
     server.use(
       rest.put('*/users/1', async (req, res, ctx) => {
         return res.once(ctx.status(500), ctx.json({ message: testError }));
       })
     );
+    await screen.findByText('coolguy');
     await useUserDropdown();
+    await waitForElementToBeRemoved(screen.getByText(/Loading.../i));
     await useAdminDropdown();
     await screen.getByDisplayValue('Yes');
     const submitButton = screen.getByRole('button', { name: 'Submit' });

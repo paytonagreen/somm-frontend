@@ -1,15 +1,15 @@
 import { useState } from 'react';
-
+import { mutate} from 'swr'
 import useForm from '../../hooks/useForm';
 import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
 export default function AddProtein() {
-  const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
   });
+  const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -29,6 +29,7 @@ export default function AddProtein() {
             throw Error(data.message);
           } else {
             setSuccessMessage('You did it!');
+            mutate('api/proteins');
           }
         })
         .catch((err) => {

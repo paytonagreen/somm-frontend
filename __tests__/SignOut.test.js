@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../lib/test-utils';
-import { server, rest } from '../mocks/server';
+import { render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
-import SignOut from '../components/userFlow/SignOut';
+import SignOut from 'components/userFlow/SignOut';
 
 const setCurrentUser = jest.fn();
 

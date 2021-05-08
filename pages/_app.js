@@ -23,15 +23,26 @@ function MyApp({ Component, pageProps }) {
         <Head>
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
+            rel='preload'
+            as='style'
             href='https://fonts.googleapis.com/css2?family=Orelega+One&display=swap'
+          />
+          <link
             rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=Orelega+One&display=swap'
+            media='print'
+            onload="this.media='all'"
           />
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Nav setCurrentUser={setCurrentUser} currentUser={currentUser} />
         <Content>
-          <Component setCurrentUser={setCurrentUser} currentUser={currentUser} {...pageProps} />
+          <Component
+            setCurrentUser={setCurrentUser}
+            currentUser={currentUser}
+            {...pageProps}
+          />
         </Content>
       </ThemeProvider>
     </>

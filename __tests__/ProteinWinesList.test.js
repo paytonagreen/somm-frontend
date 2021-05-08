@@ -1,8 +1,8 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
-import { render } from '../lib/test-utils';
+import { render } from 'lib/test-utils';
 
-import ProteinWinesList from '../components/proteins/ProteinWinesList';
+import ProteinWinesList from 'components/proteins/ProteinWinesList';
 
 describe('<ProteinWineList />', () => {
   beforeEach(() => {
