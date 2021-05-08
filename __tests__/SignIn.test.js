@@ -18,14 +18,12 @@ async function clickSubmit() {
   await userEvent.click(submit);
 }
 
-const setCurrentUser = jest.fn();
-
 jest.mock('next/router', () => ({
   push: jest.fn(),
 }));
 
 describe('<SignIn />', () => {
-  beforeEach(() => render(<SignIn setCurrentUser={setCurrentUser} />));
+  beforeEach(() => render(<SignIn />));
 
   it('renders correctly', () => {
     expect(screen.getByText(/Sign In/i)).toBeInTheDocument();
@@ -55,6 +53,6 @@ describe('<SignIn />', () => {
   it('sends data correctly on submit', async () => {
     await fillForm();
     await clickSubmit();
-    expect(await screen.findByText(/You did it!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Signing in.../i)).toBeInTheDocument();
   });
 });

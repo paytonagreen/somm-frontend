@@ -4,11 +4,12 @@ import { render, regUser, adminUser } from 'lib/test-utils';
 
 import Nav from 'components/page/Nav';
 import { server, rest } from 'mocks/server';
+import userEvent from '@testing-library/user-event';
 
 const navRender = () => render(<Nav />);
 
-// useServer mocks a server response with the desired 'user'
-const useServer = (user) => {
+// useServerUser mocks a server response with the desired 'user'
+const useServerUser = (user) => {
   server.use(
     rest.get('*/logged_in', async (req, res, ctx) => {
       return res.once(ctx.json({ logged_in: false, user: user }));
@@ -18,9 +19,9 @@ const useServer = (user) => {
 
 describe('<Nav /> with no user', () => {
   beforeEach(() => {
-    useServer(null);
+    useServerUser(null);
     navRender();
-  })
+  });
   it('renders properly', async () => {
     expect(await screen.findByText(/A Somm For You/i)).toBeInTheDocument();
   });
@@ -62,12 +63,20 @@ describe('<Nav /> with regular user', () => {
     await screen.findByRole('button', { name: /Sign Out/i });
     expect(screen.queryByText(/Add Wine/i)).not.toBeInTheDocument();
   });
+
+  it('signs out on <SignOut /> click', async () => {
+    const signOut = await screen.findByRole('button', { name: /Sign Out/i });
+    server.resetHandlers();
+    useServerUser(null);
+    await userEvent.click(signOut);
+    expect(await screen.findByText(/Sign In/i)).toBeInTheDocument();
+  });
 });
 
 describe('<Nav /> with admin user', () => {
   beforeEach(() => {
-    useServer(adminUser)
-    navRender()
+    useServerUser(adminUser);
+    navRender();
   });
   it('renders admin links and Sign Out button with admin user', async () => {
     expect(

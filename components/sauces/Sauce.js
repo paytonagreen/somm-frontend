@@ -22,7 +22,7 @@ export default function Sauce({ id, currentUser }) {
         <h1>{sauce.Sauce_name}</h1>
         <SauceWinesList id={id} />
         <div className='button-div'>
-          {id && currentUser.is_admin && (
+          {currentUser && id && currentUser.is_admin && (
             <DeleteSauce
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}

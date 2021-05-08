@@ -30,9 +30,4 @@ describe('<SignOut />', () => {
     );
     expect(await screen.findByText(testError)).toBeInTheDocument;
   });
-
-  it('calls the signOut function on button click', async () => {
-    await userEvent.click(screen.getByRole('button', { name: 'Sign Out' }));
-    expect(await screen.findByText(`Thanks! See ya later!`)).toBeInTheDocument;
-  });
 });
