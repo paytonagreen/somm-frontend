@@ -4,11 +4,12 @@ import { useCurrentUser } from 'hooks/swr-hooks';
 
 import SignOut from '../userFlow/SignOut';
 import NavStyles from '../styles/NavStyles';
+import Loader from '../reusable/Loader';
 
 export default function Nav() {
   const { data, error } = useCurrentUser();
 
-  if (!data && !error) return <p>'Loading...'</p>;
+  if (!data && !error) return <Loader />;
   const currentUser = data.user;
   return (
     <NavStyles>
@@ -22,33 +23,33 @@ export default function Nav() {
           <p>Pair</p>
           <ul>
             <Link href='/protein'>
-              <li>
-                <a>By Protein</a>
-              </li>
+              <a>
+                <li>By Protein</li>
+              </a>
             </Link>
             <Link href='/sauce'>
-              <li>
-                <a>By Sauce</a>
-              </li>
+              <a>
+                <li>By Sauce</li>
+              </a>
             </Link>
             <Link href='/sauceAndProtein'>
-              <li>
-                <a>By Sauce & Protein</a>
-              </li>
+              <a>
+                <li>By Sauce & Protein</li>
+              </a>
             </Link>
           </ul>
         </li>
         {!currentUser && (
           <div className='signUp'>
             <Link href='/signUp'>
-              <li>
-                <a name='Sign Up'>Sign Up</a>
-              </li>
+              <a name='Sign Up'>
+                <li>Sign Up</li>
+              </a>
             </Link>
             <Link href='/signIn'>
-              <li>
-                <a name='Sign In'>Sign In</a>
-              </li>
+              <a name='Sign In'>
+                <li>Sign In</li>
+              </a>
             </Link>
           </div>
         )}
@@ -57,29 +58,29 @@ export default function Nav() {
             <p>Admin Options</p>
             <ul>
               <Link href='/pairing'>
-                <li>
-                  <a>Pair by Protein</a>
-                </li>
+                <a>
+                  <li>Pair by Protein</li>
+                </a>
               </Link>
               <Link href='/saucePairing'>
-                <li>
-                  <a>Pair by Sauce</a>
-                </li>
+                <a>
+                  <li>Pair by Sauce</li>
+                </a>
               </Link>
               <Link href='/addProtein'>
-                <li>
-                  <a>Add Protein</a>
-                </li>
+                <a>
+                  <li>Add Protein</li>
+                </a>
               </Link>
               <Link href='/addWine'>
-                <li>
-                  <a>Add Wine</a>
-                </li>
+                <a>
+                  <li>Add Wine</li>
+                </a>
               </Link>
               <Link href='/addSauce'>
-                <li>
-                  <a>Add Sauce</a>
-                </li>
+                <a>
+                  <li>Add Sauce</li>
+                </a>
               </Link>
             </ul>
           </li>

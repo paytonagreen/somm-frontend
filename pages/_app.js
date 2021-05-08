@@ -9,6 +9,8 @@ import {
 import { useCurrentUser } from 'hooks/swr-hooks';
 
 import Nav from 'components/page/Nav';
+import LoadingNav from 'components/page/LoadingNav';
+import Loader from 'components/reusable/Loader'
 
 function MyApp({ Component, pageProps }) {
   const {data} = useCurrentUser();
@@ -32,9 +34,12 @@ function MyApp({ Component, pageProps }) {
           />
           <title>A Somm For You</title>
           <link rel='icon' href='/favicon.ico' />
+          <meta name="description" content="We help you pick the right wine -- pair by sauce, protein, or both! We do the hard stuff -- you just sit back, enjoy, and impress your date, friends, or family!"/>
         </Head>
-        <Nav />
+        {!data && (<LoadingNav/>)}
+        {data && (<Nav currentUser={data.user}/>)}
         <Content>
+          {!data && (<Loader />)}
           {data && (<Component currentUser={data.user} {...pageProps} />)}
         </Content>
       </ThemeProvider>

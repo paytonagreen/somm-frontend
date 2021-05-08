@@ -5,6 +5,7 @@ import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
+import Loader from '../reusable/Loader';
 
 export default function Protein({ id }) {
   const { data } = useCurrentUser();
@@ -13,7 +14,7 @@ export default function Protein({ id }) {
   const [errorMessage, setErrorMessage] = useState();
 
   if (!id) return <p></p>;
-  if (isLoading) return <p>'Loading...'</p>;
+  if (isLoading) return <Loader />;
   return (
     <Card key={protein.id}>
       <div key={protein.id}>
