@@ -6,7 +6,7 @@ export default function SauceList({ sauces }) {
       <h2>Sauces</h2>
       <div className='content'>
         {sauces.map((sauce) => {
-          return <p>{sauce.sauce_name}</p>;
+          return <p key={sauce.id}>{sauce.sauce_name}</p>;
         })}
       </div>
     </ThingsList>

@@ -1,9 +1,11 @@
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { render } from 'lib/test-utils';
+import { server, rest } from 'mocks/server';
 
 import ProteinDisplay from 'components/proteins/ProteinDisplay';
+import { cache, mutate } from 'swr';
 
 describe('<ProteinDisplay />', () => {
   beforeEach(async () => {
@@ -24,6 +26,15 @@ describe('<ProteinDisplay />', () => {
     const dropdown = screen.getByRole('combobox', { name: /protein/i });
     await userEvent.click(dropdown);
     expect(await screen.findByText('Beef')).toBeInTheDocument();
+  });
+
+  it('warns of error with data', async () => {
+    server.use(
+      rest.get('*/proteins', async (req, res, ctx) => {
+        return res.once(ctx.status(500), ctx.json({ message: 'Big Error' }));
+      })
+    );
+    expect(await screen.findByText(/Something went wrong.../i)).toBeInTheDocument();
   });
 
   it('renders the <Protein /> component upon select', async () => {

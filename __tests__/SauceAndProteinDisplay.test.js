@@ -21,12 +21,14 @@ describe('<SauceAndProteinDisplay />', () => {
   });
 
   it('populates the menu with data', async () => {
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     const dropdown = screen.getByRole('combobox', { name: /sauce/i });
     await userEvent.click(dropdown);
     expect(await screen.findByText('Marinara')).toBeInTheDocument();
   });
 
   it('renders the <SauceAndProteinWineList /> component upon select', async () => {
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     const sauceDropdown = screen.getByRole('combobox', { name: /sauce/i });
     const proteinDropdown = screen.getByRole('combobox', { name: /protein/i });
     await userEvent.selectOptions(sauceDropdown, [
@@ -39,6 +41,7 @@ describe('<SauceAndProteinDisplay />', () => {
   });
 
   it('populates the <SauceAndProteinsWinesList /> with data', async () => {
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     const sauceDropdown = screen.getByRole('combobox', { name: /sauce/i });
     const proteinDropdown = screen.getByRole('combobox', { name: /protein/i });
     await userEvent.selectOptions(sauceDropdown, [

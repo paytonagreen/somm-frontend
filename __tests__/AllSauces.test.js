@@ -2,11 +2,11 @@ import { screen } from '@testing-library/react';
 
 import { render } from 'lib/test-utils';
 
-import AllProteins from 'components/proteins/AllProteins';
+import AllSauces from 'components/sauces/AllSauces';
 
-describe('<AllProteins />', () => {
+describe('<AllSauces />', () => {
   beforeEach(() => {
-    render(<AllProteins />);
+    render(<AllSauces />);
   });
 
   it('renders a loader', () => {
@@ -14,14 +14,14 @@ describe('<AllProteins />', () => {
   });
 
   it('renders the list properly', async () => {
-    expect(await screen.findByText(/Proteins/)).toBeInTheDocument();
+    expect(await screen.findByText(/Sauces/)).toBeInTheDocument();
   });
 
   it('renders the <AddProtein /> component properly', async () => {
-    expect(await screen.findByText(/Add Protein/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Add Sauce/i)).toBeInTheDocument();
   });
 
   it('renders data properly', async () => {
-    expect(await screen.findByText(/Beef/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Marinara/i)).toBeInTheDocument();
   });
 });

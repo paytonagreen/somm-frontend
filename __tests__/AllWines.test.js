@@ -2,11 +2,11 @@ import { screen } from '@testing-library/react';
 
 import { render } from 'lib/test-utils';
 
-import AllProteins from 'components/proteins/AllProteins';
+import AllWines from 'components/wines/AllWines';
 
-describe('<AllProteins />', () => {
+describe('<AllWines />', () => {
   beforeEach(() => {
-    render(<AllProteins />);
+    render(<AllWines />);
   });
 
   it('renders a loader', () => {
@@ -14,14 +14,14 @@ describe('<AllProteins />', () => {
   });
 
   it('renders the list properly', async () => {
-    expect(await screen.findByText(/Proteins/)).toBeInTheDocument();
+    expect(await screen.findByText(/Wines/)).toBeInTheDocument();
   });
 
   it('renders the <AddProtein /> component properly', async () => {
-    expect(await screen.findByText(/Add Protein/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Add Wine/i)).toBeInTheDocument();
   });
 
   it('renders data properly', async () => {
-    expect(await screen.findByText(/Beef/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });
 });

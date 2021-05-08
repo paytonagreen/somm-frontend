@@ -8,7 +8,6 @@ export default function AllWines() {
   const { wines } = useWines();
 
   if (!wines) return 'Loading...';
-  console.log(wines);
   return (
     <AddPage>
       <WineList wines={wines} />

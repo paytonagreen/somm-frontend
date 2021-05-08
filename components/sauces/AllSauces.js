@@ -8,7 +8,6 @@ export default function AllWines() {
   const { sauces } = useSauces();
 
   if (!sauces) return 'Loading...';
-  console.log(sauces);
   return (
     <AddPage>
       <SauceList sauces={sauces} />
