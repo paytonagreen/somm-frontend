@@ -12,4 +12,6 @@ describe('<SauceAndProteinWinesList />', () => {
   it('renders properly with data', async () => {
     expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
   });
+
+  
 });
