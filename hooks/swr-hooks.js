@@ -54,7 +54,7 @@ function useSauces() {
 
 function useCurrentUser() {
   const { data, error } = useSWR(`api/logged_in`, fetcher);
-
+  
   return {
     data: data,
     isLoading: !error && !data,
