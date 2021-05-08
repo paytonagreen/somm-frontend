@@ -17,7 +17,7 @@ async function fillForm() {
 
 async function clickSubmit() {
   const submit = screen.getByRole('button', { name: /Submit/i });
-  await userEvent.click(submit);
+  await userEvent.click(submit); 
 }
 
 const setCurrentUser = jest.fn();
