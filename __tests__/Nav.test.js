@@ -1,21 +1,12 @@
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-
-import { render, regUser, adminUser } from 'lib/test-utils';
-
-import Nav from 'components/page/Nav';
-import { server, rest } from 'mocks/server';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-const navRender = () => render(<Nav />);
+import { render, adminUser, useServerUser } from 'lib/test-utils';
+import { server } from 'mocks/server';
 
-// useServerUser mocks a server response with the desired 'user'
-const useServerUser = (user) => {
-  server.use(
-    rest.get('*/logged_in', async (req, res, ctx) => {
-      return res.once(ctx.json({ logged_in: false, user: user }));
-    })
-  );
-};
+import Nav from 'components/page/Nav';
+
+const navRender = () => render(<Nav />);
 
 describe('<Nav /> with no user', () => {
   beforeEach(() => {

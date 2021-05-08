@@ -6,7 +6,7 @@ import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 
-export default function Protein({ currentUser, id }) {
+export default function Protein({ id }) {
   const { data } = useCurrentUser();
   const { protein, isLoading } = useProtein(id);
   const [deleteMessage, setDeleteMessage] = useState();
