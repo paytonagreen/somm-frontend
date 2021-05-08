@@ -1,5 +1,5 @@
-import AllSauces from '../components/sauces/AllSauces';
-import PleaseSignIn from '../components/userFlow/PleaseSignIn';
+import AllSauces from 'components/sauces/AllSauces';
+import PleaseSignIn from 'components/userFlow/PleaseSignIn';
 
 export default function AllSaucesPage({ currentUser }) {
   return (

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
-export default function AddSauce({destination, name, variableName}) {
+export default function AddThing({destination, name, body}) {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -17,9 +17,7 @@ export default function AddSauce({destination, name, variableName}) {
     if (!savingStarted) {
         setSavingStarted(true);
         fetch(`api/${destination}/`, {
-          body: JSON.stringify({
-            sauce_name: values.name,
-          }),
+          body,
           method: `POST`,
           headers,
         })

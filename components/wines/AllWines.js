@@ -1,4 +1,4 @@
-import { useWines } from '../../hooks/swr-hooks';
+import { useWines } from 'hooks/swr-hooks';
 
 import AddWine from './AddWine';
 import WineList from './WineList';

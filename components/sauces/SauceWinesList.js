@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { useSauceWines } from '../../hooks/swr-hooks';
+import { useSauceWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 

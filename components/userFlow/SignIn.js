@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Router from 'next/router'
 
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 import { mutate } from 'swr';

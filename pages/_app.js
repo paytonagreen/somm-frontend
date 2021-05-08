@@ -8,7 +8,7 @@ import {
 } from 'components/styles/AppStyles';
 import { useCurrentUser } from 'hooks/swr-hooks';
 
-import Nav from '../components/page/Nav';
+import Nav from 'components/page/Nav';
 
 function MyApp({ Component, pageProps }) {
   const {data} = useCurrentUser();
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <Nav />
         <Content>
-          <Component currentUser={data.user} {...pageProps} />
+          {data && (<Component currentUser={data.user} {...pageProps} />)}
         </Content>
       </ThemeProvider>
     </>

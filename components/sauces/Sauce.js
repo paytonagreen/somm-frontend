@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useSauce } from '../../hooks/swr-hooks';
+import { useSauce } from 'hooks/swr-hooks';
 
 import SauceWinesList from './SauceWinesList';
 import DeleteSauce from './DeleteSauce';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {mutate} from 'swr';
 
-import { headers } from '../../hooks/swr-switch';
-import useForm from '../../hooks/useForm';
+import { headers } from 'hooks/swr-switch';
+import useForm from 'hooks/useForm';
 
 import DeleteButton from '../styles/DeleteButton';
 

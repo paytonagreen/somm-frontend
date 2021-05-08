@@ -1,5 +1,5 @@
-import SaucePairing from '../components/sauces/SaucePairing';
-import PleaseSignIn from '../components/userFlow/PleaseSignIn';
+import SaucePairing from 'components/sauces/SaucePairing';
+import PleaseSignIn from 'components/userFlow/PleaseSignIn';
 
 export default function SaucePairingPage({ currentUser }) {
   return (

@@ -1,4 +1,4 @@
-import { useProteins } from '../../hooks/swr-hooks';
+import { useProteins } from 'hooks/swr-hooks';
 
 import AddProtein from './AddProtein';
 import ProteinList from './ProteinList';

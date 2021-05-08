@@ -1,5 +1,5 @@
-import useForm from '../../hooks/useForm';
-import { useSauces } from '../../hooks/swr-hooks';
+import useForm from 'hooks/useForm';
+import { useSauces } from 'hooks/swr-hooks';
 
 import Sauce from './Sauce';
 import Selector from '../styles/Selector';

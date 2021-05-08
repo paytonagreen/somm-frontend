@@ -1,5 +1,5 @@
-import useForm from '../../hooks/useForm';
-import { useUsers } from '../../hooks/swr-hooks';
+import useForm from 'hooks/useForm';
+import { useUsers } from 'hooks/swr-hooks';
 
 import Selector from '../styles/Selector';
 import EditUser from './EditUser';

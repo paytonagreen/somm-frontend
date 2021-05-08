@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useProtein, useCurrentUser, fetcher } from '../../hooks/swr-hooks';
+import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 
 import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';

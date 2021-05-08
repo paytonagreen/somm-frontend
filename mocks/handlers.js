@@ -5,7 +5,7 @@ import {
   mockWine,
   mockProtein,
   mockSauce,
-} from '../lib/test-utils';
+} from 'lib/test-utils';
 
 const successMessage = {
   message: 'Success!',

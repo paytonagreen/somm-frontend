@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { mutate } from 'swr';
 
-import useForm from '../../hooks/useForm';
-import { headers } from '../../hooks/swr-switch';
+import useForm from 'hooks/useForm';
+import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
 
 export default function SignUp({ setCurrentUser }) {
-  const router = useRouter();
-
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -50,7 +48,7 @@ export default function SignUp({ setCurrentUser }) {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            setCurrentUser(data.user);
+            mutate('api/logged_in');
             setSuccessMessage(signedUp);
           }
         })
