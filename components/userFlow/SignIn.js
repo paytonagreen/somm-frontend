@@ -5,8 +5,9 @@ import useForm from '../../hooks/useForm';
 import { headers } from '../../hooks/swr-switch';
 
 import Form from '../reusable/Form';
+import { mutate } from 'swr';
 
-export default function SignIn({setCurrentUser}) {
+export default function SignIn() {
 
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
@@ -37,8 +38,9 @@ export default function SignIn({setCurrentUser}) {
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            setCurrentUser(data.user);
-            setSuccessMessage('You did it!');
+            await data;
+            mutate('api/logged_in');
+            setSuccessMessage('Signing in...');
             Router.push('/')
           }
         })

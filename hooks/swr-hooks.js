@@ -1,13 +1,13 @@
 import useSWR from 'swr';
 
 const fetcher = async (...args) => {
-  const res = await fetch(...args)
+  const res = await fetch(...args);
   if (!res.ok) {
-    const error = new Error('An error occurred while fetching the data.')
-    error.info = await res.json()
-    error.status = res.status
+    const error = new Error('An error occurred while fetching the data.');
+    error.info = await res.json();
+    error.status = res.status;
   }
-  return res.json()
+  return res.json();
 };
 
 function useUsers() {
@@ -47,6 +47,16 @@ function useSauces() {
 
   return {
     sauces: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function useCurrentUser() {
+  const { data, error } = useSWR(`api/logged_in`, fetcher);
+
+  return {
+    data: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -117,10 +127,12 @@ export {
   useProteins,
   useWines,
   useSauces,
+  useCurrentUser,
   useOneUser,
   useWine,
   useProtein,
   useSauce,
   useProteinWines,
   useSauceWines,
+  fetcher,
 };

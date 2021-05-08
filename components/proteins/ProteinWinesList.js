@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { useProteinWines } from '../../hooks/swr-hooks';
+import { useProteinWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 
