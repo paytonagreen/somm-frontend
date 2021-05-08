@@ -1,4 +1,8 @@
-import { screen, waitFor } from '@testing-library/react';
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { render } from 'lib/test-utils';
@@ -54,6 +58,7 @@ describe('<EditWine />', () => {
         );
       })
     );
+    await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
     expect(await screen.findByText(testError)).toBeInTheDocument();
   });
@@ -76,11 +81,13 @@ describe('<EditWine />', () => {
         );
       })
     );
+    await waitForElementToBeRemoved(screen.getByText(/Loading.../i));
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText(testError)).toBeInTheDocument();
   });
 
   it('deletes data on button click', async () => {
+    await waitForElementToBeRemoved(screen.getByText(/Loading.../i));
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText(/Wine deleted!/i)).toBeInTheDocument();
   });
