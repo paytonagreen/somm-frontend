@@ -1,4 +1,5 @@
-import useForm from 'hooks/useForm';
+import { useState } from 'react';
+
 import { useUsers } from 'hooks/swr-hooks';
 
 import Selector from '../styles/Selector';
@@ -6,9 +7,13 @@ import EditUser from './EditUser';
 
 export default function EditUsers() {
   const { data } = useUsers();
-  const { values, handleChange } = useForm(() => {}, {
-    user: '',
-  });
+  const [selectedUser, setSelectedUser] = useState('');
+
+  const handleChange = (e) => {
+    e.persist();
+    const { value } = e.target;
+    setSelectedUser(value);
+  };
 
   if (!data) return <p>Loading...</p>;
   const { users } = data;
@@ -17,13 +22,15 @@ export default function EditUsers() {
       <Selector>
         <h2>Choose User</h2>
         <select
-          value={values.user}
+          value={selectedUser}
           aria-label='user'
           name='user'
           id='user'
           onChange={handleChange}
         >
-          <option key={12345} value="" disabled>Select A User</option>
+          <option key={12345} value='' disabled>
+            Select A User
+          </option>
           {users.map((user) => {
             return (
               <option key={user.id} value={user.id}>
@@ -33,7 +40,7 @@ export default function EditUsers() {
           })}
         </select>
       </Selector>
-      <EditUser id={values.user} />
+      <EditUser id={selectedUser} />
     </>
   );
 }
