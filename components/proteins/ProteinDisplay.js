@@ -3,12 +3,13 @@ import { useProteins } from 'hooks/swr-hooks';
 
 import Protein from './Protein';
 import Selector from '../styles/Selector';
+import Loader from '../reusable/Loader';
 
 export default function ProteinDisplay({currentUser}) {
   const { proteins, isLoading, isError } = useProteins();
   const { values, handleChange } = useForm();
 
-  if (isLoading) return <p>"loading..."</p>;
+  if (isLoading) return <Loader/>;
   if (isError) return <p>Something went wrong...</p>
   return (
     <>

@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { render, adminUser, useServerUser } from 'lib/test-utils';
 import { server } from 'mocks/server';
 
+import MyApp from 'pages/_app'
 import Nav from 'components/page/Nav';
 
 const navRender = () => render(<Nav />);
