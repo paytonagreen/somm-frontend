@@ -16,7 +16,9 @@ describe('<SauceAndProteinDisplay />', () => {
 
   it('renders properly', async () => {
     await waitForElementToBeRemoved(screen.getByText(/Loading/i));
-    expect(await screen.findByText(/Pick Your Sauce!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Pick Your:/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Sauce!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Protein!/i)).toBeInTheDocument();
   });
 
   it('populates the menu with data', async () => {
