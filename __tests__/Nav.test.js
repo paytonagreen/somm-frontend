@@ -10,7 +10,9 @@ const navRender = () => render(<Nav />);
 
 describe('<Nav /> with no user', () => {
   beforeEach(() => {
+    //return server response with no user
     useServerUser(null);
+    //render for no user
     navRender();
   });
   it('renders properly', async () => {
