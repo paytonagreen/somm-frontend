@@ -11,7 +11,6 @@ describe('<SauceAndProteinDisplay />', () => {
   });
 
   it('renders a loader', async () => {
-    //Pick back up once MSW is running
     expect(screen.getByText(/Loading/i)).toBeInTheDocument;
   });
 

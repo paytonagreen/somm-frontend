@@ -10,8 +10,6 @@ export default function ProteinDisplay({currentUser}) {
 
   if (isLoading) return <p>"loading..."</p>;
   if (isError) return <p>Something went wrong...</p>
-  console.log(proteins);
-
   return (
     <>
       <Selector>

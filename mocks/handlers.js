@@ -21,7 +21,6 @@ export const handlers = [
   }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
-    console.log('sup');
     return res(ctx.json([mockProtein]));
   }),
 
