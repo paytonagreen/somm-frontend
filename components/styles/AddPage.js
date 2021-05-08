@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+//TODO: Mobile
+
 const AddPage = styled.div`
   display: flex;
   align-items: center;

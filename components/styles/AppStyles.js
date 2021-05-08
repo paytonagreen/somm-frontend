@@ -17,6 +17,8 @@ const theme = {
   },
 };
 
+//TODO: Mobile (margin?)
+
 const Content = styled.div`
   background-color: #80304c;
   min-height: 100vh;

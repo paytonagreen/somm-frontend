@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+//TODO: Mobile;
+
 const Selector = styled.div`
   display: flex;
   flex-direction: column;

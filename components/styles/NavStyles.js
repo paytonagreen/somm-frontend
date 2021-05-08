@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+//TODO: Mobile;
+
 const NavStyles = styled.nav`
   height: 4rem;
   width: 100%;
