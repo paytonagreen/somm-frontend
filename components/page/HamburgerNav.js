@@ -5,7 +5,6 @@ import BurgerStyles from '../styles/BurgerStyles';
 import SignOut from '../userFlow/SignOut';
 
 const HamburgerNav = ({ burgerOpen, toggleBurger, currentUser }) => {
-  console.log(currentUser);
   return (
     <BurgerStyles onClick={toggleBurger} data-testid='burger' open={burgerOpen}>
       <BurgerCloseButton onClick={toggleBurger}>&times;</BurgerCloseButton>
