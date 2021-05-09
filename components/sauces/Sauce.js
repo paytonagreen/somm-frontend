@@ -5,6 +5,7 @@ import { useCurrentUser, useSauce } from 'hooks/swr-hooks';
 import SauceWinesList from './SauceWinesList';
 import DeleteSauce from './DeleteSauce';
 import Card from '../styles/Card';
+import Loader from '../reusable/Loader';
 
 export default function Sauce({ id }) {
   const { data } = useCurrentUser();
@@ -13,7 +14,7 @@ export default function Sauce({ id }) {
   const [errorMessage, setErrorMessage] = useState();
 
   if (!id) return <p></p>;
-  if (!sauce) return <p>'Loading...'</p>;
+  if (!sauce) return <Loader />;
   return (
     <Card key={sauce.id}>
       <div key={sauce.id}>

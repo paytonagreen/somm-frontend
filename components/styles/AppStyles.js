@@ -37,7 +37,7 @@ const Content = styled.div`
   color: #ffc47d;
   margin-top: -4rem;
   @media (max-width: 700px) {
-    margin-top: none;
+    margin-top: -2rem;
   }
 `;
 

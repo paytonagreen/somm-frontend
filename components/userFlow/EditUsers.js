@@ -4,6 +4,7 @@ import { useUsers } from 'hooks/swr-hooks';
 
 import Selector from '../styles/Selector';
 import EditUser from './EditUser';
+import Loader from '../reusable/Loader';
 
 export default function EditUsers() {
   const { data } = useUsers();
@@ -15,7 +16,7 @@ export default function EditUsers() {
     setSelectedUser(value);
   };
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) return <Loader />;
   const { users } = data;
   return (
     <>

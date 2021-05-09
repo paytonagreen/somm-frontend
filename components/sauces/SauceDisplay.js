@@ -3,17 +3,18 @@ import { useSauces } from 'hooks/swr-hooks';
 
 import Sauce from './Sauce';
 import Selector from '../styles/Selector';
+import Loader from '../reusable/Loader';
 
-export default function SauceDisplay({currentUser}) {
+export default function SauceDisplay({ currentUser }) {
   const { sauces, isLoading } = useSauces();
   const { values, handleChange } = useForm();
 
-  if (isLoading) return <p>"loading..."</p>;
+  if (isLoading) return <Loader />;
   return (
     <>
       <Selector>
         <h2>Pick Your Sauce!</h2>
-        <label htmlFor='sauce' hidden/>
+        <label htmlFor='sauce' hidden />
         <select
           aria-label='Sauce'
           name='sauce'

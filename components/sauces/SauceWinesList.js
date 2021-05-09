@@ -3,11 +3,12 @@ import Link from 'next/link';
 import { useSauceWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
+import Loader from '../reusable/Loader';
 
 export default function SauceWinesList({ id }) {
   const { sauceWines, isLoading } = useSauceWines(id);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   return (
     <WineMatches>
       <h2>Wine Matches</h2>

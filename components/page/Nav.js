@@ -10,7 +10,6 @@ import {
 
 import SignOut from '../userFlow/SignOut';
 import NavStyles from '../styles/NavStyles';
-import Loader from '../reusable/Loader';
 import HamburgerButton from './HamburgerButton';
 import HamburgerNav from './HamburgerNav';
 
@@ -23,7 +22,7 @@ export default function Nav({ toggleBurger }) {
     setBurgerOpen(!burgerOpen);
   }
 
-  if (!data && !error) return <Loader />;
+  if (!data && !error) return <p></p>;
   const currentUser = data.user;
   return (
     <>

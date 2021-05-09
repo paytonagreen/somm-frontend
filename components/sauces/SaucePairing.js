@@ -5,6 +5,7 @@ import { headers } from 'hooks/swr-switch';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
+import Loader from '../reusable/Loader';
 
 export default function SaucePairing() {
   const { wines, isLoading } = useWines();
@@ -44,7 +45,7 @@ export default function SaucePairing() {
     }
   }
 
-  if (isLoading || !sauces) return <p>'Loading...'</p>;
+  if (isLoading || !sauces) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>

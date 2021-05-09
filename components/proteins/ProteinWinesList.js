@@ -3,11 +3,12 @@ import Link from 'next/link';
 import { useProteinWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
+import Loader from '../reusable/Loader';
 
 export default function ProteinWinesList({ id }) {
   const { proteinWines, isLoading } = useProteinWines(id);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   return (
     <WineMatches>
       <h2>Wine Matches</h2>

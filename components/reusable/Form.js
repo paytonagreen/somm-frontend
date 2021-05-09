@@ -12,7 +12,8 @@ const Form = styled.form`
   border-radius: 5px;
   box-shadow: 10px 5px 5px #4c0013;
   @media(max-width: 700px) {
-    min-width: 75vw;
+    min-width: 70vw;
+    max-width: 70vw;
   }
   select {
     margin-bottom: 2rem;

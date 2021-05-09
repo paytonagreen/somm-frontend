@@ -5,6 +5,7 @@ import { headers } from 'hooks/swr-switch';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
+import Loader from '../reusable/Loader';
 
 export default function Pairing() {
   const { wines, isLoading } = useWines();
@@ -45,7 +46,7 @@ export default function Pairing() {
     }
   }
 
-  if (isLoading || !proteins) return <p>'Loading...'</p>;
+  if (isLoading || !proteins) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
