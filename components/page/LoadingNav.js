@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import {noUserOptions } from './NavOptions';
+
 import NavStyles from '../styles/NavStyles';
 
 export default function Nav() {
@@ -10,7 +12,7 @@ export default function Nav() {
           <h1>A Somm For You</h1>
         </a>
       </Link>
-      
+      {noUserOptions}
     </NavStyles>
   );
 }

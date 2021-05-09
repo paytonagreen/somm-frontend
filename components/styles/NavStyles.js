@@ -69,6 +69,7 @@ const NavStyles = styled.nav`
     }
   }
   .signUp {
+    list-style: none;
     position: absolute;
     top: 1.4rem;
     right: 1rem;

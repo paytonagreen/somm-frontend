@@ -4,13 +4,14 @@ import { useSauces } from 'hooks/swr-hooks';
 
 import SelectorSection from '../styles/SelectorSection';
 import SauceAndProteinWinesList from './SauceAndProteinWinesList';
+import Loader from '../reusable/Loader';
 
 export default function SauceAndProteinDisplay() {
   const { proteins, isLoading } = useProteins();
   const { sauces } = useSauces();
   const { values, handleChange } = useForm();
 
-  if (isLoading || !proteins || !sauces) return <p>"loading..."</p>;
+  if (isLoading || !proteins || !sauces) return <Loader />;
   return (
     <>
       <h2>Pick Your:</h2>

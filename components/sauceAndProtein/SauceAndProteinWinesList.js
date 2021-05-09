@@ -5,13 +5,14 @@ import { useSauceWines } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 import Card from '../styles/Card';
+import Loader from '../reusable/Loader';
 
 export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
   const { proteinWines, isLoading } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
   if (!sauceId || !proteinId) return <p></p>;
-  if (isLoading || !proteinWines || !sauceWines) return <p>Loading...</p>;
+  if (isLoading || !proteinWines || !sauceWines) return <Loader />;
   return (
     <Card>
       <WineMatches>

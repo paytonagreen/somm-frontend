@@ -5,6 +5,7 @@ import useForm from 'hooks/useForm';
 import { headers } from 'hooks/swr-switch';
 
 import Form from '../reusable/Form';
+import Loader from '../reusable/Loader';
 
 export default function EditUser({ id }) {
   const { data, isLoading } = useOneUser(id);
@@ -43,7 +44,7 @@ export default function EditUser({ id }) {
   }
 
   if (!id) return <p></p>;
-  if (!data) return <p>Loading...</p>;
+  if (!data) return <Loader />;
   const { user } = data;
   return (
     <Form onSubmit={handleSubmit}>
