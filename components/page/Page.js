@@ -16,7 +16,7 @@ export default function Page({ children }) {
     );
   return (
     <>
-      {data.user && <Nav />}
+      <Nav />
       <Content>{children}</Content>
     </>
   );
