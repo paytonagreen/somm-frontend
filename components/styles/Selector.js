@@ -8,6 +8,9 @@ const Selector = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 25rem;
+  @media(max-width: 700px) {
+    min-width: 75vw;
+  }
   select {
     margin-bottom: 2rem;
     width: 100%;
