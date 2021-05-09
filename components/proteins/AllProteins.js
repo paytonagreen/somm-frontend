@@ -10,8 +10,8 @@ export default function AllProteins() {
   if (!proteins) return 'Loading...';
   return (
     <AddPage>
-      <ProteinList proteins={proteins} />
       <AddProtein />
+      <ProteinList proteins={proteins} />
     </AddPage>
   );
 }

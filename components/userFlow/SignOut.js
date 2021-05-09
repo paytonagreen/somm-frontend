@@ -34,7 +34,7 @@ export default function SignOut() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signOut">
       {errorMessage && <p>{errorMessage}</p>}
       {!errorMessage && <DeleteButton>Sign Out</DeleteButton>}
     </form>

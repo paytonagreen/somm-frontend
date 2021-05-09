@@ -10,8 +10,8 @@ export default function AllWines() {
   if (!sauces) return 'Loading...';
   return (
     <AddPage>
-      <SauceList sauces={sauces} />
       <AddSauce />
+      <SauceList sauces={sauces} />
     </AddPage>
   );
 }

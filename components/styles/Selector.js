@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
+//TODO: Mobile;
+
 const Selector = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 25rem;
+  @media(max-width: 700px) {
+    min-width: 75vw;
+  }
   select {
     margin-bottom: 2rem;
     width: 100%;

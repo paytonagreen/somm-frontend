@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+//TODO: Mobile;
+
 const NavStyles = styled.nav`
   height: 4rem;
   width: 100%;
@@ -12,6 +14,13 @@ const NavStyles = styled.nav`
   background-color: #ffc47d;
   h1 {
     margin: 1rem;
+ 
+  }
+  .homeLink {
+    @media(max-width: 700px) {
+      width: 100vw;
+      text-align: center;
+    }
   }
   p,
   a {
@@ -34,6 +43,9 @@ const NavStyles = styled.nav`
     top: 0.75rem;
   }
   .navOptions {
+    @media(max-width: 700px) {
+      display: none;
+    }
     transition: all 5s;
     ul {
       display: none;
@@ -61,6 +73,25 @@ const NavStyles = styled.nav`
     top: 1.4rem;
     right: 1rem;
     display: flex;
+    @media(max-width: 700px) {
+      display: none;
+    }
+  }
+  .signOut {
+    @media(max-width: 700px) {
+      display: none;
+    }
+  }
+  .burgerButton {
+    display: none;
+    @media(max-width: 700px) {
+      display: block;
+    }
+    border: none;
+    height: 2.5rem;
+    font-family: inherit;
+    background-color: ${props => props.theme.colors.beauj};
+    color: ${props => props.theme.colors.chard}
   }
 `;
 

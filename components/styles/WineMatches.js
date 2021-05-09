@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
+//TODO: Mobile
+
 const WineMatches = styled.div`
   max-width: 25rem;
+  @media (max-width: 700px) {
+    h2 {
+      font-size: 7rem;
+    }
+  }
   h3 {
     text-align: center;
   }

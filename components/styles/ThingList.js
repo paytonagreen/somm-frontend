@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+//TODO: Mobile
+
 const ThingList = styled.form`
   display: flex;
   flex-direction: column;
