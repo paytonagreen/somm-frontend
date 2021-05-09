@@ -8,7 +8,7 @@ import Nav from 'components/page/Nav';
 
 const navRender = () => render(<Nav />);
 
-describe.only('<Nav /> with no user', () => {
+describe('<Nav /> with no user', () => { 
   beforeEach(() => {
     //return server response with no user
     useServerUser(null);
