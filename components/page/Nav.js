@@ -24,9 +24,7 @@ export default function Nav({ toggleBurger }) {
   }
 
   if (!data && !error) return <Loader />;
-  console.log(data);
   const currentUser = data.user;
-  console.log(currentUser);
   return (
     <>
       <NavStyles>
