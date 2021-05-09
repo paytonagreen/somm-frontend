@@ -14,6 +14,7 @@ const Card = styled.div`
   text-align: center;
   @media(max-width: 700px) {
     min-width: 75vw;
+    max-widtH: 75vw;
     h3 {
       font-size: 1.5rem;
     }
