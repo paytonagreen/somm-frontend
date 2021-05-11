@@ -70,7 +70,7 @@ function useSauces() {
   const { data, error } = useSWR(`api/sauces`, fetcher);
 
   return {
-    data: data,
+    sauceData: data,
     isLoading: !error && !data,
     isError: error,
   };
