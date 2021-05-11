@@ -66,7 +66,7 @@ export default function Pairing() {
         {wineData.wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
-              {wine.wine_name}
+              {wine.name}
             </option>
           );
         })}
@@ -85,7 +85,7 @@ export default function Pairing() {
         {proteinData.proteins.map((protein) => {
           return (
             <option value={protein.id} key={protein.id}>
-              {protein.protein_name}
+              {protein.name}
             </option>
           );
         })}

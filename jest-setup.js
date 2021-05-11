@@ -6,7 +6,9 @@ import { server } from './mocks/server';
 require('whatwg-fetch');
 
 
-beforeAll(() => server.listen());
+beforeAll(() => server.listen({
+    onUnhandledRequest: 'warn',
+}));
 afterEach(async () => {
     await server.resetHandlers();
     await waitFor(() =>  cache.clear());

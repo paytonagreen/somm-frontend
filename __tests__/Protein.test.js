@@ -7,14 +7,7 @@ import { server, rest } from 'mocks/server';
 import Protein from 'components/proteins/Protein';
 
 const renderProtein = () => render(<Protein id={100} />);
-const renderProteinNoId = () => render(<Protein />);
 
-describe('<Protein /> with no id', () => {
-  it('returns nothing', () => {
-    renderProteinNoId();
-    expect(screen.queryByText('Loading')).not.toBeInTheDocument();
-  });
-});
 
 describe('<Protein /> with regular user', () => {
   beforeEach(() => {

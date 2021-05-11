@@ -29,7 +29,7 @@ export default function ThingList({
               </a>
             )
             else return (
-              <p>{item.name}</p>
+              <p key={item.id}>{item.name}</p>
             )
           })}
       </div>

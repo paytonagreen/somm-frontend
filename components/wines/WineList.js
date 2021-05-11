@@ -17,7 +17,6 @@ export default function WineList() {
         </div>
       </ThingListStyles>
     );
-    console.log(data);
   return (
     <ThingList
       title="Wines"

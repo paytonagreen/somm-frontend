@@ -13,7 +13,6 @@ export default function Sauce({ id }) {
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  if (!id) return <p></p>;
   if (!sauce) return <Loader />;
   return (
     <Card key={sauce.id}>

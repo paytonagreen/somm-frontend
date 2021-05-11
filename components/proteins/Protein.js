@@ -13,9 +13,7 @@ export default function Protein({ id }) {
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  if (!id) return <p></p>;
   if (isLoading) return <Loader />;
-  console.log(protein);
   return (
     <Card key={protein.id}>
       <div key={protein.id}>

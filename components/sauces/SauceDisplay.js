@@ -34,7 +34,7 @@ export default function SauceDisplay({ currentUser }) {
           })}
         </select>
       </Selector>
-      <Sauce currentUser={currentUser} sauces={sauceData.sauces} id={values.sauce} />
+      {values.sauce && (<Sauce currentUser={currentUser} sauces={sauceData.sauces} id={values.sauce} />)}
     </>
   );
 }

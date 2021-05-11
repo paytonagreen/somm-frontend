@@ -10,7 +10,7 @@ export default function SauceAndProteinDisplay() {
   const { proteinData } = useProteins();
   const { sauceData } = useSauces();
   const { values, handleChange } = useForm();
- 
+
   if (!proteinData || !sauceData) return <Loader />;
   return (
     <>
@@ -61,10 +61,12 @@ export default function SauceAndProteinDisplay() {
           </select>
         </div>
       </SelectorSection>
-      <SauceAndProteinWinesList
-        proteinId={values.protein}
-        sauceId={values.sauce}
-      />
+      {values.sauce && values.protein && (
+        <SauceAndProteinWinesList
+          proteinId={values.protein}
+          sauceId={values.sauce}
+        />
+      )}
     </>
   );
 }
