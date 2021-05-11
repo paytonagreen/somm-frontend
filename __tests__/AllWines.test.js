@@ -24,4 +24,9 @@ describe('<AllWines />', () => {
   it('renders data properly', async () => {
     expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });
+
+  it('renders pagination button', async () => {
+    await screen.findByText(/Cabernet Sauvignon/i)
+    expect(await screen.findByRole('button', {name: 'Next'})).toBeInTheDocument();
+  })
 });

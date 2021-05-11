@@ -8,7 +8,7 @@ import Nav from 'components/page/Nav';
 
 const navRender = () => render(<Nav />);
 
-describe('<Nav /> with no user', () => { 
+describe('<Nav /> with no user', () => {
   beforeEach(() => {
     //return server response with no user
     useServerUser(null);
@@ -32,6 +32,20 @@ describe('<Nav /> with no user', () => {
   it(`does not render the 'Sign Out' button`, async () => {
     await screen.findByText(/Sign In/i);
     expect(screen.queryByText(/Sign Out/i)).not.toBeInTheDocument();
+  });
+
+  it(`renders the <BurgerButton /> but not the menu`, async () => {
+    const burgerButton = await screen.findByText(/Menu/i);
+    expect(burgerButton).toBeInTheDocument();
+    const pairs = await screen.findAllByText(/Pair/i);
+    expect(pairs).toHaveLength(1);
+  });
+
+  it('opens the <HamburgerMenu /> on button click', async () => {
+    const burgerButton = await screen.findByText(/Menu/i);
+    await userEvent.click(burgerButton);
+    const pairs = await screen.findAllByText(/Pair/i);
+    expect(pairs).toHaveLength(2);
   });
 });
 

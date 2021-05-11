@@ -5,6 +5,9 @@ import {
   mockWine,
   mockWine2,
   mockWine3,
+  mockWine4,
+  mockWine5,
+  mockWine6,
   mockProtein,
   mockSauce,
 } from 'lib/test-utils';
@@ -31,7 +34,7 @@ export const handlers = [
   }),
 
   rest.get('/api/wines', async (req, res, ctx) => {
-    return res(ctx.json({wines: [mockWine]}));
+    return res(ctx.json({wines: [mockWine, mockWine2, mockWine3, mockWine4, mockWine5, mockWine6], total_pages: 2}));
   }),
 
   rest.get('*/sauces', async (req, res, ctx) => {
