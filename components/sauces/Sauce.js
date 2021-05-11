@@ -9,7 +9,7 @@ import Loader from '../reusable/Loader';
 
 export default function Sauce({ id }) {
   const { data } = useCurrentUser();
-  const { sauce, isLoading } = useSauce(id);
+  const { sauce } = useSauce(id);
   const [deleteMessage, setDeleteMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -20,7 +20,7 @@ export default function Sauce({ id }) {
       <div key={sauce.id}>
         {deleteMessage && <p>{deleteMessage}</p>}
         {!deleteMessage && errorMessage && <p>{errorMessage}</p>}
-        <h1>{sauce.Sauce_name}</h1>
+        <h1>{sauce.name}</h1>
         <SauceWinesList id={id} />
         <div className='button-div'>
           {data && data.user && data.user.is_admin && id && (

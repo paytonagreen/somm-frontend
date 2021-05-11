@@ -24,7 +24,7 @@ function useProteins() {
   const { data, error } = useSWR(`api/proteins`, fetcher);
 
   return {
-    data: data,
+    proteinData: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -47,7 +47,7 @@ function useWines() {
   const { data, error } = useSWR(`api/wines`, fetcher);
 
   return {
-    data: data,
+    wineData: data,
     isLoading: !error && !data,
     isError: error,
   };

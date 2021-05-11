@@ -6,7 +6,7 @@ import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 
 export default function ProteinDisplay({currentUser}) {
-  const { data, isLoading, isError } = useProteins();
+  const { proteinData, isLoading, isError } = useProteins();
   const { values, handleChange } = useForm();
 
   if (isLoading) return <Loader/>;
@@ -26,7 +26,7 @@ export default function ProteinDisplay({currentUser}) {
           <option value='none' disabled hidden>
             Select A Protein
           </option>
-          {data.proteins.map((protein) => {
+          {proteinData.proteins.map((protein) => {
             return (
               <option key={protein.id} value={protein.id}>
                 {protein.name}

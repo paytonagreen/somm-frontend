@@ -7,11 +7,11 @@ import SauceAndProteinWinesList from './SauceAndProteinWinesList';
 import Loader from '../reusable/Loader';
 
 export default function SauceAndProteinDisplay() {
-  const { data } = useProteins();
+  const { proteinData } = useProteins();
   const { sauceData } = useSauces();
   const { values, handleChange } = useForm();
  
-  if (!data || !sauceData) return <Loader />;
+  if (!proteinData || !sauceData) return <Loader />;
   return (
     <>
       <h2>Pick Your:</h2>
@@ -29,7 +29,7 @@ export default function SauceAndProteinDisplay() {
             <option value='none' disabled hidden>
               Select A Protein
             </option>
-            {data.proteins.map((protein) => {
+            {proteinData.proteins.map((protein) => {
               return (
                 <option key={protein.id} value={protein.id}>
                   {protein.name}
