@@ -34,9 +34,14 @@ export const handlers = [
   }),
 
   rest.get('/api/wines', async (req, res, ctx) => {
+    const query = req.url.searchParams;
+    console.log(query);
     return res(ctx.json({wines: [mockWine, mockWine2, mockWine3, mockWine4, mockWine5, mockWine6], total_pages: 2}));
   }),
 
+  rest.get('/api/wines?page=5&per_page=6', async (req,res, ctx) => {
+
+  }),
   rest.get('*/sauces', async (req, res, ctx) => {
     return res(ctx.json({sauces: [mockSauce]}));
   }),

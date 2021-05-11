@@ -9,7 +9,7 @@ describe('<AllWines />', () => {
     render(<AllWines />);
   });
 
-  it('renders a loader', () => {
+  it('renders a loader', () => { 
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
   });
 
