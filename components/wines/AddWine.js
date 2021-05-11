@@ -21,7 +21,7 @@ export default function AddWine() {
       setSavingStarted(true);
       fetch(`api/wines/`, {
         body: JSON.stringify({
-          wine_name: values.name,
+          name: values.name,
           wine_description: values.description,
         }),
         method: `POST`,

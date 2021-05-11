@@ -13,6 +13,7 @@ const ThingList = styled.form`
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 10px 5px 5px #4c0013;
+  transition: all 5s;
   .content {
       width: 100%;
       display: flex;
@@ -27,6 +28,12 @@ const ThingList = styled.form`
         padding: 0;
         margin: .5rem;
       }
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
   }
 `;
 

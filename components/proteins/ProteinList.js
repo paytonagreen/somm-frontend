@@ -1,14 +1,30 @@
-import ThingList from '../styles/ThingList';
+import { useState } from 'react';
 
-export default function ProteinList({ proteins }) {
+import { usePaginatedProteins } from 'hooks/swr-hooks';
+
+import ThingList from '../reusable/ThingList';
+import ThingListStyles from '../styles/ThingListStyles';
+import Loader from '../reusable/Loader';
+
+export default function ProteinList() {
+  const [page, setPage] = useState(1);
+  const { data } = usePaginatedProteins(page, 8);
+
+  if (!data)
+    return (
+      <ThingListStyles>
+        <div className='content'>
+          <Loader />
+        </div>
+      </ThingListStyles>
+    );
   return (
-    <ThingList>
-      <h2>Proteins</h2>
-      <div className='content'>
-        {proteins.map((protein) => {
-          return <p key={protein.id}>{protein.protein_name}</p>;
-        })}
-      </div>
-    </ThingList>
+    <ThingList
+      title='Proteins'
+      data={data}
+      specificData={data.proteins}
+      page={page}
+      setPage={setPage}
+    />
   );
 }

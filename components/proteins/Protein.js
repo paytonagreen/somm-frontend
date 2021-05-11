@@ -15,12 +15,13 @@ export default function Protein({ id }) {
 
   if (!id) return <p></p>;
   if (isLoading) return <Loader />;
+  console.log(protein);
   return (
     <Card key={protein.id}>
       <div key={protein.id}>
         {deleteMessage && <p>{deleteMessage}</p>}
         {!deleteMessage && errorMessage && <p>{errorMessage}</p>}
-        <h1>{protein.protein_name}</h1>
+        <h1>{protein.name}</h1>
         <ProteinWinesList id={id} />
         <div className='button-div'>
           {data && data.user && data.user.is_admin && id && (
