@@ -10,7 +10,7 @@ export default function SauceAndProteinDisplay() {
   const { data } = useProteins();
   const { sauceData } = useSauces();
   const { values, handleChange } = useForm();
-
+ 
   if (!data || !sauceData) return <Loader />;
   return (
     <>
@@ -32,7 +32,7 @@ export default function SauceAndProteinDisplay() {
             {data.proteins.map((protein) => {
               return (
                 <option key={protein.id} value={protein.id}>
-                  {protein.protein_name}
+                  {protein.name}
                 </option>
               );
             })}
@@ -54,7 +54,7 @@ export default function SauceAndProteinDisplay() {
             {sauceData.sauces.map((sauce) => {
               return (
                 <option key={sauce.id} value={sauce.id}>
-                  {sauce.sauce_name}
+                  {sauce.name}
                 </option>
               );
             })}
