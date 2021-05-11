@@ -27,15 +27,15 @@ export const handlers = [
   }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
-    return res(ctx.json([mockProtein]));
+    return res(ctx.json({proteins: [mockProtein]}));
   }),
 
   rest.get('/api/wines', async (req, res, ctx) => {
-    return res(ctx.json([mockWine]));
+    return res(ctx.json({wines: [mockWine]}));
   }),
 
   rest.get('*/sauces', async (req, res, ctx) => {
-    return res(ctx.json([mockSauce]));
+    return res(ctx.json({sauces: [mockSauce]}));
   }),
 
   rest.get('*/users/1', async (req, res, ctx) => {

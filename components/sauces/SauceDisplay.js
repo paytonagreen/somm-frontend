@@ -6,10 +6,10 @@ import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 
 export default function SauceDisplay({ currentUser }) {
-  const { sauces, isLoading } = useSauces();
+  const { data, isLoading } = useSauces();
   const { values, handleChange } = useForm();
 
-  if (isLoading) return <Loader />;
+  if (!data) return <Loader />;
   return (
     <>
       <Selector>
@@ -25,16 +25,16 @@ export default function SauceDisplay({ currentUser }) {
           <option value='none' disabled hidden>
             Select A Sauce
           </option>
-          {sauces.map((sauce) => {
+          {data.sauces.map((sauce) => {
             return (
               <option key={sauce.id} value={sauce.id}>
-                {sauce.sauce_name}
+                {sauce.name}
               </option>
             );
           })}
         </select>
       </Selector>
-      <Sauce currentUser={currentUser} sauces={sauces} id={values.sauce} />
+      <Sauce currentUser={currentUser} sauces={data.sauces} id={values.sauce} />
     </>
   );
 }
