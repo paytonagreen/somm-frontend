@@ -17,7 +17,7 @@ export default function SauceWinesList({ id }) {
           <div key={sauce_wine.id}>
             <Link href={`/editWine?id=${sauce_wine.id}`}>
               <a>
-                <h3>{sauce_wine.wine_name}</h3>
+                <h3>{sauce_wine.name}</h3>
               </a>
             </Link>
             <p>{sauce_wine.wine_description}</p>

@@ -14,7 +14,7 @@ export default function EditWineForm({ data, id }) {
   const [deleteMessage, setDeleteMessage] = useState();
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: data.wine_name,
+    name: data.name,
     description: data.wine_description,
   });
 

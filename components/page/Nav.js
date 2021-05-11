@@ -36,7 +36,7 @@ export default function Nav({ toggleBurger }) {
         {currentUser && <SignOut />}
         <HamburgerButton toggleBurger={toggleBurger} />
       </NavStyles>
-      {process.env.NODE_ENV !== 'test' && (
+      {burgerOpen && (
         <HamburgerNav
           burgerOpen={burgerOpen}
           setBurgerOpen={setBurgerOpen}

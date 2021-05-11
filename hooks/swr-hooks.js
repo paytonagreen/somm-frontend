@@ -24,21 +24,45 @@ function useProteins() {
   const { data, error } = useSWR(`api/proteins`, fetcher);
 
   return {
-    proteins: data,
+    proteinData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function usePaginatedProteins(page = 1, perPage = 5) {
+  const { data, error } = useSWR(
+    `api/proteins?page=${page}&per_page=${perPage}`,
+    fetcher
+  );
+
+  return {
+    data: data,
     isLoading: !error && !data,
     isError: error,
   };
 }
 
 function useWines() {
-  const { data, mutate, isValidating, error } = useSWR(`api/wines`, fetcher);
+  const { data, error } = useSWR(`api/wines`, fetcher);
 
   return {
-    wines: data,
+    wineData: data,
     isLoading: !error && !data,
     isError: error,
-    mutate,
-    isValidating,
+  };
+}
+
+function usePaginatedWines(page = 1, perPage = 5) {
+  const { data, error } = useSWR(
+    `api/wines?page=${page}&per_page=${perPage}`,
+    fetcher
+  );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
   };
 }
 
@@ -46,7 +70,20 @@ function useSauces() {
   const { data, error } = useSWR(`api/sauces`, fetcher);
 
   return {
-    sauces: data,
+    sauceData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function usePaginatedSauces(page = 1, perPage = 5) {
+  const { data, error } = useSWR(
+    `api/sauces?page=${page}&per_page=${perPage}`,
+    fetcher
+  );
+
+  return {
+    data: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -54,7 +91,7 @@ function useSauces() {
 
 function useCurrentUser() {
   const { data, error } = useSWR(`api/logged_in`, fetcher);
-  
+
   return {
     data: data,
     isLoading: !error && !data,
@@ -125,8 +162,11 @@ function useSauceWines(id) {
 export {
   useUsers,
   useProteins,
+  usePaginatedProteins,
   useWines,
+  usePaginatedWines,
   useSauces,
+  usePaginatedSauces,
   useCurrentUser,
   useOneUser,
   useWine,

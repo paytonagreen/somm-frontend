@@ -17,7 +17,7 @@ export default function ProteinWinesList({ id }) {
           <div key={protein_wine.id}>
             <Link href={`/editWine?id=${protein_wine.id}`}>
               <a>
-                <h3>{protein_wine.wine_name}</h3>
+                <h3>{protein_wine.name}</h3>
               </a>
             </Link>
             <p>{protein_wine.wine_description}</p>

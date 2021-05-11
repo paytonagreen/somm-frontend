@@ -8,8 +8,8 @@ import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
 
 export default function Pairing() {
-  const { wines, isLoading } = useWines();
-  const { proteins } = useProteins();
+  const { wineData } = useWines();
+  const { proteinData } = useProteins();
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -46,7 +46,7 @@ export default function Pairing() {
     }
   }
 
-  if (isLoading || !proteins) return <Loader />;
+  if (!wineData || !proteinData) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
@@ -63,10 +63,10 @@ export default function Pairing() {
         <option value='' disabled>
           Select A Wine
         </option>
-        {wines.map((wine) => {
+        {wineData.wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
-              {wine.wine_name}
+              {wine.name}
             </option>
           );
         })}
@@ -82,10 +82,10 @@ export default function Pairing() {
         <option value='' disabled>
           Select A Protein
         </option>
-        {proteins.map((protein) => {
+        {proteinData.proteins.map((protein) => {
           return (
             <option value={protein.id} key={protein.id}>
-              {protein.protein_name}
+              {protein.name}
             </option>
           );
         })}

@@ -1,14 +1,30 @@
-import ThingsList from '../styles/ThingList';
+import { useState } from 'react';
 
-export default function WineList({ wines }) {
+import { usePaginatedWines } from 'hooks/swr-hooks';
+
+import ThingList from '../reusable/ThingList';
+import ThingListStyles from '../styles/ThingListStyles';
+import Loader from '../reusable/Loader';
+
+export default function WineList() {
+  const [page, setPage] = useState(1);
+  const { data } = usePaginatedWines(page, 8);
+  
+  if (!data) return (
+      <ThingListStyles>
+        <div className='content'>
+          <Loader />
+        </div>
+      </ThingListStyles>
+    );
   return (
-    <ThingsList>
-      <h2>Wines</h2>
-      <div className='content'>
-        {wines.map((wine) => {
-          return <a key={wine.id}href={`/editWine?id=${wine.id}`}>{wine.wine_name}</a>;
-        })}
-      </div>
-    </ThingsList>
+    <ThingList
+      title="Wines"
+      data={data}
+      specificData={data.wines}
+      url='/editWines?id='
+      page={page}
+      setPage={setPage}
+    />
   );
 }

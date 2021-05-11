@@ -11,8 +11,7 @@ export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
   const { proteinWines, isLoading } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
-  if (!sauceId || !proteinId) return <p></p>;
-  if (isLoading || !proteinWines || !sauceWines) return <Loader />;
+  if (!proteinWines || !sauceWines) return <Loader />;
   return (
     <Card>
       <WineMatches>
@@ -26,7 +25,7 @@ export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
                     <div key={protein_wine.id}>
                       <Link href={`/editWine?id=${protein_wine.id}`}>
                         <a>
-                          <h3>{protein_wine.wine_name}</h3>
+                          <h3>{protein_wine.name}</h3>
                         </a>
                       </Link>
                       <p>{protein_wine.wine_description}</p>

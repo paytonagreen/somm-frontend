@@ -8,8 +8,8 @@ import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
 
 export default function SaucePairing() {
-  const { wines, isLoading } = useWines();
-  const { sauces } = useSauces();
+  const { wineData } = useWines();
+  const { sauceData } = useSauces();
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -17,7 +17,7 @@ export default function SaucePairing() {
   const { values, handleChange, handleSubmit } = useForm(callback, {
     sauce_id: '',
     wine_id: '',
-  });
+  }); 
 
   async function callback() {
     if (!savingStarted) {
@@ -45,7 +45,7 @@ export default function SaucePairing() {
     }
   }
 
-  if (isLoading || !sauces) return <Loader />;
+  if (!sauceData || !wineData) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
@@ -62,10 +62,10 @@ export default function SaucePairing() {
         <option value='' disabled>
           Select A Wine
         </option>
-        {wines.map((wine) => {
+        {wineData.wines.map((wine) => {
           return (
             <option value={wine.id} key={wine.id}>
-              {wine.wine_name}
+              {wine.name}
             </option>
           );
         })}
@@ -81,10 +81,10 @@ export default function SaucePairing() {
         <option value='' disabled>
           Select A Sauce
         </option>
-        {sauces.map((sauce) => {
+        {sauceData.sauces.map((sauce) => {
           return (
             <option value={sauce.id} key={sauce.id}>
-              {sauce.sauce_name}
+              {sauce.name}
             </option>
           );
         })}
