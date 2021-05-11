@@ -37,7 +37,7 @@ export default function ProteinDisplay({currentUser}) {
       </Selector>
       {values.protein && (
 
-      <Protein currentUser={currentUser} proteins={proteins} id={values.protein} />
+      <Protein currentUser={currentUser} proteins={data.proteins} id={values.protein} />
       )}
     </>
   );
