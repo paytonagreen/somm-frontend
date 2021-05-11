@@ -8,7 +8,6 @@ import Protein from 'components/proteins/Protein';
 
 const renderProtein = () => render(<Protein id={100} />);
 
-
 describe('<Protein /> with regular user', () => {
   beforeEach(() => {
     useServerUser(regUser);

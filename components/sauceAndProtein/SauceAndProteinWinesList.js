@@ -11,7 +11,6 @@ export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
   const { proteinWines, isLoading } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
-  if (!sauceId || !proteinId) return <p></p>;
   if (!proteinWines || !sauceWines) return <Loader />;
   return (
     <Card>
