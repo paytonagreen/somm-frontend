@@ -11,30 +11,29 @@ export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
   const { proteinWines, isLoading } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
+  const proteinWinesObject = {};
+
   if (!proteinWines || !sauceWines) return <Loader />;
   return (
     <Card>
       <WineMatches>
         <h2>Wine Matches</h2>
-        {proteinWines.map((protein_wine) => {
-          return (
-            <div key={protein_wine.id}>
-              {sauceWines.map((sauce_wine) => {
-                if (sauce_wine.id === protein_wine.id) {
-                  return (
-                    <div key={protein_wine.id}>
-                      <Link href={`/editWine?id=${protein_wine.id}`}>
-                        <a>
-                          <h3>{protein_wine.name}</h3>
-                        </a>
-                      </Link>
-                      <p>{protein_wine.wine_description}</p>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          );
+        {proteinWines.forEach((proteinWine) => {
+          proteinWinesObject[proteinWine.name] = true;
+        })}
+        {sauceWines.map((sauceWine) => {
+          if (proteinWinesObject[sauceWine.name]) {
+            return (
+              <div key={sauceWine.id}>
+                <Link href={`/editWine?id=${sauceWine.id}`}>
+                  <a>
+                    <h3>{sauceWine.name}</h3>
+                  </a>
+                </Link>
+                <p>{sauceWine.wine_description}</p>
+              </div>
+            );
+          }
         })}
       </WineMatches>
     </Card>

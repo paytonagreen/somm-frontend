@@ -1,6 +1,14 @@
 import ListButton from '../styles/ListButton';
 import ThingListStyles from '../styles/ThingListStyles';
 
+type AppProps ={
+  title: string,
+  data: object,
+  specificData: object;
+  url: string,
+  page: number,
+}
+
 export default function ThingList({
   title,
   data,
