@@ -6,10 +6,15 @@ import SelectorSection from '../styles/SelectorSection';
 import SauceAndProteinWinesList from './SauceAndProteinWinesList';
 import Loader from '../reusable/Loader';
 
-export default function SauceAndProteinDisplay() {
+interface Values {
+  protein: string;
+  sauce: string;
+}
+
+const SauceAndProteinDisplay: React.FC = () => {
   const { proteinData } = useProteins();
   const { sauceData } = useSauces();
-  const { values, handleChange } = useForm();
+  const { values, handleChange } = useForm<Values>();
 
   if (!proteinData || !sauceData) return <Loader />;
   return (
@@ -70,3 +75,5 @@ export default function SauceAndProteinDisplay() {
     </>
   );
 }
+
+export default SauceAndProteinDisplay;

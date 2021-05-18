@@ -10,8 +10,8 @@ export default function AddProtein() {
     name: '',
   });
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   function callback() {
     if (!savingStarted) {
@@ -39,7 +39,7 @@ export default function AddProtein() {
   }
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Add Protein</h2>
       {successMessage && <p>{successMessage}</p>}
       {!successMessage && errorMessage && <p>{errorMessage}</p>}
@@ -52,7 +52,7 @@ export default function AddProtein() {
           onChange={(e) => handleChange(e)}
         />
       </label>
-      <button type='submit' onClick={(e) => handleSubmit(e)}>
+      <button type='submit'>
         Submit
       </button>
     </Form>

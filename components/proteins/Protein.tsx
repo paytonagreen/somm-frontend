@@ -7,11 +7,15 @@ import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
 
-export default function Protein({ id }) {
+interface Props {
+  id: number;
+}
+
+const Protein: React.FC<Props> = ({ id }) => {
   const { data } = useCurrentUser();
   const { protein, isLoading } = useProtein(id);
-  const [deleteMessage, setDeleteMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [deleteMessage, setDeleteMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   if (isLoading) return <Loader />;
   return (
@@ -33,4 +37,6 @@ export default function Protein({ id }) {
       </div>
     </Card>
   );
-}
+};
+
+export default Protein;

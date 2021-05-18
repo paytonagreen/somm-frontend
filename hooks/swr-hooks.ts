@@ -1,9 +1,19 @@
 import useSWR from 'swr';
+import { Protein, ProteinsArray, ProteinsData, Sauce, SaucesData, User, UserData, UsersData, Wine, WinesArray, WinesData } from 'types';
 
-const fetcher = async (...args) => {
-  const res = await fetch(...args);
+interface FetcherError extends Error {
+  info: Promise<any>;
+  status: number;
+}
+
+const fetcher = async (
+  input: RequestInfo,
+  init: RequestInit,
+  ...args: any[]
+) => {
+  const res = await fetch(input, init);
   if (!res.ok) {
-    const error = new Error('An error occurred while fetching the data.');
+    const error: Partial<FetcherError> = new Error('An error occurred while fetching the data.');
     error.info = await res.json();
     error.status = res.status;
   }
@@ -11,7 +21,7 @@ const fetcher = async (...args) => {
 };
 
 function useUsers() {
-  const { data, error } = useSWR(`api/users`, fetcher);
+  const { data, error } = useSWR<UsersData>(`api/users`, fetcher);
 
   return {
     data,
@@ -21,7 +31,7 @@ function useUsers() {
 }
 
 function useProteins() {
-  const { data, error } = useSWR(`api/proteins`, fetcher);
+  const { data, error } = useSWR<ProteinsData>(`api/proteins`, fetcher);
 
   return {
     proteinData: data,
@@ -31,7 +41,7 @@ function useProteins() {
 }
 
 function usePaginatedProteins(page = 1, perPage = 5) {
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<ProteinsData>(
     `api/proteins?page=${page}&per_page=${perPage}`,
     fetcher
   );
@@ -44,7 +54,7 @@ function usePaginatedProteins(page = 1, perPage = 5) {
 }
 
 function useWines() {
-  const { data, error } = useSWR(`api/wines`, fetcher);
+  const { data, error } = useSWR<WinesData>(`api/wines`, fetcher);
 
   return {
     wineData: data,
@@ -54,7 +64,7 @@ function useWines() {
 }
 
 function usePaginatedWines(page = 1, perPage = 5) {
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<WinesData>(
     `api/wines?page=${page}&per_page=${perPage}`,
     fetcher
   );
@@ -67,7 +77,7 @@ function usePaginatedWines(page = 1, perPage = 5) {
 }
 
 function useSauces() {
-  const { data, error } = useSWR(`api/sauces`, fetcher);
+  const { data, error } = useSWR<SaucesData>(`api/sauces`, fetcher);
 
   return {
     sauceData: data,
@@ -77,7 +87,7 @@ function useSauces() {
 }
 
 function usePaginatedSauces(page = 1, perPage = 5) {
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<SaucesData>(
     `api/sauces?page=${page}&per_page=${perPage}`,
     fetcher
   );
@@ -90,7 +100,7 @@ function usePaginatedSauces(page = 1, perPage = 5) {
 }
 
 function useCurrentUser() {
-  const { data, error } = useSWR(`api/logged_in`, fetcher);
+  const { data, error } = useSWR<UserData>(`api/logged_in`, fetcher);
 
   return {
     data: data,
@@ -99,8 +109,8 @@ function useCurrentUser() {
   };
 }
 
-function useWine(id) {
-  const { data, error } = useSWR(`api/wines/${id}`, fetcher);
+function useWine(id: number) {
+  const { data, error } = useSWR<Wine>(`api/wines/${id}`, fetcher);
 
   return {
     data: data,
@@ -109,8 +119,8 @@ function useWine(id) {
   };
 }
 
-function useProtein(id) {
-  const { data, error } = useSWR(`api/proteins/${id}`, fetcher);
+function useProtein(id: number) {
+  const { data, error } = useSWR<Protein>(`api/proteins/${id}`, fetcher);
 
   return {
     protein: data,
@@ -119,8 +129,8 @@ function useProtein(id) {
   };
 }
 
-function useSauce(id) {
-  const { data, error } = useSWR(`api/sauces/${id}`, fetcher);
+function useSauce(id: number) {
+  const { data, error } = useSWR<Sauce>(`api/sauces/${id}`, fetcher);
 
   return {
     sauce: data,
@@ -129,8 +139,8 @@ function useSauce(id) {
   };
 }
 
-function useOneUser(id) {
-  const { data, error } = useSWR(`api/users/${id}`, fetcher);
+function useOneUser(id: number) {
+  const { data, error } = useSWR<User>(`api/users/${id}`, fetcher);
 
   return {
     data,
@@ -139,8 +149,8 @@ function useOneUser(id) {
   };
 }
 
-function useProteinWines(id) {
-  const { data, error } = useSWR(`api/proteins/${id}/wines`, fetcher);
+function useProteinWines(id: number) {
+  const { data, error } = useSWR<WinesArray>(`api/proteins/${id}/wines`, fetcher);
 
   return {
     proteinWines: data,
@@ -149,8 +159,8 @@ function useProteinWines(id) {
   };
 }
 
-function useSauceWines(id) {
-  const { data, error } = useSWR(`api/sauces/${id}/wines`, fetcher);
+function useSauceWines(id: number) {
+  const { data, error } = useSWR<WinesArray>(`api/sauces/${id}/wines`, fetcher);
 
   return {
     sauceWines: data,

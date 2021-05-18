@@ -5,7 +5,11 @@ import { useProteinWines } from 'hooks/swr-hooks';
 import WineMatches from '../styles/WineMatches';
 import Loader from '../reusable/Loader';
 
-export default function ProteinWinesList({ id }) {
+interface Props {
+  id: number;
+}
+
+const ProteinWinesList: React.FC<Props> = ({ id }) => {
   const { proteinWines, isLoading } = useProteinWines(id);
 
   if (isLoading) return <Loader />;
@@ -26,4 +30,6 @@ export default function ProteinWinesList({ id }) {
       })}
     </WineMatches>
   );
-}
+};
+
+export default ProteinWinesList;

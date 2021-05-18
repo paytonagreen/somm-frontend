@@ -1,27 +1,37 @@
+import {
+  Item,
+  WinesData,
+  ProteinsData,
+  SaucesData,
+  WinesArray,
+  ProteinsArray,
+  SaucesArray,
+} from 'types';
 import ListButton from '../styles/ListButton';
 import ThingListStyles from '../styles/ThingListStyles';
 
-type AppProps ={
-  title: string,
-  data: object,
-  specificData: object;
-  url: string,
-  page: number,
+interface Props {
+  title: string;
+  data: WinesData | ProteinsData | SaucesData;
+  specificData: WinesArray | ProteinsArray | SaucesArray;
+  url?: string;
+  page: number;
+  setPage: (page: number) => void;
 }
 
-export default function ThingList({
+const ThingList: React.FC<Props> = ({
   title,
   data,
   specificData,
   url,
   page,
   setPage,
-}) {
-  const pageUp = (e) => {
+}) => {
+  const pageUp = (e: MouseEvent) => {
     e.preventDefault();
     setPage(page + 1);
   };
-  const pageDown = (e) => {
+  const pageDown = (e: MouseEvent) => {
     e.preventDefault();
     setPage(page - 1);
   };
@@ -30,15 +40,14 @@ export default function ThingList({
       <div className='content'>
         <h2>All {title}</h2>
         {specificData &&
-          specificData.map((item) => {
-            if (url) return (
-              <a key={item.id} href={`${url}${item.id}`}>
-                {item.name}
-              </a>
-            )
-            else return (
-              <p key={item.id}>{item.name}</p>
-            )
+          specificData.map((item: Item) => {
+            if (url)
+              return (
+                <a key={item.id} href={`${url}${item.id}`}>
+                  {item.name}
+                </a>
+              );
+            else return <p key={item.id}>{item.name}</p>;
           })}
       </div>
       <div className='buttons'>
@@ -51,4 +60,6 @@ export default function ThingList({
       </div>
     </ThingListStyles>
   );
-}
+};
+
+export default ThingList;

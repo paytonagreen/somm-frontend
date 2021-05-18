@@ -4,18 +4,29 @@ import { useProteins } from 'hooks/swr-hooks';
 import Protein from './Protein';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
+import { User } from 'types';
 
-export default function ProteinDisplay({currentUser}) {
+interface Props {
+  currentUser: User;
+}
+
+interface FormValues {
+  protein: number;
+}
+
+const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
   const { proteinData, isLoading, isError } = useProteins();
-  const { values, handleChange } = useForm();
+  const { values, handleChange } = useForm<FormValues>(() => {}, {
+    protein: null,
+  });
 
-  if (isLoading) return <Loader/>;
-  if (isError) return <p>Something went wrong...</p>
+  if (isLoading) return <Loader />;
+  if (isError) return <p>Something went wrong...</p>;
   return (
     <>
       <Selector>
         <h2>Pick Your Protein!</h2>
-        <label htmlFor='protein' hidden/>
+        <label htmlFor='protein' hidden />
         <select
           aria-label='Protein'
           name='protein'
@@ -35,7 +46,13 @@ export default function ProteinDisplay({currentUser}) {
           })}
         </select>
       </Selector>
-      {values.protein !== undefined && (<Protein currentUser={currentUser} proteins={proteinData.proteins} id={values.protein} />)}
+      {values.protein && (
+        <Protein
+          id={values.protein}
+        />
+      )}
     </>
   );
-}
+};
+
+export default ProteinDisplay;
