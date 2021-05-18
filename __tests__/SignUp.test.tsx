@@ -23,7 +23,7 @@ async function clickSubmit() {
 const setCurrentUser = jest.fn();
 
 describe('<SignUp />', () => {
-  beforeEach(() => render(<SignUp setCurrentUser={setCurrentUser} />));
+  beforeEach(() => render(<SignUp />));
 
   it('renders correctly', () => {
     expect(screen.getByText(/Sign Up/i)).toBeInTheDocument();

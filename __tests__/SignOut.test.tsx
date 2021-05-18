@@ -6,11 +6,9 @@ import { server, rest } from 'mocks/server';
 
 import SignOut from 'components/userFlow/SignOut';
 
-const setCurrentUser = jest.fn();
-
 describe('<SignOut />', () => {
   beforeEach(() => {
-    render(<SignOut setCurrentUser={setCurrentUser} />);
+    render(<SignOut />);
   });
 
   it('renders the <SignOut /> button', async () => {
