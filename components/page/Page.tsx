@@ -4,7 +4,11 @@ import Nav from 'components/page/Nav';
 import { Content } from '../styles/AppStyles';
 import LoadingNav from './LoadingNav';
 
-export default function Page({ children }) {
+interface Props {
+  children: JSX.Element;
+}
+
+const Page: React.FC<Props> = ({ children }) => {
   const { data } = useCurrentUser();
 
   if (!data)
@@ -20,4 +24,6 @@ export default function Page({ children }) {
       <Content>{children}</Content>
     </>
   );
-}
+};
+
+export default Page;

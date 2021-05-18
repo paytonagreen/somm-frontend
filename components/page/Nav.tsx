@@ -13,8 +13,8 @@ import NavStyles from '../styles/NavStyles';
 import HamburgerButton from './HamburgerButton';
 import HamburgerNav from './HamburgerNav';
 
-export default function Nav({ toggleBurger }) {
-  const { data, error } = useCurrentUser();
+export default function Nav() {
+  const { data, isError } = useCurrentUser();
 
   const [burgerOpen, setBurgerOpen] = useState(false);
 
@@ -22,7 +22,7 @@ export default function Nav({ toggleBurger }) {
     setBurgerOpen(!burgerOpen);
   }
 
-  if (!data && !error) return <p></p>;
+  if (!data && !isError) return <p></p>;
   const currentUser = data.user;
   return (
     <>
@@ -39,7 +39,6 @@ export default function Nav({ toggleBurger }) {
       {burgerOpen && (
         <HamburgerNav
           burgerOpen={burgerOpen}
-          setBurgerOpen={setBurgerOpen}
           currentUser={data.user}
           toggleBurger={toggleBurger}
         />

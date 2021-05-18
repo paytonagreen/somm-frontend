@@ -67,12 +67,12 @@ const adminOptions = (
 const noUserOptions = (
   <div className='signUp'>
     <Link href='/signUp'>
-      <a name='Sign Up'>
+      <a aria-label='Sign Up'>
         <li>Sign Up</li>
       </a>
     </Link>
     <Link href='/signIn'>
-      <a name='Sign In'>
+      <a aria-label='Sign In'>
         <li>Sign In</li>
       </a>
     </Link>
