@@ -1,4 +1,4 @@
-const api = process.env.NODE_ENV === 'production' ? 'https://api.asommforyou.com' : 'http://localhost:7777'
+export const api = process.env.NODE_ENV === 'production' ? 'https://api.asommforyou.com' : 'http://localhost:7777'
 
 
 module.exports = {
