@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from 'lib/test-utils';
+import { mockWine, render } from 'lib/test-utils';
 
 import ThingList from 'components/reusable/ThingList';
 
@@ -14,7 +14,8 @@ describe('<ThingList /> ', () => {
         title='Things'
         page={5}
         setPage={setPage}
-        data={{ total_pages: 6 }}
+        data={{ wines: [mockWine], total_pages: 6, total_entries: 1 }}
+        specificData={[mockWine]}
       />
     );
   });

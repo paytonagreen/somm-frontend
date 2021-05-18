@@ -2,11 +2,13 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'Orelega One', cursive;
-    src: url("/static/fonts/OrelegaOne-Regular.ttf") format('tff');
+    font-family: 'Orelega One';
+    src: local('Orelega One'), local('OrelegaOne'), 
+    url('static/fonts/orelega-one-v1-latin-regular.woff') format('woff'), 
+    url('static/fonts/orelega-one-v1-latin-regular.woff2') format('woff2');
     font-style: normal;
     font-weight: 400;
-    font-display: swap;
+    font-display: block;
   }
   body {
     margin: 0;

@@ -23,12 +23,12 @@ export interface SaucesData extends ItemData {
 }
 
 export interface UsersData {
-    users: User[];
+  users: User[];
 }
 
 export interface UserData {
-    is_logged_in: boolean;
-    user: User;
+  is_logged_in: boolean;
+  user: User;
 }
 
 export interface OneUserData {
@@ -78,4 +78,18 @@ export interface FetchOptions {
   headers: Headers;
   method: string;
   credentials?: RequestCredentials;
+}
+
+/*********************
+ * Prop Types
+ ********************/
+
+export interface CurrentUserProps {
+  currentUser: User;
+}
+
+export interface CurrentUserAndQueryProps extends CurrentUserProps {
+  query: {
+    id: string;
+  };
 }

@@ -6,7 +6,6 @@ import { server, rest } from 'mocks/server';
 
 import { theme } from 'components/styles/AppStyles';
 import { User } from 'types';
-import { JsxElement } from 'typescript';
 
 /**
  * MOCK DATA
@@ -16,12 +15,14 @@ const regUser = {
   username: 'coolguy',
   is_admin: false,
   id: 1,
+  password: 'password',
 };
 
 const adminUser = {
   username: 'realcoolguy',
   is_admin: true,
   id: 2,
+  password: 'password',
 };
 
 const mockWine = {
@@ -85,7 +86,7 @@ const useServerUser = (user: User) => {
 
 // Passes Providers to @testing-library's render, re-exports to tests
 
-const render = (children: JsxElement) => {
+const render = (children: JSX.Element) => {
   testingLibraryRender(
     <SWRConfig value={{ dedupingInterval: 0 }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

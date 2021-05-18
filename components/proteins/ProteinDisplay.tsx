@@ -4,17 +4,12 @@ import { useProteins } from 'hooks/swr-hooks';
 import Protein from './Protein';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
-import { User } from 'types';
-
-interface Props {
-  currentUser: User;
-}
 
 interface FormValues {
   protein: number;
 }
 
-const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
+export default function ProteinDisplay() {
   const { proteinData, isLoading, isError } = useProteins();
   const { values, handleChange } = useForm<FormValues>(() => {}, {
     protein: 0,
@@ -45,13 +40,7 @@ const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
           })}
         </select>
       </Selector>
-      {values.protein !== 0 && (
-        <Protein
-          id={values.protein}
-        />
-      )}
+      {values.protein !== 0 && <Protein id={values.protein} />}
     </>
   );
-};
-
-export default ProteinDisplay;
+}

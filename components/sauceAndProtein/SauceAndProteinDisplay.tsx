@@ -67,7 +67,7 @@ const SauceAndProteinDisplay: React.FC = () => {
           </select>
         </div>
       </SelectorSection>
-      {values.sauce && values.protein && (
+      {values.sauce !== 0 && values.protein !== 0 && (
         <SauceAndProteinWinesList
           proteinId={values.protein}
           sauceId={values.sauce}

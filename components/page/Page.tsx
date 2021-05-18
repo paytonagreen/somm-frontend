@@ -5,7 +5,7 @@ import { Content } from '../styles/AppStyles';
 import LoadingNav from './LoadingNav';
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 const Page: React.FC<Props> = ({ children }) => {

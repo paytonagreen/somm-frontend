@@ -1,16 +1,37 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { render, adminUser, regUser } from 'lib/test-utils';
-import { server } from 'mocks/server';
 
 import HamburgerNav from 'components/page/HamburgerNav';
 
-const noUserRender = () => render(<HamburgerNav />);
-const regUserRender = () => render(<HamburgerNav currentUser={regUser}/>);
-const adminUserRender = () => render(<HamburgerNav currentUser={adminUser} />);
+const toggleBurger = jest.fn();
 
-describe('<HamburgerNav /> with no user', () => { 
+const noUserRender = () =>
+  render(
+    <HamburgerNav
+      burgerOpen={true}
+      toggleBurger={toggleBurger}
+      currentUser={null}
+    />
+  );
+const regUserRender = () =>
+  render(
+    <HamburgerNav
+      burgerOpen={true}
+      toggleBurger={toggleBurger}
+      currentUser={regUser}
+    />
+  );
+const adminUserRender = () =>
+  render(
+    <HamburgerNav
+      burgerOpen={true}
+      toggleBurger={toggleBurger}
+      currentUser={adminUser}
+    />
+  );
+
+describe('<HamburgerNav /> with no user', () => {
   beforeEach(() => {
     noUserRender();
   });

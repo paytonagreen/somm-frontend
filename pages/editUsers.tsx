@@ -1,10 +1,13 @@
 import EditUsers from 'components/userFlow/EditUsers';
 import PleaseSignIn from 'components/userFlow/PleaseSignIn';
+import { CurrentUserProps } from 'types';
 
-export default function EditUsersPage({ currentUser }) {
+const EditUsersPage: React.FC<CurrentUserProps> = ({ currentUser }) => {
   return (
     <PleaseSignIn currentUser={currentUser}>
-      <EditUsers currentUser={currentUser} />
+      <EditUsers />
     </PleaseSignIn>
   );
-}
+};
+
+export default EditUsersPage;

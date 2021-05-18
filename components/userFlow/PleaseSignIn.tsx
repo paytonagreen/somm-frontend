@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { JsxElement } from 'typescript';
 
 import useForm from 'hooks/useForm';
 import { headers } from 'lib/utils';
@@ -9,7 +8,7 @@ import Form from '../reusable/Form';
 
 interface Props {
   currentUser: User;
-  children: JsxElement;
+  children: JSX.Element;
 }
 
 const PleaseSignIn: React.FC<Props> = ({ currentUser, children }) => {
@@ -17,10 +16,13 @@ const PleaseSignIn: React.FC<Props> = ({ currentUser, children }) => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm<SignInValues>(callback, {
-    username: '',
-    password: '',
-  });
+  const { values, handleChange, handleSubmit } = useForm<SignInValues>(
+    callback,
+    {
+      username: '',
+      password: '',
+    }
+  );
 
   function callback() {
     if (!savingStarted) {
@@ -79,4 +81,6 @@ const PleaseSignIn: React.FC<Props> = ({ currentUser, children }) => {
       </button>
     </Form>
   );
-}
+};
+
+export default PleaseSignIn;

@@ -1,10 +1,13 @@
 import EditWine from 'components/wines/EditWine';
 import PleaseSignIn from 'components/userFlow/PleaseSignIn';
+import { CurrentUserAndQueryProps } from 'types';
 
-export default function EditWinePage(props) {
+const EditWinePage: React.FC<CurrentUserAndQueryProps> = (props) => {
   return (
     <PleaseSignIn currentUser={props.currentUser}>
-      <EditWine currentUser={props.currentUser} id={props.query.id} />
+      <EditWine id={parseInt(props.query.id)} />
     </PleaseSignIn>
   );
 }
+
+export default EditWinePage

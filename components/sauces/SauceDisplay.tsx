@@ -40,7 +40,7 @@ const SauceDisplay: React.FC = () => {
           })}
         </select>
       </Selector>
-      {values.sauce && <Sauce id={values.sauce} />}
+      {values.sauce !== 0 && <Sauce id={values.sauce} />}
     </>
   );
 };

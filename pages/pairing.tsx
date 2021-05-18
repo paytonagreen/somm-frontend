@@ -1,10 +1,14 @@
+import { CurrentUserProps } from 'types';
+
 import Pairing from 'components/proteins/Pairing';
 import PleaseSignIn from 'components/userFlow/PleaseSignIn';
 
-export default function PairingPage({ currentUser }) {
+const PairingPage: React.FC<CurrentUserProps> = ({ currentUser }) => {
   return (
     <PleaseSignIn currentUser={currentUser}>
       <Pairing />
     </PleaseSignIn>
   );
-}
+};
+
+export default PairingPage;
