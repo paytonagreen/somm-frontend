@@ -31,6 +31,10 @@ export interface UserData {
     user: User;
 }
 
+export interface OneUserData {
+  user: User;
+}
+
 /**********************
  * Data Types
  **********************/

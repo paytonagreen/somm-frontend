@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { Protein, ProteinsArray, ProteinsData, Sauce, SaucesData, User, UserData, UsersData, Wine, WinesArray, WinesData } from 'types';
+import { OneUserData, Protein, ProteinsArray, ProteinsData, Sauce, SaucesData, User, UserData, UsersData, Wine, WinesArray, WinesData } from 'types';
 
 interface FetcherError extends Error {
   info: Promise<any>;
@@ -140,7 +140,7 @@ function useSauce(id: number) {
 }
 
 function useOneUser(id: number) {
-  const { data, error } = useSWR<User>(`api/users/${id}`, fetcher);
+  const { data, error } = useSWR<OneUserData>(`api/users/${id}`, fetcher);
 
   return {
     data,

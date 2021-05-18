@@ -7,14 +7,20 @@ import { headers } from 'hooks/swr-switch';
 import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
 
-export default function EditUser({ id }) {
+interface Props {
+  id: number;
+}
+
+const EditUser: React.FC<Props> = ({ id }) => {
   const { data, isLoading } = useOneUser(id);
 
-  const [savingStarted, setSavingStarted] = useState();
+  const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMesssage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const { values, handleChange, handleSubmit } = useForm(callback);
+  const { values, handleChange, handleSubmit } = useForm(callback, {
+    admin: null,
+  });
 
   function callback() {
     if (!savingStarted) {
@@ -45,6 +51,7 @@ export default function EditUser({ id }) {
 
   if (!id) return <p></p>;
   if (!data) return <Loader />;
+  console.log(data);
   const { user } = data;
   return (
     <Form onSubmit={handleSubmit}>
@@ -65,4 +72,6 @@ export default function EditUser({ id }) {
       <button type='submit'>Submit</button>
     </Form>
   );
-}
+};
+
+export default EditUser;

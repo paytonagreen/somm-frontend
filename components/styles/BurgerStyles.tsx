@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
+interface Props {
+  open: boolean;
+}
+
 //borrow ul styles from <Nav />
 
-const BurgerStyles = styled.div`
+const BurgerStyles = styled.div<Props>`
   text-decoration: none;
   display: flex;
   flex-direction: column;
