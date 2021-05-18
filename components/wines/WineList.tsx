@@ -22,7 +22,7 @@ export default function WineList() {
       title="Wines"
       data={data}
       specificData={data.wines}
-      url='/editWines?id='
+      url='/editWine?id='
       page={page}
       setPage={setPage}
     />

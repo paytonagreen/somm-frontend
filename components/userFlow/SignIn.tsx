@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Router from 'next/router'
 
 import useForm from 'hooks/useForm';
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
+import { SignInValues } from 'types';
 
 import Form from '../reusable/Form';
 import { mutate } from 'swr';
@@ -10,10 +11,10 @@ import { mutate } from 'swr';
 export default function SignIn() {
 
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm(callback, {
+  const { values, handleChange, handleSubmit } = useForm<SignInValues>(callback, {
     username: '',
     password: '',
   });

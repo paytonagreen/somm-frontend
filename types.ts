@@ -63,3 +63,19 @@ export interface User {
   password: string;
   is_admin: boolean;
 }
+
+/***********************
+ * Form Types
+ ***********************/
+
+export interface SignInValues {
+  username: string;
+  password: string;
+}
+
+export interface FetchOptions {
+  body?: string;
+  headers: Headers;
+  method: string;
+  credentials?: RequestCredentials;
+}

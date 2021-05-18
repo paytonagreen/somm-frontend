@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import useForm from 'hooks/useForm';
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
 
 import Form from './Form';
 

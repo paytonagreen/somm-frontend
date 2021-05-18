@@ -13,10 +13,11 @@ import EditWine from 'components/wines/EditWine';
 async function fillForm() {
   const name = await screen.findByLabelText(/Name/i);
   const description = await screen.findByLabelText(/Description/i);
-  await userEvent.clear(name);
-  await userEvent.clear(description);
-  await userEvent.type(name, 'Beaujolais');
-  await userEvent.type(description, 'Always good');
+  await screen.findByDisplayValue(/Cabernet Sauvignon/i);
+  userEvent.clear(name);
+  userEvent.clear(description);
+  userEvent.type(name, 'Beaujolais');
+  userEvent.type(description, 'Always good');
 }
 
 describe('<EditWine />', () => {

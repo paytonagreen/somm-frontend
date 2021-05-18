@@ -1,22 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useForm from 'hooks/useForm';
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
 
 import Form from '../reusable/Form';
 import DeleteWine from './DeleteWine';
 import ButtonRow from '../styles/ButtonRow';
+import { Wine } from 'types';
 
-export default function EditWineForm({ data, id }) {
+interface Props {
+  data: Wine,
+  id: number;
+}
+
+const EditWineForm: React.FC<Props> = ({ data, id }) => {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
-  const [deleteMessage, setDeleteMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [deleteMessage, setDeleteMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm(callback, {
-    name: data.name,
-    description: data.wine_description,
+  const { values, setValues, handleChange, handleSubmit } = useForm(callback, {
+    name: '',
+    description: '',
   });
+
+  useEffect(() => {
+    if (data && values.name === '') {
+      setValues({
+        name: data.name,
+        description: data.wine_description
+      })
+    }
+  }, [data])
 
   async function callback() {
     if (!savingStarted) {
@@ -63,7 +78,6 @@ export default function EditWineForm({ data, id }) {
         id='description'
         name='description'
         className='textbox'
-        type='textarea'
         value={values.description}
         onChange={handleChange}
       />
@@ -78,3 +92,5 @@ export default function EditWineForm({ data, id }) {
     </Form>
   );
 }
+
+export default EditWineForm;

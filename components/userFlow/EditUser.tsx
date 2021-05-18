@@ -2,20 +2,14 @@ import { useEffect, useState } from 'react';
 
 import { useOneUser } from 'hooks/swr-hooks';
 import useForm from 'hooks/useForm';
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
 
 import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
+import { FetchOptions } from 'types';
 
 interface Props {
   id: number;
-}
-
-interface FetchOptions {
-  body: string;
-  headers: Headers;
-  method: string;
-  credentials: RequestCredentials;
 }
 
 const EditUser: React.FC<Props> = ({ id }) => {

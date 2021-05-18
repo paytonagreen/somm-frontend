@@ -1,8 +1,15 @@
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
+import { Dispatch, SetStateAction } from 'react';
 
 import DeleteButton from '../styles/DeleteButton';
 
-export default function DeleteWine({ setDeleteMessage, setErrorMessage, id }) {
+interface Props {
+  setDeleteMessage: Dispatch<SetStateAction<string>>;
+  setErrorMessage: Dispatch<SetStateAction<string>>;
+  id: number;
+}
+
+const DeleteWine: React.FC<Props> = ({ setDeleteMessage, setErrorMessage, id }) => {
   function deleteWine() {
     fetch(`api/wines/${id}`, {
       method: `DELETE`,
@@ -23,3 +30,5 @@ export default function DeleteWine({ setDeleteMessage, setErrorMessage, id }) {
 
   return <DeleteButton onClick={deleteWine}>Delete</DeleteButton>;
 }
+
+export default DeleteWine

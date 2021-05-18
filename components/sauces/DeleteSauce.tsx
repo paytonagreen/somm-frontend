@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
 
 import DeleteButton from '../styles/DeleteButton';
 

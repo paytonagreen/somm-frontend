@@ -1,55 +1,49 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import { mutate } from 'swr';
+import { JsxElement } from 'typescript';
 
 import useForm from 'hooks/useForm';
-import { headers } from 'hooks/swr-switch';
+import { headers } from 'lib/utils';
+import { SignInValues, User } from 'types';
 
 import Form from '../reusable/Form';
 
-export default function SignUp({ setCurrentUser }) {
+interface Props {
+  currentUser: User;
+  children: JsxElement;
+}
+
+const PleaseSignIn: React.FC<Props> = ({ currentUser, children }) => {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm(callback, {
+  const { values, handleChange, handleSubmit } = useForm<SignInValues>(callback, {
     username: '',
-    email: '',
     password: '',
-    password_confirmation: '',
   });
-
-  const signedUp = (
-    <Form>
-      Thank you for signing up!
-      <Link href='/'>
-        <a>Let's get pairing!</a>
-      </Link>
-    </Form>
-  );
 
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`api/users/`, {
+      fetch(`/api/login/`, {
         body: JSON.stringify({
           user: {
             username: values.username,
-            email: values.email,
             password: values.password,
-            password_confirmation: values.password_confirmation,
           },
         }),
         method: `POST`,
+        credentials: 'include',
         headers,
+        mode: 'cors',
       })
         .then(async (res) => {
           const data = await res.json();
           if (!res.ok) {
             throw Error(data.message);
           } else {
-            mutate('api/logged_in');
-            setSuccessMessage(signedUp);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            setSuccessMessage('You did it!');
           }
         })
         .catch((err) => {
@@ -57,11 +51,11 @@ export default function SignUp({ setCurrentUser }) {
         });
     }
   }
-
-  if (successMessage) return <>{successMessage}</>;
+  if (currentUser && currentUser.is_admin) return <>{children}</>;
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+      <h2>Please Sign In To View This Content</h2>
+      {!errorMessage && successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='username'>Username</label>
       <input
@@ -71,28 +65,12 @@ export default function SignUp({ setCurrentUser }) {
         value={values.username}
         onChange={handleChange}
       />
-      <label htmlFor='email'>Email</label>
-      <input
-        id='email'
-        name='email'
-        type='email'
-        value={values.email}
-        onChange={handleChange}
-      />
       <label htmlFor='password'>Password</label>
       <input
         id='password'
         name='password'
         type='password'
         value={values.password}
-        onChange={handleChange}
-      />
-      <label htmlFor='password-confirmation'>Confirm Password</label>
-      <input
-        id='password_confirmation'
-        name='password_confirmation'
-        type='password'
-        value={values.password_confirmation}
         onChange={handleChange}
       />
 

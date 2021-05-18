@@ -5,6 +5,8 @@ import { SWRConfig } from 'swr';
 import { server, rest } from 'mocks/server';
 
 import { theme } from 'components/styles/AppStyles';
+import { User } from 'types';
+import { JsxElement } from 'typescript';
 
 /**
  * MOCK DATA
@@ -43,20 +45,20 @@ const mockWine3 = {
 const mockWine4 = {
   id: 103,
   name: 'Riesling',
-  wine_description: 'Sharply Delicious'
-}
+  wine_description: 'Sharply Delicious',
+};
 
 const mockWine5 = {
   id: 104,
   name: 'Sauvignon Blanc',
-  wine_description: 'V Good'
-}
+  wine_description: 'V Good',
+};
 
 const mockWine6 = {
   id: 105,
   name: 'Gewürztraminer',
-  wine_description: 'V Good'
-}
+  wine_description: 'V Good',
+};
 
 const mockProtein = {
   id: 100,
@@ -73,7 +75,7 @@ const mockSauce = {
  */
 
 // useServerUser mocks a server response to GET 'api/logged_in' with the desired 'user'
-const useServerUser = (user) => {
+const useServerUser = (user: User) => {
   server.use(
     rest.get('*/logged_in', async (req, res, ctx) => {
       return res.once(ctx.json({ logged_in: false, user: user }));
@@ -82,10 +84,11 @@ const useServerUser = (user) => {
 };
 
 // Passes Providers to @testing-library's render, re-exports to tests
-const render = (children) => {
+
+const render = (children: JsxElement) => {
   testingLibraryRender(
     <SWRConfig value={{ dedupingInterval: 0 }}>
-      <ThemeProvider theme={theme}>{children} </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </SWRConfig>
   );
 };
