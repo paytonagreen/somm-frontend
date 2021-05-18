@@ -7,11 +7,18 @@ import WineMatches from '../styles/WineMatches';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
 
-export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
+interface Props {
+  proteinId: number;
+  sauceId: number;
+}
+
+type ProteinWinesObject = Record<string, boolean>;
+
+const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
   const { proteinWines, isLoading } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
-  const proteinWinesObject = {};
+  const proteinWinesObject: ProteinWinesObject = {};
 
   if (!proteinWines || !sauceWines) return <Loader />;
   return (
@@ -38,4 +45,4 @@ export default function SauceAndProteinWinesList({ proteinId, sauceId }) {
       </WineMatches>
     </Card>
   );
-}
+};
