@@ -22,7 +22,7 @@ export const handlers = [
    ******************************/
 
   rest.get('*/logged_in', async (req, res, ctx) => {
-    return res(ctx.json({logged_in: true, user: regUser}))
+    return res(ctx.json({ logged_in: true, user: regUser }));
   }),
 
   rest.get('*/users', async (req, res, ctx) => {
@@ -30,15 +30,27 @@ export const handlers = [
   }),
 
   rest.get('*/proteins', async (req, res, ctx) => {
-    return res(ctx.json({proteins: [mockProtein]}));
+    return res(ctx.json({ proteins: [mockProtein] }));
   }),
 
   rest.get('/api/wines', async (req, res, ctx) => {
-    return res(ctx.json({wines: [mockWine, mockWine2, mockWine3, mockWine4, mockWine5, mockWine6], total_pages: 2}));
+    return res(
+      ctx.json({
+        wines: [
+          mockWine,
+          mockWine2,
+          mockWine3,
+          mockWine4,
+          mockWine5,
+          mockWine6,
+        ],
+        total_pages: 2,
+      })
+    );
   }),
 
   rest.get('*/sauces', async (req, res, ctx) => {
-    return res(ctx.json({sauces: [mockSauce]}));
+    return res(ctx.json({ sauces: [mockSauce] }));
   }),
 
   rest.get('*/users/1', async (req, res, ctx) => {
@@ -65,6 +77,14 @@ export const handlers = [
     return res(ctx.json([mockWine, mockWine3]));
   }),
 
+  rest.get('*/users/1', async (req, res, ctx) => {
+    return res(ctx.json(regUser));
+  }),
+
+  rest.get('*/users/2', async (req, res, ctx) => {
+    return res(ctx.json(adminUser));
+  }),
+
   /***************************
    *  POST
    ******************************/
@@ -76,7 +96,7 @@ export const handlers = [
   rest.post('*/proteins', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
-  
+
   rest.post('*/sauces', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),

@@ -7,14 +7,17 @@ import SauceAndProteinWinesList from './SauceAndProteinWinesList';
 import Loader from '../reusable/Loader';
 
 interface Values {
-  protein: string;
-  sauce: string;
+  protein: number;
+  sauce: number;
 }
 
 const SauceAndProteinDisplay: React.FC = () => {
   const { proteinData } = useProteins();
   const { sauceData } = useSauces();
-  const { values, handleChange } = useForm<Values>();
+  const { values, handleChange } = useForm<Values>(() => {}, {
+    protein: 0,
+    sauce: 0,
+  });
 
   if (!proteinData || !sauceData) return <Loader />;
   return (
@@ -27,11 +30,10 @@ const SauceAndProteinDisplay: React.FC = () => {
           <select
             aria-label='Protein'
             name='protein'
-            defaultValue='none'
             value={values.protein}
             onChange={handleChange}
           >
-            <option value='none' disabled hidden>
+            <option value={0} disabled hidden>
               Select A Protein
             </option>
             {proteinData.proteins.map((protein) => {
@@ -49,11 +51,10 @@ const SauceAndProteinDisplay: React.FC = () => {
           <select
             aria-label='Sauce'
             name='sauce'
-            defaultValue='none'
             value={values.sauce}
             onChange={handleChange}
           >
-            <option value='none' disabled hidden>
+            <option value={0} disabled hidden>
               Select A Sauce
             </option>
             {sauceData.sauces.map((sauce) => {
@@ -74,6 +75,6 @@ const SauceAndProteinDisplay: React.FC = () => {
       )}
     </>
   );
-}
+};
 
 export default SauceAndProteinDisplay;

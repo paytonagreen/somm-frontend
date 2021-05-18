@@ -8,8 +8,8 @@ import Form from '../reusable/Form';
 
 export default function AddWine() {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -60,7 +60,6 @@ export default function AddWine() {
         id='description'
         name='description'
         className='textbox'
-        type='textarea'
         value={values.description}
         onChange={handleChange}
       />

@@ -6,17 +6,15 @@ import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 import { User } from 'types';
 
-interface Props {
-  currentUser: User;
-}
-
 interface FormValues {
   sauce: number;
 }
 
-const SauceDisplay: React.FC<Props> = ({ currentUser }) => {
-  const { sauceData, isLoading } = useSauces();
-  const { values, handleChange } = useForm<FormValues>();
+const SauceDisplay: React.FC = () => {
+  const { sauceData } = useSauces();
+  const { values, handleChange } = useForm<FormValues>(() => {}, {
+    sauce: 0,
+  });
 
   if (!sauceData) return <Loader />;
   return (
@@ -27,11 +25,10 @@ const SauceDisplay: React.FC<Props> = ({ currentUser }) => {
         <select
           aria-label='Sauce'
           name='sauce'
-          defaultValue='none'
           value={values.sauce}
           onChange={handleChange}
         >
-          <option value='none' disabled hidden>
+          <option value={0} disabled hidden>
             Select A Sauce
           </option>
           {sauceData.sauces.map((sauce) => {

@@ -15,7 +15,7 @@ interface Props {
 type ProteinWinesObject = Record<string, boolean>;
 
 const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
-  const { proteinWines, isLoading } = useProteinWines(proteinId);
+  const { proteinWines } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
   const proteinWinesObject: ProteinWinesObject = {};
@@ -46,3 +46,5 @@ const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
     </Card>
   );
 };
+
+export default SauceAndProteinWinesList;

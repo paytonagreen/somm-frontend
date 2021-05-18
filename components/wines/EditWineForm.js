@@ -25,7 +25,7 @@ export default function EditWineForm({ data, id }) {
         const url = `api/wines/${id}`;
         const options = {
           body: JSON.stringify({
-            wine_name: values.name,
+            name: values.name,
             wine_description: values.description,
           }),
           method: `PUT`,

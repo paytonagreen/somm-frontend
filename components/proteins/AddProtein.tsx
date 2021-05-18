@@ -38,8 +38,6 @@ export default function AddProtein() {
     }
   }
 
-  console.log(typeof Form)
-
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Add Protein</h2>

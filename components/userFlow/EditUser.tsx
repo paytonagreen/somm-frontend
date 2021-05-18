@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useOneUser } from 'hooks/swr-hooks';
 import useForm from 'hooks/useForm';
@@ -11,22 +11,37 @@ interface Props {
   id: number;
 }
 
+interface FetchOptions {
+  body: string;
+  headers: Headers;
+  method: string;
+  credentials: RequestCredentials;
+}
+
 const EditUser: React.FC<Props> = ({ id }) => {
-  const { data, isLoading } = useOneUser(id);
+  const { data } = useOneUser(id);
 
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMesssage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMesssage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm(callback, {
-    admin: null,
+  const { values, setValues, handleChange, handleSubmit } = useForm(callback, {
+    admin: '',
   });
+
+  useEffect(() => {
+    if (data) {
+      setValues({
+        admin: data.user.is_admin.toString(),
+      });
+    }
+  }, [data]);
 
   function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
       const url = `api/users/${id}`;
-      const options = {
+      const options: FetchOptions = {
         body: JSON.stringify({
           is_admin: values.admin,
         }),
@@ -48,10 +63,8 @@ const EditUser: React.FC<Props> = ({ id }) => {
         });
     }
   }
-
   if (!id) return <p></p>;
   if (!data) return <Loader />;
-  console.log(data);
   const { user } = data;
   return (
     <Form onSubmit={handleSubmit}>
@@ -63,11 +76,10 @@ const EditUser: React.FC<Props> = ({ id }) => {
         name='admin'
         id='admin'
         onChange={handleChange}
-        defaultValue={user.is_admin}
         value={values.admin}
       >
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
+        <option value='true'>Yes</option>
+        <option value='false'>No</option>
       </select>
       <button type='submit'>Submit</button>
     </Form>

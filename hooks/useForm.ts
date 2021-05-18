@@ -17,7 +17,7 @@ const useForm = <T extends Record<keyof T, any> = {}>(callback?: () => void, ini
     setIsSubmitting(true);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     e.persist();
     const { name, value } = e.target;
     setValues((v) => ({

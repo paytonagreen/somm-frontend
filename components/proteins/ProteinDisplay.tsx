@@ -17,7 +17,7 @@ interface FormValues {
 const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
   const { proteinData, isLoading, isError } = useProteins();
   const { values, handleChange } = useForm<FormValues>(() => {}, {
-    protein: null,
+    protein: 0,
   });
 
   if (isLoading) return <Loader />;
@@ -30,11 +30,10 @@ const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
         <select
           aria-label='Protein'
           name='protein'
-          defaultValue='none'
           value={values.protein}
           onChange={handleChange}
         >
-          <option value='none' disabled hidden>
+          <option value={0} disabled hidden>
             Select A Protein
           </option>
           {proteinData.proteins.map((protein) => {
@@ -46,7 +45,7 @@ const ProteinDisplay: React.FC<Props> = ({ currentUser }) => {
           })}
         </select>
       </Selector>
-      {values.protein && (
+      {values.protein !== 0 && (
         <Protein
           id={values.protein}
         />
