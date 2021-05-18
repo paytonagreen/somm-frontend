@@ -7,7 +7,11 @@ import DeleteSauce from './DeleteSauce';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
 
-export default function Sauce({ id }) {
+interface Props {
+  id: number;
+}
+
+const Sauce: React.FC<Props> = ({ id }) => {
   const { data } = useCurrentUser();
   const { sauce } = useSauce(id);
   const [deleteMessage, setDeleteMessage] = useState();
@@ -33,4 +37,6 @@ export default function Sauce({ id }) {
       </div>
     </Card>
   );
-}
+};
+
+export default Sauce;

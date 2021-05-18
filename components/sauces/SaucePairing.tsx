@@ -11,8 +11,8 @@ export default function SaucePairing() {
   const { wineData } = useWines();
   const { sauceData } = useSauces();
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
-  const [errorMessage, setErrorMessage] = useState();
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     sauce_id: '',

@@ -5,7 +5,11 @@ import { useSauceWines } from 'hooks/swr-hooks';
 import WineMatches from '../styles/WineMatches';
 import Loader from '../reusable/Loader';
 
-export default function SauceWinesList({ id }) {
+interface Props {
+  id: number;
+}
+
+const SauceWinesList: React.FC<Props> = ({ id }) => {
   const { sauceWines, isLoading } = useSauceWines(id);
 
   if (isLoading) return <Loader />;
@@ -26,4 +30,6 @@ export default function SauceWinesList({ id }) {
       })}
     </WineMatches>
   );
-}
+};
+
+export default SauceWinesList;

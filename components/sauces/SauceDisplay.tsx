@@ -4,10 +4,19 @@ import { useSauces } from 'hooks/swr-hooks';
 import Sauce from './Sauce';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
+import { User } from 'types';
 
-export default function SauceDisplay({ currentUser }) {
+interface Props {
+  currentUser: User;
+}
+
+interface FormValues {
+  sauce: number;
+}
+
+const SauceDisplay: React.FC<Props> = ({ currentUser }) => {
   const { sauceData, isLoading } = useSauces();
-  const { values, handleChange } = useForm();
+  const { values, handleChange } = useForm<FormValues>();
 
   if (!sauceData) return <Loader />;
   return (
@@ -34,7 +43,9 @@ export default function SauceDisplay({ currentUser }) {
           })}
         </select>
       </Selector>
-      {values.sauce && (<Sauce currentUser={currentUser} sauces={sauceData.sauces} id={values.sauce} />)}
+      {values.sauce && <Sauce id={values.sauce} />}
     </>
   );
-}
+};
+
+export default SauceDisplay;

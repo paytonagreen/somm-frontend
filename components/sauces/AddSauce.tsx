@@ -30,7 +30,7 @@ export default function AddSauce() {
             throw Error(data.message);
           } else {
             setSuccessMessage('You did it!');
-            mutate('api/sauces')
+            mutate('api/sauces');
           }
         })
         .catch((err) => {
@@ -40,7 +40,7 @@ export default function AddSauce() {
   }
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Add Sauce</h2>
       {successMessage && <p>{successMessage}</p>}
       {!successMessage && errorMessage && <p>{errorMessage}</p>}
@@ -53,9 +53,7 @@ export default function AddSauce() {
           onChange={(e) => handleChange(e)}
         />
       </label>
-      <button type='submit' onClick={(e) => handleSubmit(e)}>
-        Submit
-      </button>
+      <button type='submit'>Submit</button>
     </Form>
   );
 }

@@ -7,7 +7,7 @@ import ThingListStyles from '../styles/ThingListStyles';
 import Loader from '../reusable/Loader';
 
 
-export default function SauceList({ sauces }) {
+export default function SauceList() {
   const [page, setPage] = useState(1);
   const { data } = usePaginatedSauces(page, 8);
 
