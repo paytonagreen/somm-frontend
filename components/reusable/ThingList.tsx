@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import {
   Item,
   WinesData,
@@ -27,11 +28,11 @@ const ThingList: React.FC<Props> = ({
   page,
   setPage,
 }) => {
-  const pageUp = (e: MouseEvent) => {
+  const pageUp: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     setPage(page + 1);
   };
-  const pageDown = (e: MouseEvent) => {
+  const pageDown: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     setPage(page - 1);
   };
