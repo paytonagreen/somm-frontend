@@ -3,24 +3,34 @@ import { useState } from 'react';
 import useForm from 'hooks/useForm';
 import { headers } from 'hooks/swr-switch';
 
-import Form from '../reusable/Form';
+import Form from './Form';
 
-export default function AddThing({destination, name, body}) {
+interface BasicBody {
+  name: string;
+}
+
+interface Props {
+  destination: string;
+  name: string;
+  body: BodyInit;
+}
+
+const AddThing: React.FC<Props> = ({ destination, name, body }) => {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
   });
   const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage ] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   function callback() {
     if (!savingStarted) {
-        setSavingStarted(true);
-        fetch(`api/${destination}/`, {
-          body,
-          method: `POST`,
-          headers,
-        })
+      setSavingStarted(true);
+      fetch(`api/${destination}/`, {
+        body,
+        method: `POST`,
+        headers,
+      })
         .then(async (res) => {
           const data = await res.json();
           if (!res.ok) {
@@ -35,9 +45,8 @@ export default function AddThing({destination, name, body}) {
     }
   }
 
-
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>{`Add ${name}`}</h2>
       {successMessage && <p>{successMessage}</p>}
       {!successMessage && errorMessage && <p>{errorMessage}</p>}
@@ -50,9 +59,7 @@ export default function AddThing({destination, name, body}) {
           onChange={(e) => handleChange(e)}
         />
       </label>
-      <button type='submit' onClick={(e) => handleSubmit(e)}>
-        Submit
-      </button>
+      <button type='submit'>Submit</button>
     </Form>
   );
-}
+};

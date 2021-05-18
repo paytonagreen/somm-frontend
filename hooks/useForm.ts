@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent, FormEventHandler } from 'react';
 
 const useForm = <T extends Record<keyof T, any> = {}>(callback?: () => void, initValues?: Partial<T>) => {
   const [values, setValues] = useState(initValues);
@@ -11,7 +11,7 @@ const useForm = <T extends Record<keyof T, any> = {}>(callback?: () => void, ini
     }
   }, [callback, isSubmitting]);
 
-  const handleSubmit = (e: MouseEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsSubmitting(true);
