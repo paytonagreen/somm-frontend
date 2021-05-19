@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useProteins, useWines } from 'hooks/swr-hooks';
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
@@ -19,30 +19,25 @@ export default function Pairing() {
     protein_id: '',
   });
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
       const url = `api/wines_proteins`;
       const options = {
-        body: JSON.stringify({
-          protein_id: values.protein_id,
-          wine_id: values.wine_id,
-        }),
+        body: JSON.stringify(values),
         method: 'POST',
         headers,
       };
-      fetch(url, options)
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('Paired up!');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      const mutateString = 'api/wines_proteins';
+      const successMessage = 'Paired up!';
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage,
+        successMessage
+      );
     }
   }
 

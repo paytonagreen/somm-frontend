@@ -1,4 +1,4 @@
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
 import { Dispatch, SetStateAction } from 'react';
 
 import DeleteButton from '../styles/DeleteButton';
@@ -14,22 +14,22 @@ const DeleteProtein: React.FC<Props> = ({
   setDeleteMessage,
   id,
 }) => {
-  function deleteProtein() {
-    fetch(`api/proteins/${id}`, {
+  async function deleteProtein() {
+    const url = `api/proteins/${id}`;
+    const options = {
       method: `DELETE`,
       headers,
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        if (!res.ok) {
-          throw Error(data.message);
-        } else {
-          setDeleteMessage('Protein deleted!');
-        }
-      })
-      .catch((err) => {
-        setErrorMessage(err.message);
-      });
+    };
+    const mutateString = 'api/proteins';
+    const successMessage = 'Protein deleted!'
+    await myFetch(
+      url,
+      options,
+      mutateString,
+      setDeleteMessage,
+      setErrorMessage,
+      successMessage
+    );
   }
 
   return <DeleteButton onClick={deleteProtein}>Delete</DeleteButton>;

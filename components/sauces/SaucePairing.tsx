@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSauces, useWines } from 'hooks/swr-hooks';
 
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
@@ -17,31 +17,30 @@ export default function SaucePairing() {
   const { values, handleChange, handleSubmit } = useForm(callback, {
     sauce_id: '',
     wine_id: '',
-  }); 
+  });
 
   async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      try {
-        const url = `api/wines_sauces`;
-        const options = {
-          body: JSON.stringify({
-            sauce_id: values.sauce_id,
-            wine_id: values.wine_id,
-          }),
-          method: 'POST',
-          headers,
-        };
-        const res = await fetch(url, options);
-        const data = await res.json();
-        if (!res.ok) {
-          throw Error(data.message);
-        } else {
-          setSuccessMessage('Paired up!');
-        }
-      } catch (err) {
-        setErrorMessage(err.message);
-      }
+      const url = `api/wines_sauces`;
+      const options = {
+        body: JSON.stringify({
+          sauce_id: values.sauce_id,
+          wine_id: values.wine_id,
+        }),
+        method: 'POST',
+        headers,
+      };
+      const mutateString = 'api/wines_sauces';
+      const successMessage = 'Paired up!';
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage,
+        successMessage
+      );
     }
   }
 

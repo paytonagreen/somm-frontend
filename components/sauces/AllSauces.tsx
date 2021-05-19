@@ -1,11 +1,11 @@
-import AddSauce from './AddSauce';
+import Add from '../reusable/Add';
 import SauceList from './SauceList';
 import AddPage from '../styles/AddPage';
 
 export default function AllWines() {
   return (
     <AddPage>
-      <AddSauce />
+      <Add destination='sauces' name='Sauce' />
       <SauceList />
     </AddPage>
   );

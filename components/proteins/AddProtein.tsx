@@ -8,7 +8,7 @@ import Form from '../reusable/Form';
 export default function AddProtein() {
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
-  });
+  }); 
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
