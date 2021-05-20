@@ -11,8 +11,8 @@ export default function Pairing() {
   const { wineData } = useWines();
   const { proteinData } = useProteins();
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     wine_id: '',

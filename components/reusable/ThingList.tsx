@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 import {
   Item,
   WinesData,
@@ -10,6 +10,7 @@ import {
 } from 'types';
 import ListButton from '../styles/ListButton';
 import ThingListStyles from '../styles/ThingListStyles';
+import ThingListItem from './ThingListItem';
 
 interface Props {
   title: string;
@@ -18,6 +19,10 @@ interface Props {
   url?: string;
   page: number;
   setPage: (page: number) => void;
+  addable?: boolean;
+  addFn?: (id: number) => void;
+  deleteable?: boolean;
+  deleteFn?: (id: number) => void;
 }
 
 const ThingList: React.FC<Props> = ({
@@ -27,6 +32,10 @@ const ThingList: React.FC<Props> = ({
   url,
   page,
   setPage,
+  addable,
+  addFn,
+  deleteable,
+  deleteFn,
 }) => {
   const pageUp: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -36,20 +45,28 @@ const ThingList: React.FC<Props> = ({
     e.preventDefault();
     setPage(page - 1);
   };
+
   return (
     <ThingListStyles>
       <div className='content'>
-        <h2>All {title}</h2>
-        {specificData &&
-          specificData.map((item: Item) => {
-            if (url)
-              return (
-                <a key={item.id} href={`${url}${item.id}`}>
-                  {item.name}
-                </a>
-              );
-            else return <p key={item.id}>{item.name}</p>;
-          })}
+        <h2>{title}</h2>
+        <ul>
+          {specificData &&
+            specificData.map((item: Item) => {
+              if (url)
+                return (
+                  <ThingListItem
+                    item={item}
+                    url={url}
+                    addable={addable}
+                    deleteable={deleteable}
+                    addFn={addFn}
+                    deleteFn={deleteFn}
+                  />
+                );
+              else return <p key={item.id}>{item.name}</p>;
+            })}
+        </ul>
       </div>
       <div className='buttons'>
         {data && page > 1 && (

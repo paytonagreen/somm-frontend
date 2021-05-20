@@ -1,4 +1,4 @@
-import Add from '../reusable/Add';
+import Add from '../reusable/AddItem';
 import ProteinList from './ProteinList';
 import AddPage from '../styles/AddPage';
 

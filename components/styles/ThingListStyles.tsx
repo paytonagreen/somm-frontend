@@ -16,17 +16,24 @@ const ThingList = styled.form`
   transition: all 5s;
   .content {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
       a{
           text-decoration: none;
           color: inherit;
-          padding: .5rem;
       }
       p {
         padding: 0;
         margin: .5rem;
+      }
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0rem;
+        li {
+          padding: .5rem;
+        }
       }
   }
   .buttons {

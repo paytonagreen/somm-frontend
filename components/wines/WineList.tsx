@@ -6,11 +6,17 @@ import ThingList from '../reusable/ThingList';
 import ThingListStyles from '../styles/ThingListStyles';
 import Loader from '../reusable/Loader';
 
-export default function WineList() {
+interface AddProps {
+  addable: boolean;
+  addFn: (id: number) => void;
+}
+
+const WineList: React.FC<AddProps> = ({ addable, addFn }) => {
   const [page, setPage] = useState(1);
   const { data } = usePaginatedWines(page, 8);
-  
-  if (!data) return (
+
+  if (!data)
+    return (
       <ThingListStyles>
         <div className='content'>
           <Loader />
@@ -19,12 +25,16 @@ export default function WineList() {
     );
   return (
     <ThingList
-      title="Wines"
+      title='All Wines'
       data={data}
       specificData={data.wines}
       url='/editWine?id='
       page={page}
       setPage={setPage}
+      addable={addable}
+      addFn={addFn}
     />
   );
-}
+};
+
+export default WineList;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 
@@ -6,6 +6,7 @@ import ProteinWinesList from './ProteinWinesList';
 import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
+import DeleteItem from '../reusable/DeleteItem';
 
 interface Props {
   id: number;
@@ -27,10 +28,13 @@ const Protein: React.FC<Props> = ({ id }) => {
         <ProteinWinesList id={id} />
         <div className='button-div'>
           {data && data.user && data.user.is_admin && id && (
-            <DeleteProtein
+            <DeleteItem
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}
               id={id}
+              urlPrefix='api/proteins/'
+              mutateString='api/proteins'
+              itemType="Protein"
             />
           )}
         </div>

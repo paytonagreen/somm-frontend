@@ -10,8 +10,6 @@ export default function ProteinList() {
   const [page, setPage] = useState(1);
   const { data } = usePaginatedProteins(page, 8);
 
-  console.log(data);
-
   if (!data)
     return (
       <ThingListStyles>

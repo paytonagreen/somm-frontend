@@ -4,7 +4,6 @@ import { useSauces } from 'hooks/swr-hooks';
 import Sauce from './Sauce';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
-import { User } from 'types';
 
 interface FormValues {
   sauce: number;

@@ -1,4 +1,4 @@
-import Add from '../reusable/Add';
+import Add from '../reusable/AddItem';
 import SauceList from './SauceList';
 import AddPage from '../styles/AddPage';
 
