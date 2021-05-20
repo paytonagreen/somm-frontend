@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { usePaginatedWines } from 'hooks/swr-hooks';
+import { usePaginatedGrapes } from 'hooks/swr-hooks';
 
 import ThingList from '../reusable/ThingList';
 import ThingListStyles from '../styles/ThingListStyles';
@@ -11,9 +11,9 @@ interface AddProps {
   addFn?: (id: number) => void;
 }
 
-const WineList: React.FC<AddProps> = ({ addable, addFn }) => {
+const GrapeList: React.FC<AddProps> = ({ addable, addFn }) => {
   const [page, setPage] = useState(1);
-  const { data } = usePaginatedWines(page, 8);
+  const { data } = usePaginatedGrapes(page, 8);
 
   if (!data)
     return (
@@ -25,10 +25,10 @@ const WineList: React.FC<AddProps> = ({ addable, addFn }) => {
     );
   return (
     <ThingList
-      title='All Wines'
+      title='All Grapes'
       data={data}
-      specificData={data.wines}
-      url='/editWine?id='
+      specificData={data.grapes}
+      url='/editGrape?id='
       page={page}
       setPage={setPage}
       addable={addable}
@@ -37,4 +37,4 @@ const WineList: React.FC<AddProps> = ({ addable, addFn }) => {
   );
 };
 
-export default WineList;
+export default GrapeList;

@@ -23,7 +23,7 @@ export default function AddWine() {
       const options: FetchOptions = {
         body: JSON.stringify({
           name: values.name,
-          wine_description: values.description,
+          description: values.description,
         }),
         method: `POST`,
         headers,

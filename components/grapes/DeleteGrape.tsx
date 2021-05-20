@@ -9,18 +9,18 @@ interface Props {
   id: number;
 }
 
-const DeleteWine: React.FC<Props> = ({
+const DeleteGrape: React.FC<Props> = ({
   setDeleteMessage,
   setErrorMessage,
   id,
 }) => {
-  async function deleteWine() {
-    const url = `api/wines/${id}`;
+  async function deleteGrape() {
+    const url = `api/grapes/${id}`;
     const options = {
       method: `DELETE`,
       headers,
     };
-    const mutateString = 'api/wines';
+    const mutateString = 'api/grapes';
     if (confirm('Are you sure you want to delete this?')) {
       await myFetch(
         url,
@@ -32,7 +32,7 @@ const DeleteWine: React.FC<Props> = ({
     }
   }
 
-  return <DeleteButton onClick={deleteWine}>Delete</DeleteButton>;
+  return <DeleteButton onClick={deleteGrape}>Delete</DeleteButton>;
 };
 
-export default DeleteWine;
+export default DeleteGrape;

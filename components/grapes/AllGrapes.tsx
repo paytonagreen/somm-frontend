@@ -1,12 +1,12 @@
-import AddWine from './AddWine';
-import WineList from './WineList';
+import AddGrape from './AddGrape';
+import GrapeList from './GrapeList';
 import AddPage from '../styles/AddPage';
 
-export default function AllWines() {
+export default function AllGrapes() {
   return (
     <AddPage>
-      <AddWine />
-      <WineList addable={false} />
+      <AddGrape />
+      <GrapeList addable={false} />
     </AddPage>
   );
 }

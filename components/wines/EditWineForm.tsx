@@ -28,7 +28,7 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
     if (data && values.name === '') {
       setValues({
         name: data.name,
-        description: data.wine_description,
+        description: data.description,
       });
     }
   }, [data]);
@@ -41,7 +41,7 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
         const options = {
           body: JSON.stringify({
             name: values.name,
-            wine_description: values.description,
+            description: values.description,
           }),
           method: `PUT`,
           headers,

@@ -6,7 +6,7 @@ import { FetchOptions } from 'types';
 
 import Form from '../reusable/Form';
 
-export default function AddWine() {
+export default function AddGrape() {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -19,16 +19,16 @@ export default function AddWine() {
   async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = 'api/wines';
+      const url = 'api/grapes';
       const options: FetchOptions = {
         body: JSON.stringify({
           name: values.name,
-          wine_description: values.description,
+          description: values.description,
         }),
         method: `POST`,
         headers,
       };
-      const mutateString = `api/wines?page=1&per_page=8`;
+      const mutateString = `api/grapes?page=1&per_page=8`;
       await myFetch(
         url,
         options,
@@ -41,7 +41,7 @@ export default function AddWine() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Add Wine</h2>
+      <h2>Add Grape</h2>
       {!errorMessage && successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>Name</label>

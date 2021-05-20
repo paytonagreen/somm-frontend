@@ -24,7 +24,7 @@ const ProteinWinesList: React.FC<Props> = ({ id }) => {
                 <h3>{protein_wine.name}</h3>
               </a>
             </Link>
-            <p>{protein_wine.wine_description}</p>
+            <p>{protein_wine.description}</p>
           </div>
         );
       })}

@@ -47,7 +47,6 @@ export default function SignUp() {
         headers,
       };
       const mutateString = 'api/users';
-      console.log(options)
       await myFetch(
         url,
         options,

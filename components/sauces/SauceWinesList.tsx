@@ -24,7 +24,7 @@ const SauceWinesList: React.FC<Props> = ({ id }) => {
                 <h3>{sauce_wine.name}</h3>
               </a>
             </Link>
-            <p>{sauce_wine.wine_description}</p>
+            <p>{sauce_wine.description}</p>
           </div>
         );
       })}

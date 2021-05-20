@@ -7,6 +7,8 @@ import {
   WinesArray,
   ProteinsArray,
   SaucesArray,
+  GrapesData,
+  GrapesArray,
 } from 'types';
 import ListButton from '../styles/ListButton';
 import ThingListStyles from '../styles/ThingListStyles';
@@ -14,8 +16,8 @@ import ThingListItem from './ThingListItem';
 
 interface Props {
   title: string;
-  data: WinesData | ProteinsData | SaucesData;
-  specificData: WinesArray | ProteinsArray | SaucesArray;
+  data: WinesData | ProteinsData | SaucesData | GrapesData;
+  specificData: WinesArray | ProteinsArray | SaucesArray | GrapesArray;
   url?: string;
   page: number;
   setPage: (page: number) => void;

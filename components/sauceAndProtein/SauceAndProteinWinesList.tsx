@@ -37,7 +37,7 @@ const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
                     <h3>{sauceWine.name}</h3>
                   </a>
                 </Link>
-                <p>{sauceWine.wine_description}</p>
+                <p>{sauceWine.description}</p>
               </div>
             );
           }

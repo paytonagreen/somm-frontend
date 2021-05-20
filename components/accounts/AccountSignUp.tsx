@@ -46,7 +46,6 @@ export default function AccountSignUp() {
         headers,
       };
       const mutateString = 'api/users';
-      console.log(options);
       await myFetch(
         url,
         options,
