@@ -5,8 +5,8 @@ import DeleteButton from '../styles/DeleteButton';
 interface DeleteItemProps {
   id: number;
   itemType: string;
-  setDeleteMessage: Dispatch<SetStateAction<String>>;
-  setErrorMessage: Dispatch<SetStateAction<String>>;
+  setDeleteMessage: Dispatch<SetStateAction<string>>;
+  setErrorMessage: Dispatch<SetStateAction<string>>;
 }
 
 const DeleteItem: React.FC<DeleteItemProps> = ({

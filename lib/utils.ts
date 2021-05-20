@@ -42,9 +42,9 @@ export async function myFetch(
   url: string,
   options: FetchOptions,
   mutateString: string,
-  setSuccessMessage: Dispatch<SetStateAction<string>>,
+  setSuccessMessage: Dispatch<SetStateAction<string | JSX.Element>>,
   setErrorMessage: Dispatch<SetStateAction<string>>,
-  successMessage: string = 'You did it!'
+  successMessage: string | JSX.Element = 'You did it!'
 ) {
   try {
     const res = await fetch(url, options);
