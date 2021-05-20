@@ -5,11 +5,9 @@ import WineList from '../wines/WineList';
 
 const AddAccountWines: React.FC<CurrentUserProps> = ({ currentUser }) => {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [, setSuccessMessage] = useState('');
+  const [, setErrorMessage] = useState('');
 
-
-  console.log(successMessage, errorMessage);
   async function addAccountWine(id: number) {
     if (!savingStarted) {
       setSavingStarted(true);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useForm from 'hooks/useForm';
 import { headers } from 'lib/utils';
@@ -7,9 +7,10 @@ import Form from '../reusable/Form';
 import DeleteWine from './DeleteWine';
 import ButtonRow from '../styles/ButtonRow';
 import { Wine } from 'types';
+import DeleteItem from '../reusable/DeleteItem';
 
 interface Props {
-  data: Wine,
+  data: Wine;
   id: number;
 }
 
@@ -28,10 +29,10 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
     if (data && values.name === '') {
       setValues({
         name: data.name,
-        description: data.wine_description
-      })
+        description: data.wine_description,
+      });
     }
-  }, [data])
+  }, [data]);
 
   async function callback() {
     if (!savingStarted) {
@@ -83,14 +84,15 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
       />
       <ButtonRow>
         <button type='submit'>Submit</button>
-        <DeleteWine
+        <DeleteItem
           setDeleteMessage={setDeleteMessage}
           setErrorMessage={setErrorMessage}
           id={id}
+          itemType='wine'
         />
       </ButtonRow>
     </Form>
   );
-}
+};
 
 export default EditWineForm;

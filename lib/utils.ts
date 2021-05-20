@@ -59,3 +59,11 @@ export async function myFetch(
     setErrorMessage(err.message);
   }
 }
+
+/*************************
+ * Sentence Case
+ **************************/
+
+export function sentenceCase(string: string) {
+  return string.charAt(0).toUpperCase() + string.substr(1)
+}

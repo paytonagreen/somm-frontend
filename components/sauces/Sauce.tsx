@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useCurrentUser, useSauce } from 'hooks/swr-hooks';
 
 import SauceWinesList from './SauceWinesList';
-import DeleteSauce from './DeleteSauce';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
+import DeleteItem from '../reusable/DeleteItem';
 
 interface Props {
   id: number;
@@ -27,10 +27,11 @@ const Sauce: React.FC<Props> = ({ id }) => {
         <SauceWinesList id={id} />
         <div className='button-div'>
           {data && data.user && data.user.is_admin && id && (
-            <DeleteSauce
+            <DeleteItem
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}
               id={id}
+              itemType='sauce'
             />
           )}
         </div>

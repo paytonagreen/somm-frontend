@@ -25,10 +25,10 @@ const ThingListItemStyles = styled.li`
     align-items: center;
     justify-content: center;
     border: none;
-    background: ${props => props.theme.colors.beauj};
-    color: ${props => props.theme.colors.chard};
+    background: ${(props) => props.theme.colors.beauj};
+    color: ${(props) => props.theme.colors.chard};
   }
-`
+`;
 
 const ThingListItem: React.FC<ThingListItemProps> = ({
   item,
@@ -47,15 +47,18 @@ const ThingListItem: React.FC<ThingListItemProps> = ({
     if (confirm('Are you sure you want to delete this?')) {
       deleteFn(item.id);
     }
-  }
+  };
 
-  console.log(deleteable);
   return (
     <ThingListItemStyles>
       <a key={item.id} href={`${url}${item.id}`}>
         {item.name}
       </a>
-      {addable && <button onClick={fireAddFn}><span>+</span></button>}
+      {addable && (
+        <button onClick={fireAddFn}>
+          <span>+</span>
+        </button>
+      )}
       {deleteable && <button onClick={fireDeleteFn}>-</button>}
     </ThingListItemStyles>
   );

@@ -20,6 +20,8 @@ async function fillForm() {
   userEvent.type(description, 'Always good');
 }
 
+window.confirm = jest.fn(() => true);
+
 describe('<EditWine />', () => {
   beforeEach(() => {
     render(<EditWine id={100} />);

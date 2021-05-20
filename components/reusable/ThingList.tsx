@@ -56,6 +56,7 @@ const ThingList: React.FC<Props> = ({
               if (url)
                 return (
                   <ThingListItem
+                    key={item.id}
                     item={item}
                     url={url}
                     addable={addable}

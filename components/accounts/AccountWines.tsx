@@ -8,8 +8,8 @@ import ThingList from '../reusable/ThingList';
 
 const AccountWines: React.FC<CurrentUserProps> = ({ currentUser }) => {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [, setSuccessMessage] = useState('');
+  const [, setErrorMessage] = useState('');
   const [page, setPage] = useState(1);
 
   const { accountWines } = usePaginatedAccountWines(
@@ -33,7 +33,6 @@ const AccountWines: React.FC<CurrentUserProps> = ({ currentUser }) => {
   }
 
   if (!accountWines) return <Loader />;
-  console.log(accountWines);
   return (
     <ThingList
       title='Your Wines'

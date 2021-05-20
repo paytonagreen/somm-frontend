@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 
 import ProteinWinesList from './ProteinWinesList';
-import DeleteProtein from './DeleteProtein';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
 import DeleteItem from '../reusable/DeleteItem';
@@ -32,9 +31,7 @@ const Protein: React.FC<Props> = ({ id }) => {
               setErrorMessage={setErrorMessage}
               setDeleteMessage={setDeleteMessage}
               id={id}
-              urlPrefix='api/proteins/'
-              mutateString='api/proteins'
-              itemType="Protein"
+              itemType="protein"
             />
           )}
         </div>

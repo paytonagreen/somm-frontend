@@ -16,6 +16,7 @@ const regUser = {
   is_admin: false,
   id: 1,
   password: 'password',
+  account_id: 1,
 };
 
 const adminUser = {
@@ -23,6 +24,7 @@ const adminUser = {
   is_admin: true,
   id: 2,
   password: 'password',
+  account_id: 1,
 };
 
 const mockWine = {

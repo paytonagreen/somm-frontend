@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { server, rest } from 'mocks/server';
 import { render } from 'lib/test-utils';
 
-import AddProtein from 'components/proteins/AddProtein';
+import AddItem from 'components/reusable/AddItem';
 
 async function fillForm() {
   const input = await screen.findByRole('textbox');
@@ -14,7 +14,7 @@ async function fillForm() {
 
 describe('<AddProtein />', () => {
   beforeEach(async () => {
-    render(<AddProtein />);
+    render(<AddItem name="protein"  />);
   });
 
   it('renders properly', async () => {

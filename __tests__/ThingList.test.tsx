@@ -21,7 +21,7 @@ describe('<ThingList /> ', () => {
   });
 
   it('renders a title', () => {
-    expect(screen.getByText(/All Things/i)).toBeInTheDocument();
+    expect(screen.getByText(/Things/i)).toBeInTheDocument();
   });
 
   it('calls page up properly', async () => {
