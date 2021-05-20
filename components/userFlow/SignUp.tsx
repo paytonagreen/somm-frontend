@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link'
 
 import useForm from 'hooks/useForm';
 import { headers, myFetch } from 'lib/utils';
@@ -16,16 +17,17 @@ export default function SignUp() {
     email: '',
     password: '',
     password_confirmation: '',
+    account_id: 0,
   });
 
-  const signedUp = `
+  const signedUp = (
     <Form>
       Thank you for signing up!
       <Link href='/'>
         <a>Let's get pairing!</a>
       </Link>
     </Form>
-  `;
+  );
 
   async function callback() {
     if (!savingStarted) {
@@ -38,12 +40,14 @@ export default function SignUp() {
             email: values.email,
             password: values.password,
             password_confirmation: values.password_confirmation,
+            account_id: values.account_id
           },
         }),
         method: `POST`,
         headers,
       };
       const mutateString = 'api/users';
+      console.log(options)
       await myFetch(
         url,
         options,
@@ -90,6 +94,14 @@ export default function SignUp() {
         name='password_confirmation'
         type='password'
         value={values.password_confirmation}
+        onChange={handleChange}
+      />
+      <label htmlFor='account_id'>Account Number</label>
+      <input
+        id='account_id'
+        name='account_id'
+        type='number'
+        value={values.account_id}
         onChange={handleChange}
       />
 

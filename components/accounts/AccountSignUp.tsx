@@ -9,7 +9,8 @@ import { FetchOptions } from 'types';
 
 export default function AccountSignUp() {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<JSX.Element | undefined>();
+  const [successMessage, setSuccessMessage] =
+    useState<JSX.Element | undefined>();
   const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
@@ -37,14 +38,15 @@ export default function AccountSignUp() {
         body: JSON.stringify({
           name: values.accountName,
           username: values.username,
-          email: values.email,
           password: values.password,
           password_confirmation: values.password_confirmation,
+          email: values.email,
         }),
         method: `POST`,
         headers,
       };
       const mutateString = 'api/users';
+      console.log(options);
       await myFetch(
         url,
         options,
