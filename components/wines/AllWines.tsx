@@ -6,7 +6,7 @@ export default function AllWines() {
   return (
     <AddPage>
       <AddWine />
-      <WineList />
+      <WineList addable={false} />
     </AddPage>
   );
 }

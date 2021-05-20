@@ -10,7 +10,7 @@ interface AddProps {
   name: string;
 }
 
-const AddThing: React.FC<AddProps> = ({ name }) => {
+const AddItem: React.FC<AddProps> = ({ name }) => {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -51,4 +51,4 @@ const AddThing: React.FC<AddProps> = ({ name }) => {
   );
 };
 
-export default AddThing;
+export default AddItem;

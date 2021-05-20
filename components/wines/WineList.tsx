@@ -8,7 +8,7 @@ import Loader from '../reusable/Loader';
 
 interface AddProps {
   addable: boolean;
-  addFn: (id: number) => void;
+  addFn?: (id: number) => void;
 }
 
 const WineList: React.FC<AddProps> = ({ addable, addFn }) => {
