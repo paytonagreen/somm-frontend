@@ -8,6 +8,8 @@ import Sauce from 'components/sauces/Sauce';
 
 const sauceRender = () => render(<Sauce id={100} />);
 
+window.confirm = jest.fn(() => true)
+
 describe('<Sauce />', () => {
   beforeEach(() => {
     useServerUser(regUser);

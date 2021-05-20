@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
+  // @media(max-height: 1000px) {
+  //   margin-top: 5rem;
+  //   margin-bottom: 2rem;
+  // }
   display: flex;
   flex-direction: column;
   align-items: center;

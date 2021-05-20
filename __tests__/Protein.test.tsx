@@ -6,6 +6,8 @@ import { server, rest } from 'mocks/server';
 
 import Protein from 'components/proteins/Protein';
 
+window.confirm = jest.fn(() => true);
+
 const renderProtein = () => render(<Protein id={100} />);
 
 describe('<Protein /> with regular user', () => {

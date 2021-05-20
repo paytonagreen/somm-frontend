@@ -169,6 +169,25 @@ function useSauceWines(id: number) {
   };
 }
 
+function useAccountWines(id: number) {
+  const { data, error} = useSWR<WinesArray>(`api/accounts/${id}/wines`, fetcher);
+
+  return {
+    accountWines: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+function usePaginatedAccountWines(id: number, page: number, per_page: number) {
+  const { data, error} = useSWR<WinesData>(`api/accounts/${id}/wines?page=${page}&per_page=${per_page}`, fetcher);
+
+  return {
+    accountWines: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
 export {
   useUsers,
   useProteins,
@@ -184,5 +203,7 @@ export {
   useSauce,
   useProteinWines,
   useSauceWines,
+  useAccountWines,
+  usePaginatedAccountWines,
   fetcher,
 };
