@@ -167,6 +167,10 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(successMessage));
   }),
 
+  rest.post('*/password/forgot', async (req,res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
+
   /***************************
    *  PUT
    ******************************/
