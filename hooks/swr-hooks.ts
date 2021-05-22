@@ -1,14 +1,13 @@
 import useSWR from 'swr';
 import {
   Grape,
+  GrapesArray,
   GrapesData,
   OneUserData,
   Protein,
-  ProteinsArray,
   ProteinsData,
   Sauce,
   SaucesData,
-  User,
   UserData,
   UsersData,
   Wine,
@@ -20,6 +19,10 @@ interface FetcherError extends Error {
   info: Promise<any>;
   status: number;
 }
+
+/******************************
+ * SWR Fetch Function
+ *****************************/
 
 const fetcher = async (
   input: RequestInfo,
@@ -37,6 +40,10 @@ const fetcher = async (
   return res.json();
 };
 
+/*******************************
+ * USERS
+ *******************************/
+
 function useUsers() {
   const { data, error } = useSWR<UsersData>(`api/users`, fetcher);
 
@@ -46,6 +53,30 @@ function useUsers() {
     isError: error,
   };
 }
+
+function useCurrentUser() {
+  const { data, error } = useSWR<UserData>(`api/logged_in`, fetcher);
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function useOneUser(id: number) {
+  const { data, error } = useSWR<OneUserData>(`api/users/${id}`, fetcher);
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * PROTEINS
+ *******************************/
 
 function useProteins() {
   const { data, error } = useSWR<ProteinsData>(`api/proteins`, fetcher);
@@ -62,6 +93,104 @@ function usePaginatedProteins(page = 1, perPage = 5) {
     `api/proteins?page=${page}&per_page=${perPage}`,
     fetcher
   );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function useProtein(id: number) {
+  const { data, error } = useSWR<Protein>(`api/proteins/${id}`, fetcher);
+
+  return {
+    protein: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * SAUCES
+ *******************************/
+
+function useSauce(id: number) {
+  const { data, error } = useSWR<Sauce>(`api/sauces/${id}`, fetcher);
+
+  return {
+    sauce: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function useSauces() {
+  const { data, error } = useSWR<SaucesData>(`api/sauces`, fetcher);
+
+  return {
+    sauceData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function usePaginatedSauces(page = 1, perPage = 5) {
+  const { data, error } = useSWR<SaucesData>(
+    `api/sauces?page=${page}&per_page=${perPage}`,
+    fetcher
+  );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * GRAPES
+ *******************************/
+
+function useGrape(id: number) {
+  const { data, error } = useSWR<Grape>(`api/grapes/${id}`, fetcher);
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function useGrapes() {
+  const { data, error } = useSWR<GrapesData>(`api/grapes`, fetcher);
+
+  return {
+    grapes: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+function usePaginatedGrapes(page = 1, perPage = 5) {
+  const { data, error } = useSWR<GrapesData>(
+    `api/grapes?page=${page}&per_page=${perPage}`,
+    fetcher
+  );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * WINES
+ *******************************/
+
+function useWine(id: number) {
+  const { data, error } = useSWR<Wine>(`api/wines/${id}`, fetcher);
 
   return {
     data: data,
@@ -93,111 +222,19 @@ function usePaginatedWines(page = 1, perPage = 5) {
   };
 }
 
-function useGrapes() {
-  const { data, error } = useSWR<GrapesData>(`api/grapes`, fetcher);
+function useWineGrapes(id: number) {
+  const { data, error } = useSWR<WinesArray>(`api/wines/${id}/grapes`, fetcher);
 
   return {
-    wineData: data,
+    wineGrapes: data,
     isLoading: !error && !data,
     isError: error,
   };
 }
 
-function usePaginatedGrapes(page = 1, perPage = 5) {
-  const { data, error } = useSWR<GrapesData>(
-    `api/grapes?page=${page}&per_page=${perPage}`,
-    fetcher
-  );
-
-  return {
-    data: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useSauces() {
-  const { data, error } = useSWR<SaucesData>(`api/sauces`, fetcher);
-
-  return {
-    sauceData: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function usePaginatedSauces(page = 1, perPage = 5) {
-  const { data, error } = useSWR<SaucesData>(
-    `api/sauces?page=${page}&per_page=${perPage}`,
-    fetcher
-  );
-
-  return {
-    data: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useCurrentUser() {
-  const { data, error } = useSWR<UserData>(`api/logged_in`, fetcher);
-
-  return {
-    data: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useWine(id: number) {
-  const { data, error } = useSWR<Wine>(`api/wines/${id}`, fetcher);
-
-  return {
-    data: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useGrape(id: number) {
-  const { data, error } = useSWR<Grape>(`api/grapes/${id}`, fetcher);
-
-  return {
-    data: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useProtein(id: number) {
-  const { data, error } = useSWR<Protein>(`api/proteins/${id}`, fetcher);
-
-  return {
-    protein: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useSauce(id: number) {
-  const { data, error } = useSWR<Sauce>(`api/sauces/${id}`, fetcher);
-
-  return {
-    sauce: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-function useOneUser(id: number) {
-  const { data, error } = useSWR<OneUserData>(`api/users/${id}`, fetcher);
-
-  return {
-    data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
+/*******************************
+ * PROTEIN PAIRINGS
+ *******************************/
 
 function useProteinWines(id: number) {
   const { data, error } = useSWR<WinesArray>(
@@ -212,6 +249,23 @@ function useProteinWines(id: number) {
   };
 }
 
+function useProteinGrapes(id: number) {
+  const { data, error } = useSWR<WinesArray>(
+    `api/proteins/${id}/grapes`,
+    fetcher
+  );
+
+  return {
+    proteinGrapes: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * SAUCE PAIRINGS
+ *******************************/
+
 function useSauceWines(id: number) {
   const { data, error } = useSWR<WinesArray>(`api/sauces/${id}/wines`, fetcher);
 
@@ -221,6 +275,23 @@ function useSauceWines(id: number) {
     isError: error,
   };
 }
+
+function useSauceGrapes(id: number) {
+  const { data, error } = useSWR<GrapesArray>(
+    `api/sauces/${id}/grapes`,
+    fetcher
+  );
+
+  return {
+    sauceGrapes: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+/*******************************
+ * BY ACCOUNT
+ *******************************/
 
 function useAccountWines(id: number) {
   const { data, error } = useSWR<WinesArray>(
@@ -247,6 +318,9 @@ function usePaginatedAccountWines(id: number, page: number, per_page: number) {
     isError: error,
   };
 }
+
+/********************************/
+
 export {
   useUsers,
   useProteins,
@@ -264,7 +338,10 @@ export {
   useProtein,
   useSauce,
   useProteinWines,
+  useProteinGrapes,
   useSauceWines,
+  useSauceGrapes,
+  useWineGrapes,
   useAccountWines,
   usePaginatedAccountWines,
   fetcher,
