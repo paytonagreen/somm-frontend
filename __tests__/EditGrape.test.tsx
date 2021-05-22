@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 import { render } from 'lib/test-utils';
 import { server, rest } from 'mocks/server';
 
-import EditWine from 'components/wines/EditWine';
+import EditGrape from 'components/grapes/EditGrape';
 
 async function fillForm() {
   const name = await screen.findByLabelText(/Name/i);
@@ -22,9 +22,9 @@ async function fillForm() {
 
 window.confirm = jest.fn(() => true);
 
-describe('<EditWine />', () => {
+describe('<EditGrape />', () => {
   beforeEach(() => {
-    render(<EditWine id={100} />);
+    render(<EditGrape id={100} />);
   });
 
   it('renders a loader', async () => {
@@ -32,7 +32,7 @@ describe('<EditWine />', () => {
   });
 
   it('renders properly with data', async () => {
-    expect(await screen.findByText(/Edit Wine/)).toBeInTheDocument();
+    expect(await screen.findByText(/Edit Grape/)).toBeInTheDocument();
   });
 
   it('fills the form with preexisting data', async () => {
@@ -52,7 +52,7 @@ describe('<EditWine />', () => {
   it('handles submit errors properly', async () => {
     const testError = 'THIS IS A TEST ERROR';
     server.use(
-      rest.put('*/wines/100', async (req, res, ctx) => {
+      rest.put('*/grapes/100', async (req, res, ctx) => {
         return res.once(
           ctx.status(500),
           ctx.json({
@@ -75,7 +75,7 @@ describe('<EditWine />', () => {
   it('handles delete errors correctly', async () => {
     const testError = 'THIS IS A TEST ERROR';
     server.use(
-      rest.delete('*/wines/100', async (req, res, ctx) => {
+      rest.delete('*/grapes/100', async (req, res, ctx) => {
         return res.once(
           ctx.status(500),
           ctx.json({
@@ -92,6 +92,6 @@ describe('<EditWine />', () => {
   it('deletes data on button click', async () => {
     await waitForElementToBeRemoved(screen.getByText(/Loading.../i));
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
-    expect(await screen.findByText(/Wine deleted!/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Grape deleted!/i)).toBeInTheDocument();
   });
 });

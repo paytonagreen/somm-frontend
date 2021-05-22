@@ -29,37 +29,65 @@ const adminUser = {
 
 const mockWine = {
   id: 100,
-  name: 'Cabernet Sauvignon',
+  name: `Cremant d'Alsace Brut`,
+  producer: 'Domaine Rielfe',
+  has_vintage: false,
+  country: 'France',
+  region: 'Alsace',
   description: 'An absolute classic',
 };
 
 const mockWine2 = {
   id: 101,
-  name: 'Beaujolais',
+  name: `'Exile' Petillant Naturel`,
+  producer: 'Lise et Betrand Jouseet',
+  has_vintage: true,
+  vintage: 2019,
+  country: 'France',
+  region: 'Loire',
   description: 'An absolute classic',
 };
 
 const mockWine3 = {
   id: 102,
-  name: 'Pinot Noir',
+  name: `P'tit Gaby`,
+  producer: 'Mas Theo',
+  has_vintage: true,
+  vintage: 2018,
+  country: 'France',
+  region: 'Rhone',
   description: 'An absolute classic',
 };
 
 const mockWine4 = {
   id: 103,
-  name: 'Riesling',
+  name: `Don't Forget To Soar`,
+  producer: 'Southold Farm + Cellar',
+  has_vintage: true,
+  vintage: 2020,
+  country: 'United States',
+  region: 'Texas',
   description: 'Sharply Delicious',
 };
 
 const mockWine5 = {
   id: 104,
-  name: 'Sauvignon Blanc',
+  name: 'Tempranillo',
+  producer: 'The Austin Winery',
+  has_vintage: true,
+  vintage: '2019',
+  country: 'United States',
+  region: 'Texas',
   description: 'V Good',
 };
 
 const mockWine6 = {
   id: 105,
-  name: 'Gewürztraminer',
+  name: 'Venegazzu',
+  producer: 'Montelvini',
+  has_vintage: false,
+  country: 'Italy',
+  region: 'Veneto',
   description: 'V Good',
 };
 

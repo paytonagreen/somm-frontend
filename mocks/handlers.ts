@@ -58,7 +58,7 @@ export const handlers = [
   rest.get('/api/grapes', async (req, res, ctx) => {
     return res(
       ctx.json({
-        wines: [
+        grapes: [
           mockGrape,
           mockGrape2,
           mockGrape3,
@@ -90,13 +90,17 @@ export const handlers = [
   rest.get('*/sauces/100', async (req, res, ctx) => {
     return res(ctx.json(mockSauce));
   }),
+  
+  rest.get('*/grapes/100', async (req, res, ctx) => {
+    return res(ctx.json(mockGrape));
+  }),
 
   rest.get('*/proteins/100/wines', async (req, res, ctx) => {
     return res(ctx.json([mockWine, mockWine2]));
   }),
   
   rest.get('*/proteins/100/grapes', async (req, res, ctx) => {
-    return res(ctx.json([mockWine, mockWine2]));
+    return res(ctx.json([mockGrape, mockGrape2]));
   }),
 
   rest.get('*/sauces/100/wines', async (req, res, ctx) => {
@@ -104,7 +108,7 @@ export const handlers = [
   }),
   
   rest.get('*/sauces/100/grapes', async (req, res, ctx) => {
-    return res(ctx.json([mockWine, mockWine3]));
+    return res(ctx.json([mockGrape, mockGrape3]));
   }),
   
   rest.get('*/wines/100/grapes', async (req, res, ctx) => {
@@ -142,6 +146,14 @@ export const handlers = [
   rest.post('*/wines_sauces', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
+  
+  rest.post('*/proteins_grapes', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
+  
+  rest.post('*/sauces_grapes', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
 
   rest.post('*/users', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
@@ -162,6 +174,10 @@ export const handlers = [
   rest.put('*/wines/100', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
+  
+  rest.put('*/grapes/100', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
 
   rest.put('*/users/1', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
@@ -180,6 +196,10 @@ export const handlers = [
   }),
 
   rest.delete('*/sauces/100', async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(successMessage));
+  }),
+  
+  rest.delete('*/grapes/100', async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(successMessage));
   }),
 ];

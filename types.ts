@@ -50,6 +50,12 @@ export interface Wine {
   id: number;
   name: string;
   description: string;
+  producer: string;
+  vintage?: number;
+  has_vintage: boolean;
+  country: string;
+  region?: string;
+  subregion?: string;
 }
 
 export interface Grape {

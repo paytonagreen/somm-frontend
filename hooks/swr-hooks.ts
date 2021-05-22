@@ -166,7 +166,7 @@ function useGrapes() {
   const { data, error } = useSWR<GrapesData>(`api/grapes`, fetcher);
 
   return {
-    grapes: data,
+    grapeData: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -193,7 +193,7 @@ function useWine(id: number) {
   const { data, error } = useSWR<Wine>(`api/wines/${id}`, fetcher);
 
   return {
-    data: data,
+    wine: data,
     isLoading: !error && !data,
     isError: error,
   };

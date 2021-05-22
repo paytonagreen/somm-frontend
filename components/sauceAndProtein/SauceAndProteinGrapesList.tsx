@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { useProteinWines } from 'hooks/swr-hooks';
-import { useSauceWines } from 'hooks/swr-hooks';
+import { useProteinGrapes } from 'hooks/swr-hooks';
+import { useSauceGrapes } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 import Card from '../styles/Card';
@@ -12,32 +12,32 @@ interface Props {
   sauceId: number;
 }
 
-type ProteinWinesObject = Record<string, boolean>;
+type proteinGrapesObject = Record<string, boolean>;
 
 const SauceAndProteinGrapesList: React.FC<Props> = ({ proteinId, sauceId }) => {
-  const { proteinWines } = useProteinWines(proteinId);
-  const { sauceWines } = useSauceWines(sauceId);
+  const { proteinGrapes } = useProteinGrapes(proteinId);
+  const { sauceGrapes } = useSauceGrapes(sauceId);
 
-  const proteinWinesObject: ProteinWinesObject = {};
+  const proteinGrapesObject: proteinGrapesObject = {};
 
-  if (!proteinWines || !sauceWines) return <Loader />;
+  if (!proteinGrapes || !sauceGrapes) return <Loader />;
   return (
     <Card>
       <WineMatches>
         <h2>Grape Matches</h2>
-        {proteinWines.forEach((proteinWine) => {
-          proteinWinesObject[proteinWine.name] = true;
+        {proteinGrapes.forEach((proteinGrape) => {
+          proteinGrapesObject[proteinGrape.name] = true;
         })}
-        {sauceWines.map((sauceWine) => {
-          if (proteinWinesObject[sauceWine.name]) {
+        {sauceGrapes.map((sauceGrape) => {
+          if (proteinGrapesObject[sauceGrape.name]) {
             return (
-              <div key={sauceWine.id}>
-                <Link href={`/editWine?id=${sauceWine.id}`}>
+              <div key={sauceGrape.id}>
+                <Link href={`/editWine?id=${sauceGrape.id}`}>
                   <a>
-                    <h3>{sauceWine.name}</h3>
+                    <h3>{sauceGrape.name}</h3>
                   </a>
                 </Link>
-                <p>{sauceWine.description}</p>
+                <p>{sauceGrape.description}</p>
               </div>
             );
           }

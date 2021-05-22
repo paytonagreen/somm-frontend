@@ -23,7 +23,7 @@ const EditWine: React.FC<Props> = ({ id }) => {
   const [, setSuccessMessage] = useState('');
   const [, setErrorMessage] = useState('');
 
-  const { data, isLoading } = useWine(id);
+  const { wine, isLoading } = useWine(id);
 
   const wineId = id;
 
@@ -53,9 +53,9 @@ const EditWine: React.FC<Props> = ({ id }) => {
   if (isLoading) return <Loader />;
   return (
     <EditWineStyles>
-      <EditWineForm data={data} id={id} />
+      <EditWineForm data={wine} id={id} />
       <GrapeList addable={true} addFn={addWineGrape} />
-      <WineGrapes wine={data} />
+      <WineGrapes wine={wine} />
     </EditWineStyles>
   );
 };
