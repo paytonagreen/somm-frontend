@@ -3,7 +3,7 @@ import { useProteins } from 'hooks/swr-hooks';
 import { useSauces } from 'hooks/swr-hooks';
 
 import SelectorSection from '../styles/SelectorSection';
-import SauceAndProteinWinesList from './SauceAndProteinWinesList';
+import SauceAndProteinGrapesList from './SauceAndProteinGrapesList';
 import Loader from '../reusable/Loader';
 
 interface Values {
@@ -68,7 +68,7 @@ const SauceAndProteinDisplay: React.FC = () => {
         </div>
       </SelectorSection>
       {values.sauce !== 0 && values.protein !== 0 && (
-        <SauceAndProteinWinesList
+        <SauceAndProteinGrapesList
           proteinId={values.protein}
           sauceId={values.sauce}
         />

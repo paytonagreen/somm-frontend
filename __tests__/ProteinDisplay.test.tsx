@@ -55,6 +55,6 @@ describe('<ProteinDisplay />', () => {
     await userEvent.selectOptions(dropdown, [
       screen.getByRole('option', { name: 'Beef' }),
     ]);
-    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+    expect(await screen.findByText('Grape Matches')).toBeInTheDocument();
   });
 });

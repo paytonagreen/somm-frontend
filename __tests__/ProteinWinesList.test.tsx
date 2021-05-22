@@ -2,11 +2,11 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
 import { render } from 'lib/test-utils';
 
-import ProteinWinesList from '@/components/proteins/ProteinGrapesList';
+import ProteinGrapesList from 'components/proteins/ProteinGrapesList';
 
 describe('<ProteinWineList />', () => {
   beforeEach(() => {
-    render(<ProteinWinesList id={100} />);
+    render(<ProteinGrapesList id={100} />);
   });
 
   it('renders a loader', () => {
@@ -15,6 +15,6 @@ describe('<ProteinWineList />', () => {
 
   it('renders properly with data', async () => {
     await waitForElementToBeRemoved(screen.getByText(/Loading/i));
-    expect(screen.getByText('Wine Matches')).toBeInTheDocument();
+    expect(screen.getByText('Grape Matches')).toBeInTheDocument();
   });
 });

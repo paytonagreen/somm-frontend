@@ -8,6 +8,12 @@ import {
   mockWine4,
   mockWine5,
   mockWine6,
+  mockGrape,
+  mockGrape2,
+  mockGrape3,
+  mockGrape4,
+  mockGrape5,
+  mockGrape6,
   mockProtein,
   mockSauce,
 } from 'lib/test-utils';
@@ -48,6 +54,22 @@ export const handlers = [
       })
     );
   }),
+  
+  rest.get('/api/grapes', async (req, res, ctx) => {
+    return res(
+      ctx.json({
+        wines: [
+          mockGrape,
+          mockGrape2,
+          mockGrape3,
+          mockGrape4,
+          mockGrape5,
+          mockGrape6,
+        ],
+        total_pages: 2,
+      })
+    );
+  }),
 
   rest.get('*/sauces', async (req, res, ctx) => {
     return res(ctx.json({ sauces: [mockSauce] }));
@@ -72,9 +94,21 @@ export const handlers = [
   rest.get('*/proteins/100/wines', async (req, res, ctx) => {
     return res(ctx.json([mockWine, mockWine2]));
   }),
+  
+  rest.get('*/proteins/100/grapes', async (req, res, ctx) => {
+    return res(ctx.json([mockWine, mockWine2]));
+  }),
 
   rest.get('*/sauces/100/wines', async (req, res, ctx) => {
     return res(ctx.json([mockWine, mockWine3]));
+  }),
+  
+  rest.get('*/sauces/100/grapes', async (req, res, ctx) => {
+    return res(ctx.json([mockWine, mockWine3]));
+  }),
+  
+  rest.get('*/wines/100/grapes', async (req, res, ctx) => {
+    return res(ctx.json([mockGrape, mockGrape3]));
   }),
 
   rest.get('*/users/1', async (req, res, ctx) => {

@@ -14,7 +14,7 @@ interface Props {
 
 type ProteinWinesObject = Record<string, boolean>;
 
-const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
+const SauceAndProteinGrapesList: React.FC<Props> = ({ proteinId, sauceId }) => {
   const { proteinWines } = useProteinWines(proteinId);
   const { sauceWines } = useSauceWines(sauceId);
 
@@ -24,7 +24,7 @@ const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
   return (
     <Card>
       <WineMatches>
-        <h2>Wine Matches</h2>
+        <h2>Grape Matches</h2>
         {proteinWines.forEach((proteinWine) => {
           proteinWinesObject[proteinWine.name] = true;
         })}
@@ -47,4 +47,4 @@ const SauceAndProteinWinesList: React.FC<Props> = ({ proteinId, sauceId }) => {
   );
 };
 
-export default SauceAndProteinWinesList;
+export default SauceAndProteinGrapesList;

@@ -1,16 +1,15 @@
 import { screen } from '@testing-library/react';
-import { cache } from 'swr';
 import { render } from 'lib/test-utils';
 
-import SauceAndProteinWinesList from 'components/sauceAndProtein/SauceAndProteinWinesList';
+import SauceAndProteinGrapesList from 'components/sauceAndProtein/SauceAndProteinGrapesList';
 
-describe('<SauceAndProteinWinesList />', () => {
+describe('<SauceAndProteinGrapesList />', () => {
   beforeEach(() => {
-    render(<SauceAndProteinWinesList proteinId={100} sauceId={100} />);
+    render(<SauceAndProteinGrapesList proteinId={100} sauceId={100} />);
   });
 
   it('renders properly with data', async () => {
-    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+    expect(await screen.findByText('Grape Matches')).toBeInTheDocument();
     expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });
 });

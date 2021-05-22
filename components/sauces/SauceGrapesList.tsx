@@ -15,7 +15,7 @@ const SauceGrapesList: React.FC<Props> = ({ id }) => {
   if (isLoading) return <Loader />;
   return (
     <WineMatches>
-      <h2>Wine Matches</h2>
+      <h2>Grape Matches</h2>
       {sauceGrapes.map((sauce_wine) => {
         return (
           <div key={sauce_wine.id}>

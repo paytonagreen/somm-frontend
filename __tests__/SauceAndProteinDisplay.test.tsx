@@ -28,7 +28,7 @@ describe('<SauceAndProteinDisplay />', () => {
     expect(await screen.findByText('Marinara')).toBeInTheDocument();
   });
 
-  it('renders the <SauceAndProteinWineList /> component upon select', async () => {
+  it('renders the <SauceAndProteinGrapeList /> component upon select', async () => {
     await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     const sauceDropdown = screen.getByRole('combobox', { name: /sauce/i });
     const proteinDropdown = screen.getByRole('combobox', { name: /protein/i });
@@ -38,10 +38,10 @@ describe('<SauceAndProteinDisplay />', () => {
     await userEvent.selectOptions(proteinDropdown, [
       screen.getByRole('option', { name: 'Beef' }),
     ]);
-    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+    expect(await screen.findByText('Grape Matches')).toBeInTheDocument();
   });
 
-  it('populates the <SauceAndProteinsWinesList /> with data', async () => {
+  it('populates the <SauceAndProteinsGrapesList /> with data', async () => {
     await waitForElementToBeRemoved(screen.getByText(/Loading/i));
     const sauceDropdown = screen.getByRole('combobox', { name: /sauce/i });
     const proteinDropdown = screen.getByRole('combobox', { name: /protein/i });
@@ -51,7 +51,7 @@ describe('<SauceAndProteinDisplay />', () => {
     await userEvent.selectOptions(proteinDropdown, [
       screen.getByRole('option', { name: 'Beef' }),
     ]);
-    await screen.findByText('Wine Matches');
+    await screen.findByText('Grape Matches');
     expect(await screen.findByText('Cabernet Sauvignon')).toBeInTheDocument();
   });
 });

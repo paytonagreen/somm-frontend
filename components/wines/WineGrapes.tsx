@@ -15,17 +15,15 @@ const WineGrapes: React.FC<WineGrapesProps> = ({wine}) => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  console.log(wine.id);
   const { wineGrapes } = useWineGrapes(wine.id);
 
   if (!wineGrapes) return <Loader />;
-  console.log(wineGrapes);
   return (
     <ThingListStyles>
         <h2>{wine.name} Grapes</h2>
         {wineGrapes.map((grape) => {
             return (
-                <p>{grape.name}</p>
+                <p key={grape.id}>{grape.name}</p>
             )
         })}
     </ThingListStyles>
