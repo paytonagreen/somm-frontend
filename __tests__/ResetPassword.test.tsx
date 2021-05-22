@@ -7,8 +7,17 @@ import ResetPassword from 'components/userFlow/ResetPassword';
 import { rest, server } from 'mocks/server';
 
 async function fillForm() {
-  const password = await screen.findByLabelText(/Password/i);
+  const password = await screen.findByLabelText(/New Password/i);
+  const confirmPassword = await screen.findByLabelText(/Confirm Password/i);
   userEvent.type(password, 'passtest');
+  userEvent.type(confirmPassword, 'passtest');
+}
+
+async function fillFormWrong() {
+  const password = await screen.findByLabelText(/New Password/i);
+  const confirmPassword = await screen.findByLabelText(/Confirm Password/i);
+  userEvent.type(password, 'passtest');
+  userEvent.type(confirmPassword, 'passsstest');
 }
 
 describe('<ResetPassword /> ', () => {
@@ -21,8 +30,13 @@ describe('<ResetPassword /> ', () => {
 
   it('handles form input correctly', async () => {
     await fillForm();
-    expect(screen.getByDisplayValue(/passtest/i)).toBeInTheDocument();
+    expect(screen.getAllByDisplayValue(/passtest/i)).toHaveLength(2);
   });
+
+  it('handles password validation correctly', async () => {
+    await fillFormWrong();
+    expect(await screen.findByText(/Both password fields must match/i)).toBeInTheDocument();
+  })
 
   it('submits data properly on button click', async () => {
     await fillForm();

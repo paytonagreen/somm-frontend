@@ -108,6 +108,7 @@ export interface CurrentUserProps {
 
 export interface CurrentUserAndQueryProps extends CurrentUserProps {
   query: {
-    id: string;
+    id?: string;
+    token?: string;
   };
 }
