@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 
 import useForm from 'hooks/useForm';
 import { headers, myFetch } from 'lib/utils';
@@ -7,17 +7,18 @@ import { headers, myFetch } from 'lib/utils';
 import Form from '../reusable/Form';
 import { FetchOptions } from 'types';
 
-export default function SignUp() {
+export default function AccountSignUp() {
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] =
+    useState<JSX.Element | undefined>();
   const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
+    accountName: '',
     username: '',
     email: '',
     password: '',
     password_confirmation: '',
-    account_id: 0,
   });
 
   const signedUp = (
@@ -32,16 +33,14 @@ export default function SignUp() {
   async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = 'api/users';
+      const url = 'api/accounts';
       const options: FetchOptions = {
         body: JSON.stringify({
-          user: {
-            username: values.username,
-            email: values.email,
-            password: values.password,
-            password_confirmation: values.password_confirmation,
-            account_id: values.account_id
-          },
+          name: values.accountName,
+          username: values.username,
+          password: values.password,
+          password_confirmation: values.password_confirmation,
+          email: values.email,
         }),
         method: `POST`,
         headers,
@@ -61,9 +60,17 @@ export default function SignUp() {
   if (successMessage) return <>{successMessage}</>;
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+      <h2>Account Sign Up</h2>
       {errorMessage && <p>{errorMessage}</p>}
-      <label htmlFor='username'>Username</label>
+      <label htmlFor='accountName'>Account Name</label>
+      <input
+        id='accountName'
+        name='accountName'
+        type='text'
+        value={values.accountName}
+        onChange={handleChange}
+      />
+      <label htmlFor='username'>Admin Username</label>
       <input
         id='username'
         name='username'
@@ -71,7 +78,7 @@ export default function SignUp() {
         value={values.username}
         onChange={handleChange}
       />
-      <label htmlFor='email'>Email</label>
+      <label htmlFor='email'>Admin Email</label>
       <input
         id='email'
         name='email'
@@ -93,14 +100,6 @@ export default function SignUp() {
         name='password_confirmation'
         type='password'
         value={values.password_confirmation}
-        onChange={handleChange}
-      />
-      <label htmlFor='account_id'>Account Number</label>
-      <input
-        id='account_id'
-        name='account_id'
-        type='number'
-        value={values.account_id}
         onChange={handleChange}
       />
 

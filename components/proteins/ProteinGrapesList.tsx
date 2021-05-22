@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { useProteinWines } from 'hooks/swr-hooks';
+import { useProteinGrapes } from 'hooks/swr-hooks';
 
 import WineMatches from '../styles/WineMatches';
 import Loader from '../reusable/Loader';
@@ -9,14 +9,14 @@ interface Props {
   id: number;
 }
 
-const ProteinWinesList: React.FC<Props> = ({ id }) => {
-  const { proteinWines, isLoading } = useProteinWines(id);
+const ProteinGrapesList: React.FC<Props> = ({ id }) => {
+  const { proteinGrapes, isLoading } = useProteinGrapes(id);
 
   if (isLoading) return <Loader />;
   return (
     <WineMatches>
-      <h2>Wine Matches</h2>
-      {proteinWines.map((protein_wine) => {
+      <h2>Grape Matches</h2>
+      {proteinGrapes.map((protein_wine) => {
         return (
           <div key={protein_wine.id}>
             <Link href={`/editWine?id=${protein_wine.id}`}>
@@ -24,7 +24,7 @@ const ProteinWinesList: React.FC<Props> = ({ id }) => {
                 <h3>{protein_wine.name}</h3>
               </a>
             </Link>
-            <p>{protein_wine.wine_description}</p>
+            <p>{protein_wine.description}</p>
           </div>
         );
       })}
@@ -32,4 +32,4 @@ const ProteinWinesList: React.FC<Props> = ({ id }) => {
   );
 };
 
-export default ProteinWinesList;
+export default ProteinGrapesList;

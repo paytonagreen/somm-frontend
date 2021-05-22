@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useProtein, useCurrentUser } from 'hooks/swr-hooks';
 
-import ProteinWinesList from './ProteinWinesList';
+import ProteinGrapesList from './ProteinGrapesList';
 import Card from '../styles/Card';
 import Loader from '../reusable/Loader';
 import DeleteItem from '../reusable/DeleteItem';
@@ -24,7 +24,7 @@ const Protein: React.FC<Props> = ({ id }) => {
         {deleteMessage && <p>{deleteMessage}</p>}
         {!deleteMessage && errorMessage && <p>{errorMessage}</p>}
         <h1>{protein.name}</h1>
-        <ProteinWinesList id={id} />
+        <ProteinGrapesList id={id} />
         <div className='button-div'>
           {data && data.user && data.user.is_admin && id && (
             <DeleteItem

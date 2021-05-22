@@ -20,11 +20,11 @@ describe('<Protein /> with regular user', () => {
   });
 
   it('renders properly', async () => {
-    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+    expect(await screen.findByText('Grape Matches')).toBeInTheDocument();
   });
 
   it('renders the <WinesList />', async () => {
-    await screen.findByText('Wine Matches');
+    await screen.findByText('Grape Matches');
     expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
   });
 });
@@ -36,7 +36,7 @@ describe('<Protein /> with admin user', () => {
   });
 
   it('renders the <DeleteProtein /> button', async () => {
-    await screen.findByText('Wine Matches');
+    await screen.findByText('Grape Matches');
     expect(
       await screen.findByRole('button', { name: 'Delete' })
     ).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('<Protein /> with admin user', () => {
         return res.once(ctx.status(500), ctx.json({ message: testError }));
       })
     );
-    await screen.findByText('Wine Matches');
+    await screen.findByText('Grape Matches');
     await waitFor(async () => {
       userEvent.click(await screen.findByRole('button', { name: 'Delete' }));
     });
@@ -57,7 +57,7 @@ describe('<Protein /> with admin user', () => {
   });
 
   it('calls the deleteProtein function on button click', async () => {
-    await screen.findByText('Wine Matches');
+    await screen.findByText('Grape Matches');
     await userEvent.click(screen.getByRole('button', { name: 'Delete' }));
     expect(await screen.findByText('Protein deleted!')).toBeInTheDocument();
   });

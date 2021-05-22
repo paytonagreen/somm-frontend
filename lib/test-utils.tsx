@@ -30,37 +30,73 @@ const adminUser = {
 const mockWine = {
   id: 100,
   name: 'Cabernet Sauvignon',
-  wine_description: 'An absolute classic',
+  description: 'An absolute classic',
 };
 
 const mockWine2 = {
   id: 101,
   name: 'Beaujolais',
-  wine_description: 'An absolute classic',
+  description: 'An absolute classic',
 };
 
 const mockWine3 = {
   id: 102,
   name: 'Pinot Noir',
-  wine_description: 'An absolute classic',
+  description: 'An absolute classic',
 };
 
 const mockWine4 = {
   id: 103,
   name: 'Riesling',
-  wine_description: 'Sharply Delicious',
+  description: 'Sharply Delicious',
 };
 
 const mockWine5 = {
   id: 104,
   name: 'Sauvignon Blanc',
-  wine_description: 'V Good',
+  description: 'V Good',
 };
 
 const mockWine6 = {
   id: 105,
   name: 'Gewürztraminer',
-  wine_description: 'V Good',
+  description: 'V Good',
+};
+
+const mockGrape = {
+  id: 100,
+  name: 'Cabernet Sauvignon',
+  description: 'An absolute classic',
+};
+
+const mockGrape2 = {
+  id: 101,
+  name: 'Beaujolais',
+  description: 'An absolute classic',
+};
+
+const mockGrape3 = {
+  id: 102,
+  name: 'Pinot Noir',
+  description: 'An absolute classic',
+};
+
+const mockGrape4 = {
+  id: 103,
+  name: 'Riesling',
+  description: 'Sharply Delicious',
+};
+
+const mockGrape5 = {
+  id: 104,
+  name: 'Sauvignon Blanc',
+  description: 'V Good',
+};
+
+const mockGrape6 = {
+  id: 105,
+  name: 'Gewürztraminer',
+  description: 'V Good',
 };
 
 const mockProtein = {
@@ -105,6 +141,12 @@ export {
   mockWine4,
   mockWine5,
   mockWine6,
+  mockGrape,
+  mockGrape2,
+  mockGrape3,
+  mockGrape4,
+  mockGrape5,
+  mockGrape6,
   mockProtein,
   mockSauce,
   useServerUser,

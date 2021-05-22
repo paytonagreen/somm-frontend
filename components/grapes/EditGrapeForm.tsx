@@ -5,15 +5,15 @@ import { headers } from 'lib/utils';
 
 import Form from '../reusable/Form';
 import ButtonRow from '../styles/ButtonRow';
-import { Wine } from 'types';
+import { Grape } from 'types';
 import DeleteItem from '../reusable/DeleteItem';
 
 interface Props {
-  data: Wine;
+  data: Grape;
   id: number;
 }
 
-const EditWineForm: React.FC<Props> = ({ data, id }) => {
+const EditGrapeForm: React.FC<Props> = ({ data, id }) => {
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -37,7 +37,7 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
     if (!savingStarted) {
       setSavingStarted(true);
       try {
-        const url = `api/wines/${id}`;
+        const url = `api/grapes/${id}`;
         const options = {
           body: JSON.stringify({
             name: values.name,
@@ -61,7 +61,7 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Edit Wine</h2>
+      <h2>Edit Grape</h2>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
       {deleteMessage && <p>{deleteMessage}</p>}
@@ -87,11 +87,11 @@ const EditWineForm: React.FC<Props> = ({ data, id }) => {
           setDeleteMessage={setDeleteMessage}
           setErrorMessage={setErrorMessage}
           id={id}
-          itemType='wine'
+          itemType='grape'
         />
       </ButtonRow>
     </Form>
   );
 };
 
-export default EditWineForm;
+export default EditGrapeForm;

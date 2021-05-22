@@ -32,6 +32,6 @@ describe('<SauceDisplay />', () => {
       screen.getByRole('option', { name: 'Marinara' }),
     ]);
     expect(await screen.findByText(/Loading.../i)).toBeInTheDocument();
-    expect(await screen.findByText('Wine Matches')).toBeInTheDocument();
+    expect(await screen.findByText('Grape Matches')).toBeInTheDocument();
   });
 });
