@@ -1,5 +1,5 @@
-import AccountWines from '@/components/accounts/AccountWines';
-import AddAccountWines from '@/components/accounts/AddAccountWines';
+import AccountWines from '@/components/accounts/wines/AccountWines';
+import AddAccountWines from '@/components/accounts/wines/AddAccountWines';
 import styled from 'styled-components';
 
 import { CurrentUserProps } from 'types';

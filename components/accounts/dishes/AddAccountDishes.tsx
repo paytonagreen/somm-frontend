@@ -1,7 +1,7 @@
 import { headers, myFetch } from 'lib/utils';
 import { useEffect, useState } from 'react';
 import { CurrentUserProps, FetchOptions } from 'types';
-import DishList from '../dishes/DishList';
+import DishList from '../../dishes/DishList';
 
 const AddAccountDishes: React.FC<CurrentUserProps> = ({ currentUser }) => {
   const [itemId, setItemId] = useState<number | undefined>();

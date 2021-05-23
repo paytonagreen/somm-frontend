@@ -1,4 +1,4 @@
-import AccountSignUp from 'components/accounts/AccountSignUp';
+import AccountSignUp from '@/components/userFlow/AccountSignUp';
 
 export default function AccountSignUpPage() {
   return <AccountSignUp />;

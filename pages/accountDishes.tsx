@@ -1,4 +1,4 @@
-import AccountDishesDisplay from 'components/accounts/AccountDishesDisplay';
+import AccountDishesDisplay from '@/components/accounts/dishes/AccountDishesManager';
 import { CurrentUserProps } from 'types';
 
 const AccountDishesPage: React.FC<CurrentUserProps> = ({ currentUser }) => {

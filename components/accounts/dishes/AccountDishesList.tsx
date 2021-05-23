@@ -3,8 +3,8 @@ import { headers, myFetch } from 'lib/utils';
 import React, { useEffect, useState } from 'react';
 import { CurrentUserProps } from 'types';
 
-import Loader from '../reusable/Loader';
-import ThingList from '../reusable/ThingList';
+import Loader from '../../reusable/Loader';
+import ThingList from '../../reusable/ThingList';
 
 const AccountDishesList: React.FC<CurrentUserProps> = ({ currentUser }) => {
   const [isDeleting, setIsDeleting] = useState(false);

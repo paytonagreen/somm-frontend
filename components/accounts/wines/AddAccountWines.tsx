@@ -1,7 +1,7 @@
 import { headers, myFetch } from 'lib/utils';
 import { useEffect, useState } from 'react';
 import { CurrentUserProps, FetchOptions } from 'types';
-import WineList from '../wines/WineList';
+import WineList from '../../wines/WineList';
 
 const AddAccountWines: React.FC<CurrentUserProps> = ({ currentUser }) => {
   const [isAdding, setIsAdding] = useState(false);
