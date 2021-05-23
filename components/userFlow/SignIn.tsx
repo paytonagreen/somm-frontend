@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Router from 'next/router'
+import Router from 'next/router';
 
 import useForm from 'hooks/useForm';
 import { headers } from 'lib/utils';
@@ -7,17 +7,20 @@ import { SignInValues } from 'types';
 
 import Form from '../reusable/Form';
 import { mutate } from 'swr';
+import Link from 'next/link';
 
 export default function SignIn() {
-
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { values, handleChange, handleSubmit } = useForm<SignInValues>(callback, {
-    username: '',
-    password: '',
-  });
+  const { values, handleChange, handleSubmit } = useForm<SignInValues>(
+    callback,
+    {
+      username: '',
+      password: '',
+    }
+  );
 
   function callback() {
     if (!savingStarted) {
@@ -42,7 +45,7 @@ export default function SignIn() {
             await data;
             mutate('api/logged_in');
             setSuccessMessage('Signing in...');
-            Router.push('/')
+            Router.push('/');
           }
         })
         .catch((err) => {
@@ -76,6 +79,14 @@ export default function SignIn() {
       <button aria-label='submit' type='submit'>
         Submit
       </button>
+      <div className="links">
+        <Link href='/signUp'>
+          <a>New Here? Sign Up!</a>
+        </Link>
+        <Link href='/requestReset'>
+          <a>Forgot Your Password?</a>
+        </Link>
+      </div>
     </Form>
   );
 }

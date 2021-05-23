@@ -56,6 +56,18 @@ const Form = styled.form`
     background-color: ${(props) => props.theme.colors.beauj};
     color: ${(props) => props.theme.colors.chard};
   }
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+    a {
+      margin: .5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 `;
 
 export default Form;

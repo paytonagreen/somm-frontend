@@ -10,6 +10,7 @@ export type WinesArray = Wine[];
 export type ProteinsArray = Protein[];
 export type SaucesArray = Sauce[];
 export type GrapesArray = Grape[];
+export type DishesArray = Dish[];
 
 export interface WinesData extends ItemData {
   wines: WinesArray;
@@ -17,6 +18,10 @@ export interface WinesData extends ItemData {
 
 export interface GrapesData extends ItemData {
   grapes: GrapesArray;
+}
+
+export interface DishesData extends ItemData {
+  dishes: DishesArray;
 }
 
 export interface ProteinsData extends ItemData {
@@ -61,7 +66,13 @@ export interface Wine {
 export interface Grape {
   id: number;
   name: string;
-  description: string;
+  description?: string;
+}
+
+export interface Dish {
+  id: number;
+  name: string;
+  description?: string;
 }
 
 export interface Protein {

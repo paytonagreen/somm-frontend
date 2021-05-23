@@ -1,17 +1,17 @@
 import useForm from 'hooks/useForm';
-import { useWines } from 'hooks/swr-hooks';
+import { useAccountWines } from 'hooks/swr-hooks';
 
 import Wine from './Wine';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 
-interface WineSelectorValues {
-  wine: number;
+interface WineDisplayProps {
+  id: number;
 }
 
-export default function WineDisplay() {
-  const { wineData, isLoading, isError } = useWines();
-  const { values, handleChange } = useForm<WineSelectorValues>(() => {}, {
+const WineDisplay: React.FC<WineDisplayProps> = ({ id }) => {
+  const { accountWines, isLoading, isError } = useAccountWines(id);
+  const { values, handleChange } = useForm(() => {}, {
     wine: 0,
   });
 
@@ -31,7 +31,7 @@ export default function WineDisplay() {
           <option value={0} disabled hidden>
             Select A Wine
           </option>
-          {wineData.wines.map((wine) => {
+          {accountWines.wines.map((wine) => {
             return (
               <option key={wine.id} value={wine.id}>
                 {wine.name}
@@ -43,4 +43,6 @@ export default function WineDisplay() {
       {values.wine !== 0 && <Wine id={values.wine} />}
     </>
   );
-}
+};
+
+export default WineDisplay;
