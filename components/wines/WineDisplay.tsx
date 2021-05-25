@@ -1,16 +1,14 @@
 import useForm from 'hooks/useForm';
 import { useAccountWines } from 'hooks/swr-hooks';
 
+import { CurrentUserProps } from 'types';
+
 import Wine from './Wine';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 
-interface WineDisplayProps {
-  id: number;
-}
-
-const WineDisplay: React.FC<WineDisplayProps> = ({ id }) => {
-  const { accountWines, isLoading, isError } = useAccountWines(id);
+const WineDisplay: React.FC<CurrentUserProps> = ({ currentUser }) => {
+  const { accountWines, isLoading, isError } = useAccountWines(currentUser.id);
   const { values, handleChange } = useForm(() => {}, {
     wine: 0,
   });

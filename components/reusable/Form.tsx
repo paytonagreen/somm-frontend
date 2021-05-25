@@ -68,6 +68,18 @@ const Form = styled.form`
       color: inherit;
     }
   }
+  .searchBar {
+    display: flex;
+    width: 25vw;
+    align-items: center;
+    button {
+      height: 2rem;
+      padding: 0 1rem;
+    }
+  }
+  h2 {
+    text-align: center;
+  }
 `;
 
 export default Form;
