@@ -17,7 +17,7 @@ describe('<ProteinDisplay />', () => {
 
   it('renders a loader', async () => {
     await displayRender();
-    expect(screen.getByText(/Loading/i)).toBeInTheDocument;
+    expect(screen.getByText(/Loading/i)).toBeInTheDocument();
   });
 
   it('renders properly', async () => {
