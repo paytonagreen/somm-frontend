@@ -9,9 +9,19 @@ export interface ItemData {
 export type WinesArray = Wine[];
 export type ProteinsArray = Protein[];
 export type SaucesArray = Sauce[];
+export type GrapesArray = Grape[];
+export type DishesArray = Dish[];
 
 export interface WinesData extends ItemData {
   wines: WinesArray;
+}
+
+export interface GrapesData extends ItemData {
+  grapes: GrapesArray;
+}
+
+export interface DishesData extends ItemData {
+  dishes: DishesArray;
 }
 
 export interface ProteinsData extends ItemData {
@@ -44,7 +54,25 @@ export type Item = Wine | Protein | Sauce;
 export interface Wine {
   id: number;
   name: string;
-  wine_description: string;
+  description: string;
+  producer: string;
+  vintage?: number;
+  has_vintage: boolean;
+  country: string;
+  region?: string;
+  subregion?: string;
+}
+
+export interface Grape {
+  id: number;
+  name: string;
+  description?: string;
+}
+
+export interface Dish {
+  id: number;
+  name: string;
+  description?: string;
 }
 
 export interface Protein {
@@ -62,6 +90,7 @@ export interface User {
   username: string;
   password: string;
   is_admin: boolean;
+  account_id: number;
 }
 
 /***********************
@@ -90,6 +119,7 @@ export interface CurrentUserProps {
 
 export interface CurrentUserAndQueryProps extends CurrentUserProps {
   query: {
-    id: string;
+    id?: string;
+    token?: string;
   };
 }

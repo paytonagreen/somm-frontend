@@ -1,21 +1,16 @@
 import { useState } from 'react';
 
 import useForm from 'hooks/useForm';
-import { headers } from 'lib/utils';
+import { headers, myFetch, sentenceCase } from 'lib/utils';
 
 import Form from './Form';
+import { FetchOptions } from 'types';
 
-interface BasicBody {
+interface AddProps {
   name: string;
 }
 
-interface Props {
-  destination: string;
-  name: string;
-  body: BodyInit;
-}
-
-const AddThing: React.FC<Props> = ({ destination, name, body }) => {
+const AddItem: React.FC<AddProps> = ({ name }) => {
   const [savingStarted, setSavingStarted] = useState(false);
   const { values, handleChange, handleSubmit } = useForm(callback, {
     name: '',
@@ -23,31 +18,23 @@ const AddThing: React.FC<Props> = ({ destination, name, body }) => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`api/${destination}/`, {
-        body,
-        method: `POST`,
+      const url = `api/${name}s`;
+      const options: FetchOptions = {
+        body: JSON.stringify(values),
+        method: 'POST',
         headers,
-      })
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('You did it!');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      };
+      const mutateString = `api/${name}s?page=1&per_page=8`
+      await myFetch(url, options, mutateString, setSuccessMessage, setErrorMessage )
     }
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>{`Add ${name}`}</h2>
+      <h2>{`Add ${sentenceCase(name)}`}</h2>
       {successMessage && <p>{successMessage}</p>}
       {!successMessage && errorMessage && <p>{errorMessage}</p>}
       <label htmlFor='name'>
@@ -63,3 +50,5 @@ const AddThing: React.FC<Props> = ({ destination, name, body }) => {
     </Form>
   );
 };
+
+export default AddItem;

@@ -13,12 +13,14 @@ import EditWine from 'components/wines/EditWine';
 async function fillForm() {
   const name = await screen.findByLabelText(/Name/i);
   const description = await screen.findByLabelText(/Description/i);
-  await screen.findByDisplayValue(/Cabernet Sauvignon/i);
+  await screen.findByDisplayValue(/Cremant d'Alsace Brut/i);
   userEvent.clear(name);
   userEvent.clear(description);
   userEvent.type(name, 'Beaujolais');
   userEvent.type(description, 'Always good');
 }
+
+window.confirm = jest.fn(() => true);
 
 describe('<EditWine />', () => {
   beforeEach(() => {
@@ -35,7 +37,7 @@ describe('<EditWine />', () => {
 
   it('fills the form with preexisting data', async () => {
     expect(
-      await screen.findByDisplayValue(/Cabernet Sauvignon/i)
+      await screen.findByDisplayValue(/Cremant d'Alsace Brut/i)
     ).toBeInTheDocument();
     expect(
       await screen.findByDisplayValue(/An absolute classic/i)

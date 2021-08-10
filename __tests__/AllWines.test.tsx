@@ -23,18 +23,18 @@ describe('<AllWines />', () => {
   });
 
   it('renders data properly', async () => {
-    expect(await screen.findByText(/Cabernet Sauvignon/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Cremant d'Alsace Brut/i)).toBeInTheDocument();
   });
 
   it('renders pagination button', async () => {
-    await screen.findByText(/Cabernet Sauvignon/i);
+    await screen.findByText(/Cremant d'Alsace Brut/i);
     expect(
       await screen.findByRole('button', { name: 'Next' })
     ).toBeInTheDocument();
   });
 
   it('renders a new page on button click', async () => {
-    await screen.findByText(/Cabernet Sauvignon/i);
+    await screen.findByText(/Cremant d'Alsace Brut/i);
     const nextButton = screen.getByRole('button', {name: 'Next'})
     await userEvent.click(nextButton)
     const previousButton = await screen.findByRole('button', {name: 'Previous'})

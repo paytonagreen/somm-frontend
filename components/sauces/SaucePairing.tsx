@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { useSauces, useWines } from 'hooks/swr-hooks';
+import { useSauces, useGrapes } from 'hooks/swr-hooks';
 
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
 
 export default function SaucePairing() {
-  const { wineData } = useWines();
+  const { grapeData } = useGrapes();
   const { sauceData } = useSauces();
   const [savingStarted, setSavingStarted] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -16,56 +16,55 @@ export default function SaucePairing() {
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
     sauce_id: '',
-    wine_id: '',
-  }); 
+    grape_id: '',
+  });
 
   async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      try {
-        const url = `api/wines_sauces`;
-        const options = {
-          body: JSON.stringify({
-            sauce_id: values.sauce_id,
-            wine_id: values.wine_id,
-          }),
-          method: 'POST',
-          headers,
-        };
-        const res = await fetch(url, options);
-        const data = await res.json();
-        if (!res.ok) {
-          throw Error(data.message);
-        } else {
-          setSuccessMessage('Paired up!');
-        }
-      } catch (err) {
-        setErrorMessage(err.message);
-      }
+      const url = `api/sauces_grapes`;
+      const options = {
+        body: JSON.stringify({
+          sauce_id: values.sauce_id,
+          grape_id: values.grape_id,
+        }),
+        method: 'POST',
+        headers,
+      };
+      const mutateString = 'api/sauces_grapes';
+      const successMessage = 'Paired up!';
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage,
+        successMessage
+      );
     }
   }
 
-  if (!sauceData || !wineData) return <Loader />;
+  if (!sauceData || !grapeData) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
-      <label htmlFor='wine_id' />
+      <label htmlFor='grape_id' />
       <select
-        aria-label='wine_id'
-        id='wine_id'
-        value={values.wine_id}
-        name='wine_id'
+        aria-label='grape_id'
+        id='grape_id'
+        value={values.grape_id}
+        name='grape_id'
         onChange={handleChange}
       >
         <option value='' disabled>
           Select A Wine
         </option>
-        {wineData.wines.map((wine) => {
+        {grapeData.grapes.map((grape) => {
           return (
-            <option value={wine.id} key={wine.id}>
-              {wine.name}
+            <option value={grape.id} key={grape.id}>
+              {grape.name}
             </option>
           );
         })}

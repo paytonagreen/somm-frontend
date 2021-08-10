@@ -1,72 +1,67 @@
 import { useState } from 'react';
 
-import { useProteins, useWines } from 'hooks/swr-hooks';
-import { headers } from 'lib/utils';
+import { useProteins, useGrapes } from 'hooks/swr-hooks';
+import { headers, myFetch } from 'lib/utils';
 import useForm from 'hooks/useForm';
 
 import Form from '../reusable/Form';
 import Loader from '../reusable/Loader';
 
 export default function Pairing() {
-  const { wineData } = useWines();
+  const { grapeData } = useGrapes();
   const { proteinData } = useProteins();
   const [savingStarted, setSavingStarted] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { values, handleChange, handleSubmit } = useForm(callback, {
-    wine_id: '',
     protein_id: '',
+    grape_id: '',
   });
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      const url = `api/wines_proteins`;
+      const url = `api/proteins_grapes`;
       const options = {
-        body: JSON.stringify({
-          protein_id: values.protein_id,
-          wine_id: values.wine_id,
-        }),
+        body: JSON.stringify(values),
         method: 'POST',
         headers,
       };
-      fetch(url, options)
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('Paired up!');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      const mutateString = 'api/proteins_grapes';
+      const successMessage = 'Paired up!';
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage,
+        successMessage
+      );
     }
   }
 
-  if (!wineData || !proteinData) return <Loader />;
+  if (!grapeData || !proteinData) return <Loader />;
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Pairing!</h2>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
-      <label htmlFor='wine_id' />
+      <label htmlFor='grape_id' />
       <select
-        aria-label='wine_id'
-        id='wine_id'
-        value={values.wine_id}
-        name='wine_id'
+        aria-label='grape_id'
+        id='grape_id'
+        value={values.grape_id}
+        name='grape_id'
         onChange={handleChange}
       >
         <option value='' disabled>
-          Select A Wine
+          Select A Grape
         </option>
-        {wineData.wines.map((wine) => {
+        {grapeData.grapes.map((grape) => {
           return (
-            <option value={wine.id} key={wine.id}>
-              {wine.name}
+            <option value={grape.id} key={grape.id}>
+              {grape.name}
             </option>
           );
         })}

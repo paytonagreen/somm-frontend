@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { mutate } from 'swr';
 
 import useForm from 'hooks/useForm';
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
+import { FetchOptions } from 'types';
 
 import Form from '../reusable/Form';
 
@@ -16,29 +16,26 @@ export default function AddWine() {
     description: '',
   });
 
-  function callback() {
+  async function callback() {
     if (!savingStarted) {
       setSavingStarted(true);
-      fetch(`api/wines/`, {
+      const url = 'api/wines';
+      const options: FetchOptions = {
         body: JSON.stringify({
           name: values.name,
-          wine_description: values.description,
+          description: values.description,
         }),
         method: `POST`,
         headers,
-      })
-        .then(async (res) => {
-          const data = await res.json();
-          if (!res.ok) {
-            throw Error(data.message);
-          } else {
-            setSuccessMessage('You did it!');
-            mutate('api/wines');
-          }
-        })
-        .catch((err) => {
-          setErrorMessage(err.message);
-        });
+      };
+      const mutateString = `api/wines?page=1&per_page=8`;
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage
+      );
     }
   }
 

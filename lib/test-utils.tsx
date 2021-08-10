@@ -16,6 +16,7 @@ const regUser = {
   is_admin: false,
   id: 1,
   password: 'password',
+  account_id: 1,
 };
 
 const adminUser = {
@@ -23,42 +24,107 @@ const adminUser = {
   is_admin: true,
   id: 2,
   password: 'password',
+  account_id: 1,
 };
 
 const mockWine = {
   id: 100,
-  name: 'Cabernet Sauvignon',
-  wine_description: 'An absolute classic',
+  name: `Cremant d'Alsace Brut`,
+  producer: 'Domaine Rielfe',
+  has_vintage: false,
+  country: 'France',
+  region: 'Alsace',
+  description: 'An absolute classic',
 };
 
 const mockWine2 = {
   id: 101,
-  name: 'Beaujolais',
-  wine_description: 'An absolute classic',
+  name: `'Exile' Petillant Naturel`,
+  producer: 'Lise et Betrand Jouseet',
+  has_vintage: true,
+  vintage: 2019,
+  country: 'France',
+  region: 'Loire',
+  description: 'An absolute classic',
 };
 
 const mockWine3 = {
   id: 102,
-  name: 'Pinot Noir',
-  wine_description: 'An absolute classic',
+  name: `P'tit Gaby`,
+  producer: 'Mas Theo',
+  has_vintage: true,
+  vintage: 2018,
+  country: 'France',
+  region: 'Rhone',
+  description: 'An absolute classic',
 };
 
 const mockWine4 = {
   id: 103,
-  name: 'Riesling',
-  wine_description: 'Sharply Delicious',
+  name: `Don't Forget To Soar`,
+  producer: 'Southold Farm + Cellar',
+  has_vintage: true,
+  vintage: 2020,
+  country: 'United States',
+  region: 'Texas',
+  description: 'Sharply Delicious',
 };
 
 const mockWine5 = {
   id: 104,
-  name: 'Sauvignon Blanc',
-  wine_description: 'V Good',
+  name: 'Tempranillo',
+  producer: 'The Austin Winery',
+  has_vintage: true,
+  vintage: '2019',
+  country: 'United States',
+  region: 'Texas',
+  description: 'V Good',
 };
 
 const mockWine6 = {
   id: 105,
+  name: 'Venegazzu',
+  producer: 'Montelvini',
+  has_vintage: false,
+  country: 'Italy',
+  region: 'Veneto',
+  description: 'V Good',
+};
+
+const mockGrape = {
+  id: 100,
+  name: 'Cabernet Sauvignon',
+  description: 'An absolute classic',
+};
+
+const mockGrape2 = {
+  id: 101,
+  name: 'Beaujolais',
+  description: 'An absolute classic',
+};
+
+const mockGrape3 = {
+  id: 102,
+  name: 'Pinot Noir',
+  description: 'An absolute classic',
+};
+
+const mockGrape4 = {
+  id: 103,
+  name: 'Riesling',
+  description: 'Sharply Delicious',
+};
+
+const mockGrape5 = {
+  id: 104,
+  name: 'Sauvignon Blanc',
+  description: 'V Good',
+};
+
+const mockGrape6 = {
+  id: 105,
   name: 'Gewürztraminer',
-  wine_description: 'V Good',
+  description: 'V Good',
 };
 
 const mockProtein = {
@@ -103,6 +169,12 @@ export {
   mockWine4,
   mockWine5,
   mockWine6,
+  mockGrape,
+  mockGrape2,
+  mockGrape3,
+  mockGrape4,
+  mockGrape5,
+  mockGrape6,
   mockProtein,
   mockSauce,
   useServerUser,

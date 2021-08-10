@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import { mutate } from 'swr';
+import Link from 'next/link'
 
 import useForm from 'hooks/useForm';
-import { headers } from 'lib/utils';
+import { headers, myFetch } from 'lib/utils';
 
 import Form from '../reusable/Form';
 import { FetchOptions } from 'types';
@@ -18,16 +17,17 @@ export default function SignUp() {
     email: '',
     password: '',
     password_confirmation: '',
+    account_id: 0,
   });
 
-  const signedUp = `
+  const signedUp = (
     <Form>
       Thank you for signing up!
       <Link href='/'>
         <a>Let's get pairing!</a>
       </Link>
     </Form>
-  `;
+  );
 
   async function callback() {
     if (!savingStarted) {
@@ -40,23 +40,21 @@ export default function SignUp() {
             email: values.email,
             password: values.password,
             password_confirmation: values.password_confirmation,
+            account_id: values.account_id
           },
         }),
         method: `POST`,
         headers,
       };
-      try {
-        const res = await fetch(url, options);
-        const data = await res.json();
-        if (!res.ok) {
-          throw Error(data.message);
-        } else {
-          mutate('api/logged_in');
-          setSuccessMessage(signedUp);
-        }
-      } catch (err) {
-        setErrorMessage(err.message);
-      }
+      const mutateString = 'api/users';
+      await myFetch(
+        url,
+        options,
+        mutateString,
+        setSuccessMessage,
+        setErrorMessage,
+        signedUp
+      );
     }
   }
 
@@ -95,6 +93,14 @@ export default function SignUp() {
         name='password_confirmation'
         type='password'
         value={values.password_confirmation}
+        onChange={handleChange}
+      />
+      <label htmlFor='account_id'>Account Number</label>
+      <input
+        id='account_id'
+        name='account_id'
+        type='number'
+        value={values.account_id}
         onChange={handleChange}
       />
 

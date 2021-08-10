@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
+  // @media(max-height: 1000px) {
+  //   margin-top: 5rem;
+  //   margin-bottom: 2rem;
+  // }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,6 +55,30 @@ const Form = styled.form`
     border-radius: 5px;
     background-color: ${(props) => props.theme.colors.beauj};
     color: ${(props) => props.theme.colors.chard};
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+    a {
+      margin: .5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+  .searchBar {
+    display: flex;
+    width: 25vw;
+    align-items: center;
+    button {
+      height: 2rem;
+      padding: 0 1rem;
+    }
+  }
+  h2 {
+    text-align: center;
   }
 `;
 

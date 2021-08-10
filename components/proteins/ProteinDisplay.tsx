@@ -5,13 +5,13 @@ import Protein from './Protein';
 import Selector from '../styles/Selector';
 import Loader from '../reusable/Loader';
 
-interface FormValues {
+interface ProteinSelectorValues {
   protein: number;
 }
 
 export default function ProteinDisplay() {
   const { proteinData, isLoading, isError } = useProteins();
-  const { values, handleChange } = useForm<FormValues>(() => {}, {
+  const { values, handleChange } = useForm<ProteinSelectorValues>(() => {}, {
     protein: 0,
   });
 
