@@ -8,6 +8,6 @@ const EditWinePage: React.FC<CurrentUserAndQueryProps> = (props) => {
       <EditWine id={parseInt(props.query.id)} />
     </PleaseSignIn>
   );
-}
+};
 
-export default EditWinePage
+export default EditWinePage;
